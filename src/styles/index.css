@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #00C5C8;
+  --secondary: #00AFB2;
+  --surface: #F9F9F9;
+  --dark: #000000;
+}
+
+
+@font-face {
+  font-family: 'Albertus';
+  src: url('assets/fonts/albertus-nova.eot');
+  src: url('assets/fonts/albertus-nova.eot?#iefix') format('embedded-opentype'),
+       url('../assets/fonts/albertus-nova.woff2') format('woff2'),
+       url('assets/fonts/albertus-nova.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-black);
+  font-family: 'Albertus', serif;
+}
