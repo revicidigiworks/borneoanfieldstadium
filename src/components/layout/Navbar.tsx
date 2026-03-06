@@ -143,7 +143,7 @@ export function Navbar() {
               </NavLink>
             ))}
 
-<button
+          <button
               onClick={() => setLang(lang === "EN" ? "ID" : "EN")}
               className="flex items-center gap-2 text-black border border-gray-300 px-3 py-2 rounded-md w-fit hover:bg-gray-100 transition"
             >

@@ -1,71 +1,104 @@
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import { scheduleService } from "@/services/schedule.service"
-import { ScheduleSlot } from "@/types/schedule"
-import { getUpcomingSlot } from "@/utils/getUpcoming"
-import { SlotCard } from "@/components/schedule/SlotCard"
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { scheduleService } from "@/services/schedule.service";
+import { ScheduleSlot } from "@/types/schedule";
+import { getUpcomingSlot } from "@/utils/getUpcoming";
+import { SlotCard } from "@/components/schedule/SlotCard";
+import hero from "../../assets/images/hero/hero2.png";
 
 export default function HomePage() {
-  const [slots, setSlots] = useState<ScheduleSlot[]>([])
-  const [upcoming, setUpcoming] = useState<ScheduleSlot | undefined>()
+  const [slots, setSlots] = useState<ScheduleSlot[]>([]);
+  const [upcoming, setUpcoming] = useState<ScheduleSlot | undefined>();
 
   useEffect(() => {
     async function load() {
-      const data = await scheduleService.getAll()
-      setSlots(data)
-      setUpcoming(getUpcomingSlot(data))
-    }
-    load()
-  }, [])
+      const data = await scheduleService.getAll();
 
-  const today = new Date().toISOString().split("T")[0]
-  const previewSlots = slots.filter(
-    s => s.date === today
-  )
+      console.log("SLOTS:", data);
+
+      setSlots(data);
+      setUpcoming(getUpcomingSlot(data));
+    }
+
+    load();
+  }, []);
+
+  const today = new Date().toISOString().split("T")[0];
+  const previewSlots = slots.filter((s) => s.date === today);
 
   return (
     <div className="flex flex-col">
-
       {/* 1️⃣ HERO SECTION */}
-      <section className="relative bg-[#00C5C8] text-black min-h-[85vh] flex items-center">
-        <div className="max-w-7xl mx-auto px-6 py-20 w-full">
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-3xl">
-            BORNEO ANFIELD STADIUM
-          </h1>
+      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
+        {/* Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed scale-105"
+          style={{
+            backgroundImage: `url(${hero})`,
+          }}
+        />
 
-          <p className="mt-6 text-lg max-w-xl opacity-90">
-            Keeping The Game Beautiful | Demi Hobi Bukan Gengsi
-          </p>
+        {/* Premium Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
 
-          <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Link
-              to="/schedule"
-              className="bg-black text-white px-6 py-3 font-semibold text-center"
-            >
-              View Schedule
-            </Link>
+        {/* Light Accent */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_60%)]" />
 
-            <a
-              href="#"
-              className="bg-white text-black px-6 py-3 font-semibold text-center"
-            >
-              Book Now
-            </a>
-          </div>
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-white">
+          <div className="max-w-3xl">
+            {/* Title */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight">
+              BORNEO ANFIELD
+              <span className="block text-[#00C5C8]">STADIUM</span>
+            </h1>
 
-          {upcoming && (
-            <div className="mt-16 bg-black text-white p-6 rounded-xl max-w-md">
-              <p className="text-sm opacity-70 mb-2">
-                Upcoming Match
-              </p>
-              <p className="font-semibold text-lg">
-                {upcoming.eventType || "Match"}
-              </p>
-              <p className="text-sm mt-1 opacity-80">
-                Field {upcoming.field} — {upcoming.start}
-              </p>
+            {/* Tagline */}
+            <p className="mt-6 text-base sm:text-lg md:text-xl opacity-90 leading-relaxed max-w-xl">
+              Keeping The Game Beautiful — Demi Hobi Bukan Gengsi
+            </p>
+
+            {/* CTA */}
+            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <Link
+                to="/schedule"
+                className="bg-[#00C5C8] text-black px-8 py-4 font-semibold text-center rounded-xl hover:scale-105 hover:shadow-2xl transition duration-300"
+              >
+                View Schedule
+              </Link>
+
+              <a
+                href="https://wa.me/6282121211892"
+                target="_blank"
+                className="border border-white/80 px-8 py-4 font-semibold text-center rounded-xl hover:bg-white hover:text-black transition duration-300"
+              >
+                Book Now
+              </a>
             </div>
-          )}
+
+            {/* Upcoming Match */}
+            {upcoming && (
+              <div className="mt-14 backdrop-blur-lg bg-white/10 border border-white/20 p-6 rounded-2xl max-w-md shadow-xl">
+                <p className="text-xs uppercase tracking-wider opacity-70 mb-2">
+                  Upcoming Match
+                </p>
+
+                <p className="font-semibold text-lg">
+                  {upcoming.eventType || "Match"}
+                </p>
+
+                <p className="text-sm mt-2 opacity-80">
+                  Field {upcoming.field} — {upcoming.start}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-white opacity-80 animate-bounce">
+          <div className="w-[2px] h-10 bg-white/70 mb-2"></div>
+          <span className="text-xs tracking-widest">SCROLL</span>
         </div>
       </section>
 
@@ -78,9 +111,9 @@ export default function HomePage() {
               Stadion yang Dibangun untuk Struktur
             </h2>
             <p className="mt-6 opacity-70 leading-relaxed">
-              Borneo Anfield bukan sekadar lapangan.
-              Ini adalah sistem. Dengan jadwal transparan,
-              fasilitas premium, dan ekosistem komunitas yang aktif.
+              Borneo Anfield bukan sekadar lapangan. Ini adalah sistem. Dengan
+              jadwal transparan, fasilitas premium, dan ekosistem komunitas yang
+              aktif.
             </p>
             <Link
               to="/about"
@@ -95,9 +128,7 @@ export default function HomePage() {
       {/* 3️⃣ FACILITIES PREVIEW */}
       <section className="py-20 bg-[#F9F9F9]">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-12">
-            Facilities
-          </h2>
+          <h2 className="text-3xl font-bold mb-12">Facilities</h2>
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="h-64 bg-gray-200 rounded-xl p-6 flex items-end font-semibold">
@@ -123,20 +154,16 @@ export default function HomePage() {
       {/* 4️⃣ SCHEDULE PREVIEW (CORE BUSINESS) */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-10">
-            Today’s Schedule
-          </h2>
+          <h2 className="text-3xl font-bold mb-10">Today’s Schedule</h2>
 
           {previewSlots.length ? (
             <div className="space-y-4">
-              {previewSlots.map(slot => (
+              {previewSlots.map((slot) => (
                 <SlotCard key={slot.id} slot={slot} />
               ))}
             </div>
           ) : (
-            <p className="opacity-60">
-              No schedule available today.
-            </p>
+            <p className="opacity-60">No schedule available today.</p>
           )}
 
           <Link
@@ -151,9 +178,7 @@ export default function HomePage() {
       {/* 5️⃣ ECOSYSTEM PREVIEW */}
       <section className="py-20 bg-[#F9F9F9]">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-12">
-            Ecosystem
-          </h2>
+          <h2 className="text-3xl font-bold mb-12">Ecosystem</h2>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -162,8 +187,8 @@ export default function HomePage() {
               "BA FC JUNIOR",
               "Open Gate Nobar",
               "Cari Sparing",
-              "Copa 9’s"
-            ].map(item => (
+              "Copa 9’s",
+            ].map((item) => (
               <div
                 key={item}
                 className="bg-white p-6 rounded-xl border font-semibold"
@@ -185,9 +210,7 @@ export default function HomePage() {
       {/* 6️⃣ SERVICES PREVIEW */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-12">
-            Commercial Services
-          </h2>
+          <h2 className="text-3xl font-bold mb-12">Commercial Services</h2>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -195,8 +218,8 @@ export default function HomePage() {
               "Rompi & Jersey",
               "Wasit Profesional",
               "Live YouTube",
-              "Fotografer"
-            ].map(service => (
+              "Fotografer",
+            ].map((service) => (
               <div
                 key={service}
                 className="bg-[#F9F9F9] p-6 rounded-xl border font-semibold"
@@ -228,7 +251,6 @@ export default function HomePage() {
           BOOK YOUR SLOT NOW
         </a>
       </section>
-
     </div>
-  )
+  );
 }
