@@ -1,27 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #00C5C8;
-  --secondary: #00AFB2;
-  --surface: #F9F9F9;
+  --primary: #C8102E;
+  --secondary: #00aeaf;
+  --surface: #ffffff;
   --dark: #000000;
 }
 
 
 @font-face {
-  font-family: 'Albertus';
-  src: url('assets/fonts/albertus-nova.eot');
-  src: url('assets/fonts/albertus-nova.eot?#iefix') format('embedded-opentype'),
-       url('../assets/fonts/albertus-nova.woff2') format('woff2'),
-       url('assets/fonts/albertus-nova.woff') format('woff');
+  font-family: "Albertus";
+  src: url('../assets/fonts/albertus-nova.woff2') format('woff2'),
+       url('../assets/fonts/albertus-nova.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 body {
-  background: var(--color-surface);
-  color: var(--color-black);
+  background: var(--surface);
+  color: var(--dark);
   font-family: 'Albertus', serif;
 }
 
@@ -36,4 +34,31 @@ body {
 
 .animate-marquee {
   animation: marquee 25s linear infinite;
+}
+
+::selection {
+  background: var(--primary);
+  color: white;
+}
+
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-progress {
+  animation: progress 5s linear forwards;
+}
+
+@keyframes heroZoom {
+  0% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1.15);
+  }
 }

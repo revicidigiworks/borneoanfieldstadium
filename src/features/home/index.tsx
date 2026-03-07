@@ -4,7 +4,6 @@ import { scheduleService } from "@/services/schedule.service";
 import { ScheduleSlot } from "@/types/schedule";
 import { getUpcomingSlot } from "@/utils/getUpcoming";
 import { SlotCard } from "@/components/schedule/SlotCard";
-import hero from "../../assets/images/hero/hero2.png";
 
 export default function HomePage() {
   const [slots, setSlots] = useState<ScheduleSlot[]>([]);
@@ -13,13 +12,9 @@ export default function HomePage() {
   useEffect(() => {
     async function load() {
       const data = await scheduleService.getAll();
-
-      console.log("SLOTS:", data);
-
       setSlots(data);
       setUpcoming(getUpcomingSlot(data));
     }
-
     load();
   }, []);
 
@@ -29,76 +24,43 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       {/* 1️⃣ HERO SECTION */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
-        {/* Background */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed scale-105"
-          style={{
-            backgroundImage: `url(${hero})`,
-          }}
-        />
+      <section className="relative bg-[#00C5C8] text-black min-h-[85vh] flex items-center">
+        <div className="max-w-7xl mx-auto px-6 py-20 w-full">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-3xl">
+            BORNEO ANFIELD STADIUM
+          </h1>
 
-        {/* Premium Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+          <p className="mt-6 text-lg max-w-xl opacity-90">
+            Keeping The Game Beautiful | Demi Hobi Bukan Gengsi
+          </p>
 
-        {/* Light Accent */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_60%)]" />
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <Link
+              to="/schedule"
+              className="bg-black text-white px-6 py-3 font-semibold text-center"
+            >
+              View Schedule
+            </Link>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-white">
-          <div className="max-w-3xl">
-            {/* Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight">
-              BORNEO ANFIELD
-              <span className="block text-[#00C5C8]">STADIUM</span>
-            </h1>
-
-            {/* Tagline */}
-            <p className="mt-6 text-base sm:text-lg md:text-xl opacity-90 leading-relaxed max-w-xl">
-              Keeping The Game Beautiful — Demi Hobi Bukan Gengsi
-            </p>
-
-            {/* CTA */}
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/schedule"
-                className="bg-[#00C5C8] text-black px-8 py-4 font-semibold text-center rounded-xl hover:scale-105 hover:shadow-2xl transition duration-300"
-              >
-                View Schedule
-              </Link>
-
-              <a
-                href="https://wa.me/6282121211892"
-                target="_blank"
-                className="border border-white/80 px-8 py-4 font-semibold text-center rounded-xl hover:bg-white hover:text-black transition duration-300"
-              >
-                Book Now
-              </a>
-            </div>
-
-            {/* Upcoming Match */}
-            {upcoming && (
-              <div className="mt-14 backdrop-blur-lg bg-white/10 border border-white/20 p-6 rounded-2xl max-w-md shadow-xl">
-                <p className="text-xs uppercase tracking-wider opacity-70 mb-2">
-                  Upcoming Match
-                </p>
-
-                <p className="font-semibold text-lg">
-                  {upcoming.eventType || "Match"}
-                </p>
-
-                <p className="text-sm mt-2 opacity-80">
-                  Field {upcoming.field} — {upcoming.start}
-                </p>
-              </div>
-            )}
+            <a
+              href="#"
+              className="bg-white text-black px-6 py-3 font-semibold text-center"
+            >
+              Book Now
+            </a>
           </div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-white opacity-80 animate-bounce">
-          <div className="w-[2px] h-10 bg-white/70 mb-2"></div>
-          <span className="text-xs tracking-widest">SCROLL</span>
+          {upcoming && (
+            <div className="mt-16 bg-black text-white p-6 rounded-xl max-w-md">
+              <p className="text-sm opacity-70 mb-2">Upcoming Match</p>
+              <p className="font-semibold text-lg">
+                {upcoming.eventType || "Match"}
+              </p>
+              <p className="text-sm mt-1 opacity-80">
+                Field {upcoming.field} — {upcoming.start}
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
