@@ -4,6 +4,8 @@ import { scheduleService } from "@/services/schedule.service";
 import { ScheduleSlot } from "@/types/schedule";
 import { getUpcomingSlot } from "@/utils/getUpcoming";
 import { SlotCard } from "@/components/schedule/SlotCard";
+import heroImage from "../../assets/images/hero/hero3.JPG";
+import heroLogo from "../../assets/images/logo/logo-3.png";
 
 export default function HomePage() {
   const [slots, setSlots] = useState<ScheduleSlot[]>([]);
@@ -23,45 +25,104 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col">
-      {/* 1️⃣ HERO SECTION */}
-      <section className="relative bg-[#00C5C8] text-black min-h-[85vh] flex items-center">
-        <div className="max-w-7xl mx-auto px-6 py-20 w-full">
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-3xl">
-            BORNEO ANFIELD STADIUM
-          </h1>
+      <section className="relative min-h-[91.5vh] flex items-center bg-[#1a1a1a] overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0">
+          <img
+            src={heroImage}
+            alt="Borneo Anfield Stadium"
+            className="w-full h-full object-cover opacity-50"
+          />
 
-          <p className="mt-6 text-lg max-w-xl opacity-90">
-            Keeping The Game Beautiful | Demi Hobi Bukan Gengsi
-          </p>
+          <div
+            className="absolute inset-0 bg-linear-to-r 
+  from-(--primary)/95 
+  via-(--primary)/50 
+  to-black/40"
+          ></div>
+        </div>
 
-          <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Link
-              to="/schedule"
-              className="bg-black text-white px-6 py-3 font-semibold text-center"
-            >
-              View Schedule
-            </Link>
-
-            <a
-              href="#"
-              className="bg-white text-black px-6 py-3 font-semibold text-center"
-            >
-              Book Now
-            </a>
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 items-center gap-12">
+          {/* LOGO — MOBILE FIRST */}
+          <div className="flex justify-center lg:hidden mb-10">
+            <img
+              src={heroLogo}
+              alt="Borneo Anfield Logo"
+              className="w-40 sm:w-52 object-contain logo-entrance drop-shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
+            />
           </div>
 
-          {upcoming && (
-            <div className="mt-16 bg-black text-white p-6 rounded-xl max-w-md">
-              <p className="text-sm opacity-70 mb-2">Upcoming Match</p>
-              <p className="font-semibold text-lg">
-                {upcoming.eventType || "Match"}
-              </p>
-              <p className="text-sm mt-1 opacity-80">
-                Field {upcoming.field} — {upcoming.start}
-              </p>
+          {/* LEFT SIDE */}
+          <div className="text-center lg:text-left order-2 lg:order-1">
+            {/* Label */}
+            <div className="flex items-center justify-center lg:justify-start gap-4 mb-8">
+              {/* Hidden line on mobile */}
+              <div className="hidden lg:block h-0.5 w-12 bg-(--secondary)"></div>
+
+              <span className="text-(--secondary) font-bold text-[11px] uppercase tracking-[0.3em]">
+                Kalimantan's Finest Stadium
+              </span>
             </div>
-          )}
+
+            {/* Title */}
+            <h1 className="text-4xl sm:text-5xl md:text-xl lg:text-8xl font-black text-white uppercase leading-[0.9] mb-10">
+              BORNEO <br />
+              ANFIELD <br />
+              <span className="text-(--secondary)  font-weight">STADIUM</span>
+            </h1>
+
+            {/* Description */}
+            <p className="text-base md:text-lg text-white/90 font-light max-w-lg leading-relaxed mb-10 mx-auto lg:mx-0 border-l-0 lg:border-l border-white/30 lg:pl-6">
+              The ultimate home for football enthusiasts. Experience
+              professional-grade facilities, world-class atmosphere, and the
+              spirit of the game.
+            </p>
+
+            {/* CTA */}
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start">
+              <Link
+                to="/schedule"
+                className="px-8 py-4 border-2 border-white text-white font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#C8102E] transition-all duration-300 text-center"
+              >
+                View Schedule
+              </Link>
+
+              <Link
+                to="/booking"
+                className="px-8 py-4 bg-(--secondary) text-(--dark) font-black uppercase tracking-[0.2em] hover:bg-white transition-all duration-300 text-center"
+              >
+                Book Now
+              </Link>
+            </div>
+          </div>
+
+          {/* RIGHT SIDE LOGO — DESKTOP */}
+          <div className="hidden lg:flex justify-end order-1 lg:order-2">
+            <img
+              src={heroLogo}
+              alt="Borneo Anfield Logo"
+              className="w-90 xl:w-[320px] object-contain logo-entrance drop-shadow-[0_0_60px_rgba(255,255,255,0.25)]"
+            />
+          </div>
         </div>
+
+        {/* Upcoming Match */}
+        {upcoming && (
+          <div className="absolute bottom-10 right-6 md:right-12 z-20 text-right hidden md:block">
+            <p className="text-[10px] text-white/50 uppercase tracking-[0.3em] mb-2">
+              Next Kickoff
+            </p>
+
+            <div className="text-white">
+              <span className="font-bold uppercase text-sm tracking-widest">
+                {upcoming.eventType}
+              </span>
+
+              <div className="text-white/60 text-xs mt-1">{upcoming.start}</div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* 2️⃣ ABOUT PREVIEW */}

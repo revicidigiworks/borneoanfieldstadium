@@ -35,7 +35,7 @@ export function Navbar() {
   }, [isOpen]);
 
   return (
-    <header className="bg-[var(--primary)] sticky top-0 z-50 shadow-md">
+    <header className="bg-(--primary) sticky top-0 z-50 shadow-md">
       {/* TOP BAR */}
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
         {/* HAMBURGER */}
@@ -63,12 +63,15 @@ export function Navbar() {
               key={item}
               to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
               className={({ isActive }) =>
-                `text-sm tracking-wide transition duration-300
+                `relative text-sm tracking-wide transition duration-300
                 ${
                   isActive
-                    ? "text-black font-semibold"
-                    : "text-white hover:text-black"
-                }`
+                    ? "text-[#F6EB61] font-semibold"
+                    : "text-white hover:text-[#F6EB61]"
+                }
+                after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-[#F6EB61]
+                after:transition-all after:duration-300
+                ${isActive ? "after:w-full" : "after:w-0 hover:after:w-full"}`
               }
             >
               {item}
@@ -77,7 +80,7 @@ export function Navbar() {
 
           <button
             onClick={() => setLang(lang === "EN" ? "ID" : "EN")}
-            className="flex items-center gap-2 text-white text-sm border border-white/40 px-3 py-1 rounded-md hover:bg-[var(--secondary)] hover:text-black transition"
+            className="flex items-center gap-2 text-white text-sm border border-white/40 px-3 py-1 rounded-md hover:bg-(--secondary) hover:text-black transition"
           >
             <Globe size={16} />
             {lang}
@@ -85,7 +88,7 @@ export function Navbar() {
 
           <a
             href="#"
-            className="bg-black text-white px-6 py-2 text-sm font-semibold rounded-md hover:bg-[var(--secondary)] hover:text-black transition"
+            className="bg-black text-white px-6 py-2 text-sm font-semibold rounded-md hover:bg-(--secondary) hover:text-black transition"
           >
             BOOK NOW
           </a>
@@ -117,7 +120,7 @@ export function Navbar() {
           <div className="flex justify-between items-center px-6 h-20 border-b border-gray-200 shrink-0">
             <img src={logo2} alt="Borneo Anfield" className="h-10" />
             <button onClick={() => setIsOpen(false)}>
-              <X size={26} className="text-[#00C5C8]" />
+              <X size={26} className="text-(--primary)" />
             </button>
           </div>
 
@@ -132,8 +135,8 @@ export function Navbar() {
                   `flex justify-between items-center text-lg font-medium transition
                   ${
                     isActive
-                      ? "text-[var(--primary)]"
-                      : "text-black hover:text-[var(--secondary)]"
+                      ? "text-(--primary)"
+                      : "text-black hover:text-(--secondary)"
                   }`
                 }
               >
@@ -153,7 +156,7 @@ export function Navbar() {
             <hr className="border-t border-gray-300" />
 
             {/* JOIN SECTION */}
-            <div className="mt-8 bg-[var(--primary)] p-6  text-white">
+            <div className="mt-8 bg-(--primary) p-6  text-white">
               <h3 className="text-lg font-semibold mb-3">JOIN BAFC</h3>
 
               <p className="text-sm leading-relaxed mb-6">
@@ -162,7 +165,7 @@ export function Navbar() {
                 Football Club.
               </p>
 
-              <button className="w-full bg-black text-white py-3 font-semibold hover:bg-[var(--secondary)] hover:text-black transition">
+              <button className="w-full bg-black text-white py-3 font-semibold hover:bg-(--secondary) hover:text-black transition">
                 GABUNG SEKARANG
               </button>
             </div>

@@ -12,7 +12,7 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col bg-white">
       {/* 1. HERO SECTION */}
-      <section className="relative h-[65vh] flex items-center justify-center overflow-hidden bg-[#C8102E]">
+      <section className="relative h-[65vh] flex items-center justify-center overflow-hidden bg-(--primary)">
         <div className="absolute inset-0 opacity-40">
           <img
             src={aboutImage}
@@ -20,16 +20,16 @@ export default function AboutPage() {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/70"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/70"></div>
         <div className="relative z-10 text-center px-6">
           <span className="text-white/80 font-semibold tracking-[0.3em] uppercase text-sm mb-5 block">
             Keeping The Game Beautiful
           </span>
           <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight">
-            ABOUT BORNEO{" "}
+            BORNEO ANFIELD{" "}
             <span className="text-[#F6EB61]">
               <br />
-              ANFIELD STADIUM
+              STADIUM
             </span>
           </h1>
           <p className="mt-6 text-white/80 max-w-xl mx-auto text-lg">
@@ -43,7 +43,7 @@ export default function AboutPage() {
       <section className="py-24 max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-6">
-            <div className="flex items-center gap-3 text-[#C8102E]">
+            <div className="flex items-center gap-3 text-(--primary)">
               <History size={28} />
               <h2 className="text-3xl font-bold uppercase tracking-tight">
                 Our Story
@@ -64,25 +64,25 @@ export default function AboutPage() {
             {/* Stats Items */}
             <div className="mt-8 grid grid-cols-2 gap-y-8 gap-x-6 border-t border-gray-100 pt-8">
               <div>
-                <p className="text-3xl font-bold text-[#C8102E]">100+</p>
+                <p className="text-3xl font-bold text-(--primary)">100+</p>
                 <p className="text-sm text-gray-500 uppercase tracking-wider font-semibold">
                   Tournaments
                 </p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-[#C8102E]">30+</p>
+                <p className="text-3xl font-bold text-(--primary)">30+</p>
                 <p className="text-sm text-gray-500 uppercase tracking-wider font-semibold">
                   Communities
                 </p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-[#C8102E]">500+</p>
+                <p className="text-3xl font-bold text-(--primary)">500+</p>
                 <p className="text-sm text-gray-500 uppercase tracking-wider font-semibold">
                   Weekly Players
                 </p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-[#C8102E]">2</p>
+                <p className="text-3xl font-bold text-(--primary)">2</p>
                 <p className="text-sm text-gray-500 uppercase tracking-wider font-semibold">
                   Premium Fields
                 </p>
@@ -95,7 +95,7 @@ export default function AboutPage() {
             <img
               src={aboutImage}
               alt="Stadium Atmosphere"
-              className="w-full h-[450px] object-cover rounded-lg shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]"
+              className="w-full h-112.5 object-cover rounded-lg shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]"
             />
           </div>
         </div>
@@ -106,8 +106,8 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Vision */}
-            <div className="bg-white p-10 rounded-2xl shadow-sm border-t-4 border-[#C8102E]">
-              <div className="flex items-center gap-4 mb-6 text-[#C8102E]">
+            <div className="bg-white p-10 rounded-2xl shadow-sm border-t-4 border-[#fa0000]">
+              <div className="flex items-center gap-4 mb-6 text-(--primary)">
                 <Target size={32} />
                 <h2 className="text-2xl font-bold uppercase tracking-tight">
                   Our Vision
@@ -120,8 +120,8 @@ export default function AboutPage() {
             </div>
 
             {/* Mission */}
-            <div className="bg-white p-10 rounded-2xl shadow-sm border-t-4 border-[#F6EB61]">
-              <div className="flex items-center gap-4 mb-6 text-[#C8102E]">
+            <div className="bg-white p-10 rounded-2xl shadow-sm border-t-4 border-(--primary)">
+              <div className="flex items-center gap-4 mb-6 text-(--primary)">
                 <Rocket size={32} />
                 <h2 className="text-2xl font-bold uppercase tracking-tight">
                   Our Mission
@@ -129,17 +129,17 @@ export default function AboutPage() {
               </div>
               <ul className="space-y-4 text-gray-700">
                 <li className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E] mt-2.5 shrink-0"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-(--primary) mt-2.5 shrink-0"></span>
                   Menyediakan fasilitas lapangan premium dengan standar keamanan
                   tertinggi.
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E] mt-2.5 shrink-0"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-(--primary) mt-2.5 shrink-0"></span>
                   Membangun sistem manajemen jadwal yang profesional dan
                   transparan.
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E] mt-2.5 shrink-0"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-(--primary) mt-2.5 shrink-0"></span>
                   Menumbuhkan semangat sportivitas melalui kompetisi komunitas
                   yang sehat.
                 </li>
@@ -155,73 +155,95 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. SAFETY & CREDIBILITY SECTION */}
-      <section className="py-24 bg-[#C8102E] text-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold uppercase tracking-tight">
-              Safety & Credibility
+      {/* 4. SAFETY & CREDIBILITY SECTION - BALANCED BENTO GRID */}
+      <section className="py-24 bg-(--primary) text-white overflow-hidden relative">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-20">
+            <span className="text-[#F6EB61] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">
+              Professional Standards
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">
+              Safety & <span className="text-white/70">Credibility</span>
             </h2>
-            <div className="w-20 h-1.5 bg-[#F6EB61] mx-auto mt-4"></div>
-            <p className="mt-6 text-white/80 max-w-2xl mx-auto">
+            <div className="w-24 h-1.5 bg-[#F6EB61] mx-auto mt-6"></div>
+            <p className="mt-8 text-white/80 max-w-2xl mx-auto text-lg leading-relaxed">
               Keamanan pemain adalah prioritas utama kami. Seluruh fasilitas dan
-              operasional mengikuti standar keamanan yang ketat.
+              operasional mengikuti standar keamanan yang ketat untuk menjamin
+              pengalaman bermain terbaik.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Menggunakan grid yang responsif dan Bento Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 title: "Emergency Ambulance",
-                desc: "Unit ambulans siaga di area stadion untuk penanganan medis darurat yang cepat.",
+                desc: "Unit ambulans siaga di area stadion untuk penanganan medis darurat.",
                 img: ambulance,
+                span: "lg:col-span-1",
               },
               {
                 title: "Trained Medical Team",
-                desc: "Tim operasional dan medis terlatih yang siap siaga selama jadwal pertandingan berlangsung.",
+                desc: "Tim operasional dan medis terlatih yang siap siaga.",
                 img: timMedis,
+                span: "lg:col-span-1",
               },
               {
                 title: "Lightning Protection",
-                desc: "Sistem perlindungan petir modern untuk menjamin keamanan pemain saat cuaca buruk.",
+                desc: "Sistem perlindungan petir modern menjamin keamanan.",
                 img: lightingProtect,
+                span: "lg:col-span-1",
               },
               {
                 title: "Safety Padding & Fence",
-                desc: "Bantalan pengaman di area berisiko dan pagar perimeter untuk perlindungan fisik.",
+                desc: "Bantalan pengaman di area risiko dan pagar perimeter.",
                 img: safetyImg,
-              },
+                span: "lg:col-span-2",
+              }, // Item ke-4 diperlebar
               {
                 title: "Emergency SOP Sign",
-                desc: "Panduan prosedur darurat cedera yang terpampang jelas di setiap sudut lapangan.",
+                desc: "Panduan prosedur darurat cedera yang terpampang jelas.",
                 img: sign,
+                span: "lg:col-span-1",
               },
               {
                 title: "Medical First Aid",
-                desc: "Keamanan pemain adalah prioritas dengan ketersediaan perlengkapan medis lengkap dan staf siap siaga di area lapangan.",
-                img: firstAid, // Pastikan variabel safetyImg sudah di-import di bagian atas file
+                desc: "Ketersediaan perlengkapan medis lengkap dan staf siaga.",
+                img: firstAid,
+                span: "lg:col-span-1",
               },
               {
                 title: "Pagar Pengaman Lapangan",
-                desc: "Pemasangan pagar pembatas di seluruh pinggir lapangan untuk menjamin keamanan pemain dan menciptakan lingkungan bermain yang terkontrol.",
-                img: pagar, // Ganti dengan variabel import gambar yang sesuai
-              },
+                desc: "Pagar pembatas untuk menjamin lingkungan bermain terkontrol.",
+                img: pagar,
+                span: "lg:col-span-2",
+              }, // Item ke-7 diperlebar
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="bg-white text-black overflow-hidden shadow-xl hover:translate-y-[-5px] transition-all duration-300"
+                className={`group bg-white text-black shadow-2xl transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col ${item.span}`}
               >
-                <div className="h-48 overflow-hidden">
+                <div className="relative h-64 overflow-hidden">
                   <img
                     src={item.img}
                     alt={item.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-30 group-hover:grayscale-0"
                   />
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
                 </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <ShieldCheck className="text-[#C8102E]" size={24} />
-                    <h3 className="text-lg font-bold uppercase tracking-tight">
+
+                <div className="p-8 flex flex-col grow border-b-4 border-transparent group-hover:border-[#F6EB61] transition-all duration-500">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="p-2 bg-(--primary)/10 rounded-lg group-hover:bg-(--primary) transition-colors duration-500">
+                      <ShieldCheck
+                        className="text-(--primary) group-hover:text-white transition-colors"
+                        size={26}
+                      />
+                    </div>
+                    <h3 className="text-xl font-extrabold uppercase tracking-tight leading-tight">
                       {item.title}
                     </h3>
                   </div>
@@ -233,23 +255,34 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div className="mt-20 flex flex-wrap justify-center gap-4">
-            {[
-              "Ambulance Standby",
-              "Lightning Protection",
-              "Professional SOP",
-              "Trained Medics",
-              "Safety Padding",
-              "Perlengkapan Medis Lengkap",
-              "Pagar Pengaman Lapangan",
-            ].map((tag) => (
-              <span
-                key={tag}
-                className="px-5 py-2 border border-white/30 rounded-full text-[10px] md:text-xs uppercase tracking-[0.2em] text-white font-medium bg-white/5"
-              >
-                {tag}
+          {/* Footer Tags tetap sama */}
+          <div className="mt-24">
+            <div className="flex items-center gap-4 mb-8 justify-center">
+              <div className="h-px bg-white/20 grow max-w-25"></div>
+              <span className="text-white/40 uppercase tracking-[0.4em] text-[10px] font-bold">
+                Trusted Features
               </span>
-            ))}
+              <div className="h-px bg-white/20 grow max-w-25"></div>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-3">
+              {[
+                "Ambulance Standby",
+                "Lightning Protection",
+                "Professional SOP",
+                "Trained Medics",
+                "Safety Padding",
+                "Perlengkapan Medis Lengkap",
+                "Pagar Pengaman Lapangan",
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-6 py-3 border border-white/20 text-[10px] md:text-xs uppercase tracking-[0.2em] text-white font-bold bg-white/5 backdrop-blur-sm hover:bg-[#F6EB61] hover:text-(--primary) hover:border-[#F6EB61] transition-all duration-300 cursor-default"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>

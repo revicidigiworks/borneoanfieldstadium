@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #C8102E;
-  --secondary: #00aeaf;
+  --primary: #00a88e;
+  --secondary: #ffea03;
   --surface: #ffffff;
   --dark: #000000;
 }
@@ -61,4 +61,39 @@ body {
   100% {
     transform: scale(1.15);
   }
+}
+@keyframes fade {
+  0%, 100% { opacity: 0; }
+  10%, 90% { opacity: 1; }
+}
+
+.animate-fade-slide {
+  animation: fade 12s infinite;
+}
+
+.delay-6s {
+  animation-delay: 6s;
+}
+
+/* LOGO HERO ENTRANCE ANIMATION */
+
+@keyframes logoEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.03);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.logo-entrance {
+  animation: logoEntrance 1.2s ease-out forwards;
 }
