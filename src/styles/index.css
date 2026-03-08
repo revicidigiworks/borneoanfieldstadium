@@ -97,3 +97,61 @@ body {
 .logo-entrance {
   animation: logoEntrance 1.2s ease-out forwards;
 }
+
+/* STADIUM SPOTLIGHT */
+
+.hero-spotlight::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%);
+  filter: blur(80px);
+  top: 50%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* STADIUM LIGHT SWEEP */
+
+@keyframes stadiumSweep {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.4;
+  }
+  60% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+.light-sweep {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.2),
+    transparent
+  );
+  animation: stadiumSweep 6s linear infinite;
+}
+
+@keyframes logoFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+.logo-float {
+  animation: logoFloat 4s ease-in-out infinite;
+}

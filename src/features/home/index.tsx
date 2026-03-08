@@ -25,7 +25,7 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative min-h-[91.5vh] flex items-center bg-[#1a1a1a] overflow-hidden">
+      <section className="relative min-h-[calc(100svh-80px)] md:min-h-[calc(100dvh-80px)] flex items-center justify-center bg-[#1a1a1a] overflow-hidden hero-spotlight pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
         {/* Background */}
         <div className="absolute inset-0">
           <img
@@ -39,41 +39,46 @@ export default function HomePage() {
   from-(--primary)/95 
   via-(--primary)/50 
   to-black/40"
-          ></div>
+          >
+            <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-black/80 to-transparent"></div>
+          </div>
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 items-center gap-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 items-center gap-12 text-center lg:text-left">
           {/* LOGO — MOBILE FIRST */}
           <div className="flex justify-center lg:hidden mb-10">
             <img
               src={heroLogo}
               alt="Borneo Anfield Logo"
-              className="w-40 sm:w-52 object-contain logo-entrance drop-shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
+              className="w-50 sm:w-55 object-contain logo-entrance drop-shadow-[0_10px_40px_rgba(0,0,0,0.6)] logo-float"
             />
           </div>
 
           {/* LEFT SIDE */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
+          <div className=" order-2 lg:order-1">
             {/* Label */}
-            <div className="flex items-center justify-center lg:justify-start gap-4 mb-8">
+            <div className="hidden lg:flex items-center justify-start gap-4 mb-8">
               {/* Hidden line on mobile */}
               <div className="hidden lg:block h-0.5 w-12 bg-(--secondary)"></div>
 
               <span className="text-(--secondary) font-bold text-[11px] uppercase tracking-[0.3em]">
-                Kalimantan's Finest Stadium
+                Balikpapan’s #1 Minisoccer Stadium
               </span>
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-xl lg:text-8xl font-black text-white uppercase leading-[0.9] mb-10">
+            <h1 className="text-4xl sm:text-5xl lg:text-8xl font-black text-white uppercase leading-[0.9] mb-10">
               BORNEO <br />
               ANFIELD <br />
               <span className="text-(--secondary)  font-weight">STADIUM</span>
             </h1>
+            <p className="lg:hidden text-(--secondary) text-sm uppercase tracking-[0.3em] mb-8">
+              Balikpapan’s #1 Minisoccer Stadium
+            </p>
 
             {/* Description */}
-            <p className="text-base md:text-lg text-white/90 font-light max-w-lg leading-relaxed mb-10 mx-auto lg:mx-0 border-l-0 lg:border-l border-white/30 lg:pl-6">
+            <p className="hidden lg:block text-lg text-white/90 font-light max-w-lg leading-relaxed mb-10 border-l border-white/30 pl-6">
               The ultimate home for football enthusiasts. Experience
               professional-grade facilities, world-class atmosphere, and the
               spirit of the game.
@@ -123,6 +128,7 @@ export default function HomePage() {
             </div>
           </div>
         )}
+        <div className="light-sweep"></div>
       </section>
 
       {/* 2️⃣ ABOUT PREVIEW */}
