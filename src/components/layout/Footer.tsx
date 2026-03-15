@@ -6,6 +6,7 @@ import {
   FaTiktok,
   FaWhatsapp,
 } from "react-icons/fa";
+
 import sponsor1 from "../../assets/images/sponsors/sponsor1.png";
 import sponsor2 from "../../assets/images/sponsors/sponsor2.png";
 import sponsor3 from "../../assets/images/sponsors/sponsor3.png";
@@ -29,23 +30,38 @@ export function Footer() {
   const sponsors = [sponsor1, sponsor2, sponsor3, sponsor4, sponsor5, sponsor6];
 
   return (
-    <footer className="bg-[#f8fafc] border-t border-gray-200 mt-24">
-      {/* SPONSOR MARQUEE */}
-      <div className="overflow-hidden border-b border-gray-200 py-10">
-        <p className="text-center text-xs tracking-[0.35em] text-gray-500 uppercase mb-8">
-          Official Partners
-        </p>
+    <footer className="bg-white  border-gray-200 ">
+      {/* SPONSORS */}
+      <div className="bg-(--primary) pt-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-xs tracking-[0.35em] text-(--surface) uppercase mb-12">
+            Official Partners
+          </p>
 
-        <div className="relative flex overflow-hidden">
-          <div className="flex animate-marquee gap-16 min-w-full">
-            {[...sponsors, ...sponsors].map((logo, i) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-12 gap-y-10 items-center justify-items-center">
+            {sponsors.map((logo, i) => (
               <img
                 key={i}
                 src={logo}
-                className="h-12 object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition"
+                alt={`Borneo Anfield Sponsor ${i + 1}`}
+                className="h-20 md:h-24 object-contain transition duration-300 hover:scale-110"
               />
             ))}
           </div>
+        </div>
+
+        {/* WAVE DIVIDER */}
+        <div className="mt-16">
+          <svg
+            viewBox="0 0 1440 120"
+            className="w-full h-20"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,40 C240,120 480,0 720,40 C960,80 1200,20 1440,60 L1440,120 L0,120 Z"
+              fill="white"
+            />
+          </svg>
         </div>
       </div>
 
@@ -54,24 +70,37 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-14">
           {/* BRAND */}
           <div>
-            <h3 className="text-xl font-semibold mb-3">Borneo Anfield</h3>
+            <h3 className="text-xl font-semibold mb-3 text-(--primary) uppercase">
+              Borneo Anfield Stadium
+            </h3>
 
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">
+            <p className="text-(--dark) text-sm leading-relaxed mb-6">
               Mini soccer venue dengan fasilitas modern, sistem keselamatan
               lengkap, dan komunitas pemain aktif yang berkembang setiap minggu.
             </p>
 
             <div className="flex gap-5 text-xl">
-              <FaFacebook className="text-[#00C5C8] hover:scale-110 transition cursor-pointer" />
-              <FaInstagram className="text-[#00C5C8] hover:scale-110 transition cursor-pointer" />
-              <FaYoutube className="text-[#00C5C8] hover:scale-110 transition cursor-pointer" />
-              <FaTiktok className="text-[#00C5C8] hover:scale-110 transition cursor-pointer" />
+              <a href="#" title="Facebook">
+                <FaFacebook className="text-(--primary) hover:scale-110 transition cursor-pointer" />
+              </a>
+
+              <a href="#" title="Instagram">
+                <FaInstagram className="text-(--primary) hover:scale-110 transition cursor-pointer" />
+              </a>
+
+              <a href="#" title="YouTube">
+                <FaYoutube className="text-(--primary) hover:scale-110 transition cursor-pointer" />
+              </a>
+
+              <a href="#" title="TikTok">
+                <FaTiktok className="text-(--primary) hover:scale-110 transition cursor-pointer" />
+              </a>
             </div>
           </div>
 
           {/* NAVIGATION */}
           <div>
-            <h4 className="text-sm font-semibold tracking-wide mb-5 uppercase text-gray-500">
+            <h4 className="text-sm font-semibold tracking-wide mb-5 uppercase text-(--primary)">
               Navigation
             </h4>
 
@@ -80,7 +109,7 @@ export function Footer() {
                 <NavLink
                   key={item}
                   to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                  className="hover:text-[#00C5C8] transition"
+                  className="hover:text-(--primary) transition"
                 >
                   {item}
                 </NavLink>
@@ -90,7 +119,7 @@ export function Footer() {
 
           {/* GOOGLE MAPS */}
           <div>
-            <h4 className="text-sm font-semibold tracking-wide mb-5 uppercase text-gray-500">
+            <h4 className="text-sm font-semibold tracking-wide mb-5 uppercase text-(--primary)">
               Stadium Location
             </h4>
 
@@ -100,13 +129,15 @@ export function Footer() {
                 width="100%"
                 height="220"
                 loading="lazy"
+                title="Borneo Anfield Stadium Location"
               />
             </div>
 
             <a
               href="https://maps.app.goo.gl/mn9UUstcrxt8ebPA9?g_st=awb"
               target="_blank"
-              className="text-sm text-[#00C5C8] mt-3 inline-block hover:underline"
+              rel="noopener noreferrer"
+              className="text-sm text-(--primary) mt-3 inline-block hover:underline"
             >
               Open in Google Maps →
             </a>
@@ -121,6 +152,7 @@ export function Footer() {
           Beautiful.
         </p>
       </div>
+
       {/* WHATSAPP FLOATING BUTTON */}
       <a
         href="https://wa.me/6282121211892"

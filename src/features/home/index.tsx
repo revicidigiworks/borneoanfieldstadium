@@ -6,6 +6,7 @@ import { getUpcomingSlot } from "@/utils/getUpcoming";
 import { SlotCard } from "@/components/schedule/SlotCard";
 import heroImage from "../../assets/images/hero/hero3.JPG";
 import heroLogo from "../../assets/images/logo/logo-3.png";
+import aboutImage from "../../assets/images/hero/gedung2.jpeg";
 
 export default function HomePage() {
   const [slots, setSlots] = useState<ScheduleSlot[]>([]);
@@ -131,25 +132,93 @@ export default function HomePage() {
         <div className="light-sweep"></div>
       </section>
 
-      {/* 2️⃣ ABOUT PREVIEW */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-          <div className="h-80 bg-gray-200 rounded-xl" />
-          <div>
-            <h2 className="text-3xl font-bold">
-              Stadion yang Dibangun untuk Struktur
-            </h2>
-            <p className="mt-6 opacity-70 leading-relaxed">
-              Borneo Anfield bukan sekadar lapangan. Ini adalah sistem. Dengan
-              jadwal transparan, fasilitas premium, dan ekosistem komunitas yang
-              aktif.
-            </p>
-            <Link
-              to="/about"
-              className="inline-block mt-8 text-[#00C5C8] font-semibold"
-            >
-              Explore About →
-            </Link>
+      {/* 2️⃣ ABOUT PREVIEW - MINIMALIST PROFESSIONAL */}
+      <section className="py-20 lg:py-32 bg-(--surface) relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+            {/* IMAGE AREA - Clean with Border Radius Only */}
+            <div className="w-full lg:w-1/2 order-1 lg:order-1">
+              <div className="relative">
+                <img
+                  src={aboutImage}
+                  alt="Borneo Anfield Stadium"
+                  className="w-full h-87.5 md:h-125 lg:h-150 object-cover rounded-4xl shadow-2xl shadow-black/5"
+                />
+                {/* Minimalist Location Tag */}
+                <div className="absolute top-6 left-6 backdrop-blur-md bg-white/80 border border-gray-100 px-5 py-2.5 rounded-full shadow-sm">
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-(--dark)">
+                    Balikpapan, Indonesia
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* CONTENT AREA - Elegant Typography */}
+            <div className="w-full lg:w-1/2 order-2 lg:order-2">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="w-10 h-px bg-(--primary)"></span>
+                <span className="text-(--primary) font-bold tracking-[0.4em] uppercase text-[10px]">
+                  The Stadium
+                </span>
+              </div>
+
+              {/* Judul dengan spacing yang sangat lega */}
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-(--dark) leading-[1.15]">
+                Elevating the <br />
+                <span className="text-(--primary)">Football</span> <br />
+                <span className="mt-2 block">Experience.</span>
+              </h2>
+
+              <div className="mt-10 space-y-8">
+                <p className="text-gray-600 text-lg leading-relaxed font-medium">
+                  Borneo Anfield Stadium (BAS) mendefinisikan ulang standar
+                  lapangan mini soccer di Kalimantan Timur. Terletak strategis
+                  di Jl. AMD LIII, kami menghadirkan fasilitas kelas dunia untuk
+                  komunitas lokal.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-10 border-y border-gray-100">
+                  <div className="space-y-2">
+                    <h4 className="text-(--dark) font-black uppercase text-sm tracking-widest">
+                      Premium Facility
+                    </h4>
+                    <p className="text-gray-500 text-sm leading-relaxed">
+                      Dua lapangan 60x40m dengan rumput sintetis pilihan,
+                      dirancang untuk performa maksimal format 9 vs 9.
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="text-(--dark) font-black uppercase text-sm tracking-widest">
+                      More Than a Pitch
+                    </h4>
+                    <p className="text-gray-500 text-sm leading-relaxed">
+                      Lengkap dengan Kafe, area nobar eksklusif, dan layanan
+                      penyewaan perlengkapan profesional.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mobile: Full Width Button / Desktop: Auto Width */}
+              <div className="mt-12 flex flex-col sm:flex-row items-center gap-8">
+                <Link
+                  to="/about"
+                  className="w-full sm:w-auto px-12 py-5 bg-(--dark) text-white font-bold uppercase text-[11px] tracking-[0.3em] rounded-full hover:bg-(--primary) transition-all duration-500 text-center"
+                >
+                  Discover More
+                </Link>
+
+                <a
+                  href="https://maps.google.com"
+                  className="flex items-center gap-4 text-(--dark) font-black uppercase text-[10px] tracking-[0.2em] group"
+                >
+                  View on Maps
+                  <span className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-(--primary) group-hover:text-white transition-all">
+                    →
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
