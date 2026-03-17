@@ -4,9 +4,15 @@ import { scheduleService } from "@/services/schedule.service";
 import { ScheduleSlot } from "@/types/schedule";
 import { getUpcomingSlot } from "@/utils/getUpcoming";
 import { SlotCard } from "@/components/schedule/SlotCard";
+import { motion } from "framer-motion";
+
+// Import Asset Image
 import heroImage from "../../assets/images/hero/hero3.JPG";
 import heroLogo from "../../assets/images/logo/logo-3.png";
 import aboutImage from "../../assets/images/hero/gedung2.jpeg";
+import lockerImg from "../../assets/images/gallery/lokerRoom.jpeg";
+import showerImg from "../../assets/images/gallery/showerRoom.jpeg";
+import cafeImg from "../../assets/images/gallery/warkops.jpeg";
 
 export default function HomePage() {
   const [slots, setSlots] = useState<ScheduleSlot[]>([]);
@@ -23,6 +29,18 @@ export default function HomePage() {
 
   const today = new Date().toISOString().split("T")[0];
   const previewSlots = slots.filter((s) => s.date === today);
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const,
+      },
+    },
+  };
 
   return (
     <div className="flex flex-col">
@@ -224,28 +242,117 @@ export default function HomePage() {
       </section>
 
       {/* 3️⃣ FACILITIES PREVIEW */}
-      <section className="py-20 bg-[#F9F9F9]">
+      <section className="py-20 md:py-24 bg-(--surface)">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-12">Facilities</h2>
+          {/* HEADER */}
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6"
+          >
+            <div>
+              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-(--primary)">
+                Facilities
+              </h2>
+              <div className="w-12 h-1 bg-[#F6EB61] mt-4"></div>
+            </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="h-64 bg-gray-200 rounded-xl p-6 flex items-end font-semibold">
-              Field A
-            </div>
-            <div className="h-64 bg-gray-200 rounded-xl p-6 flex items-end font-semibold">
-              Field B
-            </div>
-            <div className="h-64 bg-gray-200 rounded-xl p-6 flex items-end font-semibold">
-              Premium Interior
-            </div>
+            <p className="text-(--dark) text-sm max-w-md italic">
+              Fasilitas premium untuk pengalaman bermain yang nyaman dan
+              profesional.
+            </p>
+          </motion.div>
+
+          {/* GRID */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* CARD 1 */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              whileHover={{ y: -6 }}
+              className="group relative h-72 overflow-hidden"
+            >
+              <img
+                src={lockerImg}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+              <div className="relative h-full flex flex-col justify-end p-6">
+                <h3 className="text-white font-black text-xl uppercase">
+                  Locker Room
+                </h3>
+                <p className="text-white/70 text-sm mt-2">
+                  Ruang ganti nyaman & aman untuk pemain.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* CARD 2 */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              whileHover={{ y: -6 }}
+              className="group relative h-72 overflow-hidden "
+            >
+              <img
+                src={showerImg}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+              <div className="relative h-full flex flex-col justify-end p-6">
+                <h3 className="text-white font-black text-xl uppercase">
+                  Shower Room
+                </h3>
+                <p className="text-white/70 text-sm mt-2">
+                  Air bersih & fasilitas bilas modern.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* CARD 3 */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              whileHover={{ y: -6 }}
+              className="group relative h-72 overflow-hidden "
+            >
+              <img
+                src={cafeImg}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+              <div className="relative h-full flex flex-col justify-end p-6">
+                <h3 className="text-white font-black text-xl uppercase">
+                  Warkops Café
+                </h3>
+                <p className="text-white/70 text-sm mt-2">
+                  Nongkrong santai sambil nonton match.
+                </p>
+              </div>
+            </motion.div>
           </div>
 
-          <Link
-            to="/facilities"
-            className="inline-block mt-10 text-[#00C5C8] font-semibold"
-          >
-            View All Facilities →
-          </Link>
+          {/* CTA */}
+          <div className="mt-12 flex justify-center">
+            <Link
+              to="/facilities"
+              className="group inline-flex items-center gap-2 text-(--primary) font-bold uppercase tracking-wider text-sm"
+            >
+              View All Facilities
+              <span className="group-hover:translate-x-1 transition">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 
