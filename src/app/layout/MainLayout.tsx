@@ -1,16 +1,38 @@
+// import { Outlet } from "react-router-dom";
+// import { Navbar } from "@/components/layout/Navbar";
+// import { Footer } from "@/components/layout/Footer";
+// import { ScrollToTop } from "@/components/common/ScrollToTop";
+
+// export function MainLayout() {
+//   return (
+//     <div className="min-h-screen flex flex-col bg-[#F9F9F9]">
+//       <ScrollToTop />
+//       <Navbar />
+//       <main className="flex-1">
+//         <Outlet />
+//       </main>
+//       <Footer />
+//     </div>
+//   );
+// }
 import { Outlet } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollToTop } from "@/components/common/ScrollToTop";
+import { PageTransition } from "@/components/common/PageTransition";
 
 export function MainLayout() {
   return (
     <div className="min-h-screen flex flex-col bg-[#F9F9F9]">
       <ScrollToTop />
       <Navbar />
-      <main className="flex-1">
-        <Outlet />
+
+      <main className="flex-1 relative">
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
+
       <Footer />
     </div>
   );

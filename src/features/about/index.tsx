@@ -1,11 +1,11 @@
 import { ShieldCheck, Target, History, Rocket } from "lucide-react";
-import aboutImage from "../../assets/images/hero/gedung2.jpeg";
-import safetyImg from "../../assets/images/gallery/bantalan.jpeg";
-import ambulance from "../../assets/images/safety/ambulance.png";
-import timMedis from "../../assets/images/safety/safety.jpeg";
-import firstAid from "../../assets/images/safety/fristAid.png";
-import lightingProtect from "../../assets/images/safety/lightingProtect.png";
-import sign from "../../assets/images/safety/sign.png";
+import aboutImage from "../../assets/images/gedung/gedung2.webp";
+import safetyImg from "../../assets/images/fasilitas/padding.webp";
+import ambulance from "../../assets/images/safety/ambulance.webp";
+import timMedis from "../../assets/images/safety/teamSafety.webp";
+import firstAid from "../../assets/images/safety/fristAid.webp";
+import lightingProtect from "../../assets/images/safety/lightingProtect.webp";
+import sign from "../../assets/images/safety/signBoard.webp";
 import pagar from "../../assets/images/safety/pagar.png";
 
 export default function AboutPage() {

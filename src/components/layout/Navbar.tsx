@@ -2,8 +2,10 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Menu, X, Globe, ChevronRight } from "lucide-react";
 import { FaFacebook, FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa";
-import logo2 from "@/assets/images/logo/logo-2.png";
-import logo from "@/assets/images/logo/logo.png";
+import logo2 from "@/assets/images/logo/logo-2.webp";
+import logo from "@/assets/images/logo/logo.webp";
+import heroDesktop from "../../assets/images/web-banner/web-banner-sidebar.png";
+
 
 const navItems = [
   "Home",
@@ -156,27 +158,42 @@ export function Navbar() {
             <hr className="border-t border-gray-300" />
 
             {/* JOIN SECTION */}
-            <div className="mt-8 bg-(--primary) p-6  text-white">
-              <h3 className="text-lg font-semibold mb-3">JOIN BAFC</h3>
+<div className="mt-6 relative overflow-hidden p-6 text-white">
 
-              <p className="text-sm leading-relaxed mb-6">
-                Dapatkan akses eksklusif ke jadwal pertandingan, event
-                komunitas, promo spesial, dan update terbaru dari Borneo Anfield
-                Football Club.
-              </p>
+  {/* BACKGROUND */}
+  <img
+    src={heroDesktop}
+    alt=""
+    className="absolute inset-0 w-full h-full object-cover"
+  />
 
-              <button className="w-full bg-black text-white py-3 font-semibold hover:bg-(--secondary) hover:text-black transition">
-                GABUNG SEKARANG
-              </button>
-            </div>
+  {/* OVERLAY */}
+  <div className="absolute inset-0" />
+
+  {/* CONTENT */}
+  <div className="relative z-10">
+    <h3 className="text-lg font-semibold mb-3">BAFC</h3>
+
+    <p className="text-sm leading-relaxed mb-6">
+      Dapatkan akses eksklusif ke jadwal pertandingan, event
+      komunitas, promo spesial, dan update terbaru dari Borneo Anfield
+      Football Club.
+    </p>
+
+    <button className="w-full bg-(--secondary) text-black py-3 font-semibold hover:bg-white transition">
+      GABUNG SEKARANG
+    </button>
+  </div>
+
+</div>
 
             {/* SOCIAL MEDIA */}
             <div className="pt-10 border-t border-gray-300">
               <div className="flex justify-center gap-6 mb-6 text-3xl">
-                <FaFacebook className="text-[#00C5C8] hover:opacity-70 transition duration-300 cursor-pointer" />
-                <FaInstagram className="text-[#00C5C8] hover:opacity-70 transition duration-300 cursor-pointer" />
-                <FaYoutube className="text-[#00C5C8] hover:opacity-70 transition duration-300 cursor-pointer" />
-                <FaTiktok className="text-[#00C5C8] hover:opacity-70 transition duration-300 cursor-pointer" />
+                <FaFacebook className="text-(--primary) hover:opacity-70 transition duration-300 cursor-pointer" />
+                <FaInstagram className="text-(--primary) hover:opacity-70 transition duration-300 cursor-pointer" />
+                <FaYoutube className="text-(--primary) hover:opacity-70 transition duration-300 cursor-pointer" />
+                <FaTiktok className="text-(--primary) hover:opacity-70 transition duration-300 cursor-pointer" />
               </div>
 
               <p className="text-center text-xs text-gray-500 tracking-wide">

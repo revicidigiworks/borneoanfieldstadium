@@ -14,12 +14,13 @@ import {
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 
-import facilitiesHero from "../../assets/images/gallery/lapMalam.jpeg";
+import facilitiesHero from "../../assets/images/gedung/lapMalam.webp";
 import lockerImg from "../../assets/images/gallery/lokerRoom.jpeg";
-import showerImg from "../../assets/images/gallery/showerRoom.jpeg";
-import mushollaImg from "../../assets/images/gallery/bantalan.jpeg";
-import cafeImg from "../../assets/images/gallery/warkops.jpeg";
+import showerImg from "../../assets/images/fasilitas/showerRoom.webp";
+import mushollaImg from "../../assets/images/fasilitas/Musholla.webp";
+import cafeImg from "../../assets/images/fasilitas/warkops2.webp";
 import parkingImg from "../../assets/images/gallery/bantalan.jpeg";
+import freeCharging from "../../assets/images/fasilitas/freeCharging.webp";
 
 /* ===== ANIMATION CONFIG (GLOBAL, NON-DESTRUCTIVE) ===== */
 const fadeUp: Variants = {
@@ -78,9 +79,9 @@ export default function FacilitiesPage() {
 
           <motion.h1
             variants={fadeUp}
-            className="text-4xl md:text-7xl font-extrabold text-white tracking-tight leading-tight"
+            className="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-tight"
           >
-            STADIUM <span className="text-[#F6EB61]">FACILITIES</span>
+            BORNEO ANFIELD <br /><span className="text-[#F6EB61]">STADIUM FACILITIES</span>
           </motion.h1>
         </motion.div>
       </section>
@@ -252,21 +253,35 @@ export default function FacilitiesPage() {
             </motion.div>
 
             {/* 4. Charging */}
-            <motion.div
-              variants={fadeUp}
-              whileHover={{ scale: 1.03 }}
-              className="md:col-span-1 group relative bg-(--primary) rounded-none md:rounded-2xl p-6 md:p-8 flex flex-col justify-between hover:bg-(--primary)/90 transition-all"
-            >
-              <BatteryCharging className="text-[#F6EB61]" size={40} />
-              <div>
-                <h3 className="text-white font-black uppercase text-lg leading-tight">
-                  Free Charging Area
-                </h3>
-                <p className="text-white/40 text-xs mt-2 italic">
-                  High-speed USB & Power Outlet
-                </p>
-              </div>
-            </motion.div>
+<motion.div
+  variants={fadeUp}
+  whileHover={{ scale: 1.03 }}
+  className="md:col-span-1 group relative rounded-none md:rounded-2xl overflow-hidden flex flex-col justify-between p-6 md:p-8"
+>
+  {/* BACKGROUND IMAGE */}
+  <img
+    src={freeCharging}
+    alt="Free Charging Area"
+    className="absolute inset-0 w-full h-full object-cover"
+  />
+
+  {/* OVERLAY (biar teks kebaca) */}
+  <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-all" />
+
+  {/* CONTENT */}
+  <div className="relative z-10 flex flex-col justify-between h-full">
+    <BatteryCharging className="text-[#F6EB61]" size={40} />
+
+    <div>
+      <h3 className="text-white font-black uppercase text-lg leading-tight">
+        Free Charging Area
+      </h3>
+      <p className="text-white/70 text-xs mt-2 italic">
+        High-speed USB & Power Outlet
+      </p>
+    </div>
+  </div>
+</motion.div>
           </motion.div>
         </div>
       </section>
