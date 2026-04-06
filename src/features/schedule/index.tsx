@@ -8,7 +8,6 @@ export default function SchedulePage() {
   const [slots, setSlots] = useState<ScheduleSlot[]>([]);
   const [loading, setLoading] = useState(true);
   const [date, setDate] = useState("");
-  const [activeFieldTab, setActiveFieldTab] = useState<"A" | "B">("A");
 
   useEffect(() => {
     async function fetchData() {
@@ -41,7 +40,6 @@ export default function SchedulePage() {
       (s) => s.time === time && s.field === field && (!date || s.date === date)
     );
 
-  // Menghilangkan border & bg, hanya warna teks yang tegas
   const statusTextStyle = (status: Status) => {
     switch (status) {
       case "available": return "text-emerald-600";
@@ -97,64 +95,46 @@ export default function SchedulePage() {
       </section>
 
       {/* FILTER CARD */}
-        <section className="-mt-12 max-w-6xl mx-auto px-5 lg:px-10 relative z-20">
-          <div className="bg-white shadow-xl shadow-slate-200/50 rounded-2xl p-5 md:p-6 border border-slate-100">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-              
-              {/* Date Input */}
-              <div className="md:col-span-4">
-                <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block">Select Date</label>
-                <input
-                  type="date"
-                  className="w-full border border-slate-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-(--primary)/20 focus:border-(--primary) transition outline-none"
-                  onChange={(e) => setDate(e.target.value)}
-                />
-              </div>
+      <section className="-mt-12 max-w-6xl mx-auto px-5 lg:px-10 relative z-20">
+        <div className="bg-white shadow-xl shadow-slate-200/50 rounded-2xl p-5 md:p-6 border border-slate-100">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+            
+            <div className="md:col-span-4">
+              <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block">Select Date</label>
+              <input
+                type="date"
+                className="w-full border border-slate-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-(--primary)/20 focus:border-(--primary) transition outline-none"
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </div>
 
-              {/* Quick Links */}
-              <div className="md:col-span-5">
-                <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block">Information</label>
-                <div className="flex gap-3">
-                  <button className="flex-1 border border-slate-200 rounded-xl py-3 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition">
-                    Booking Rules
-                  </button>
-                  <button className="flex-1 border border-slate-200 rounded-xl py-3 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition">
-                    Price List
-                  </button>
-                </div>
-              </div>
-
-              {/* Action CTA */}
-              <div className="md:col-span-3 md:self-end">
-                <button className="w-full bg-(--primary) text-white py-3 rounded-xl text-sm font-bold hover:opacity-95 transform active:scale-[0.98] transition shadow-lg shadow-(--primary)/20">
-                  Book Now
+            <div className="md:col-span-5">
+              <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block">Information</label>
+              <div className="flex gap-3">
+                <button className="flex-1 border border-slate-200 rounded-xl py-3 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition">
+                  Booking Rules
+                </button>
+                <button className="flex-1 border border-slate-200 rounded-xl py-3 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition">
+                  Price List
                 </button>
               </div>
             </div>
+
+            <div className="md:col-span-3 md:self-end">
+              <button className="w-full bg-(--primary) text-white py-3 rounded-xl text-sm font-bold hover:opacity-95 transform active:scale-[0.98] transition shadow-lg shadow-(--primary)/20">
+                Book Now
+              </button>
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
       {/* SCHEDULE GRID */}
       <section className="py-10 max-w-6xl mx-auto px-5 lg:px-10">
         
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-4">
-          {/* MOBILE TABS (Berada di kiri atas tabel pada layar kecil) */}
-          <div className="flex bg-white p-1 rounded-xl border border-slate-200 w-full md:w-64">
-            <button 
-              onClick={() => setActiveFieldTab("A")}
-              className={`flex-1 py-2 text-xs font-bold rounded-lg transition ${activeFieldTab === "A" ? 'bg-(--primary) text-white' : 'text-slate-600'}`}
-            >
-              FIELD A
-            </button>
-            <button 
-              onClick={() => setActiveFieldTab("B")}
-              className={`flex-1 py-2 text-xs font-bold rounded-lg transition ${activeFieldTab === "B" ? 'bg-(--primary) text-white' : 'text-slate-600'}`}
-            >
-              FIELD B
-            </button>
-          </div>
-
-          {/* LEGEND (Pindah ke atas kanan tabel) */}
+          
+          {/* LEGEND */}
           <div className="flex flex-wrap gap-4 items-center text-xs font-medium text-slate-500">
             {legends.map((item) => (
               <div key={item.label} className="flex items-center gap-1.5">
@@ -167,17 +147,11 @@ export default function SchedulePage() {
 
         <div className="bg-white shadow-xl shadow-slate-200/50 rounded-2xl overflow-hidden border border-slate-100">
           
-          {/* HEADER (Desktop) */}
-          <div className="hidden md:grid md:grid-cols-3 bg-slate-50 border-b border-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider">
-            <div className="p-4 pl-6">Time Slot</div>
-            <div className="p-4 text-center">Field A</div>
-            <div className="p-4 text-center">Field B</div>
-          </div>
-
-          {/* HEADER (Mobile) */}
-          <div className="grid grid-cols-2 md:hidden bg-slate-50 border-b border-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider">
-            <div className="p-3.5 pl-5">Time Slot</div>
-            <div className="p-3.5 text-center">Status</div>
+          {/* HEADER */}
+          <div className="grid grid-cols-3 bg-slate-50 border-b border-slate-100 text-slate-600 text-[10px] md:text-xs font-bold uppercase tracking-wider">
+            <div className="p-3.5 pl-5 md:pl-6">Time Slot</div>
+            <div className="p-3.5 text-center">Field A</div>
+            <div className="p-3.5 text-center">Field B</div>
           </div>
 
           {/* ROWS */}
@@ -189,37 +163,36 @@ export default function SchedulePage() {
               return (
                 <div
                   key={time}
-                  className="grid grid-cols-2 md:grid-cols-3 text-xs hover:bg-slate-50/50 transition items-center"
+                  className="grid grid-cols-3 text-[10px] md:text-xs hover:bg-slate-50/50 transition items-center"
                 >
-                  {/* Time Column */}
+                  {/* Time */}
                   <div className="p-3.5 pl-5 md:pl-6 text-slate-700 font-semibold md:text-sm">
                     {time}
                   </div>
 
-                  {/* Desktop Layout: Shows both fields side by side */}
-                  <div className="hidden md:contents">
-                    {[slotA, slotB].map((slot, i) => {
-                      const status = (slot?.status || "available") as Status;
+                  {/* Field A */}
+                  <div className="p-2 flex justify-center">
+                    {(() => {
+                      const status = (slotA?.status || "available") as Status;
                       return (
-                        <div key={i} className="p-2 flex justify-center">
-                          <div className={`inline-flex items-center gap-1.5 font-bold ${statusTextStyle(status)}`}>
-                            <span className={`w-1.5 h-1.5 rounded-full ${dotStyle(status)}`} />
-                            {slot?.label || status.toUpperCase()}
-                          </div>
-                        </div>
+<div className={`inline-flex items-center font-bold ${statusTextStyle(status)}`}>
+  <span className="text-[9px] md:text-xs">
+    { status.toUpperCase()}
+  </span>
+</div>
                       );
-                    })}
+                    })()}
                   </div>
 
-                  {/* Mobile Layout: Shows active tab field only */}
-                  <div className="md:hidden p-2 flex justify-center">
+                  {/* Field B */}
+                  <div className="p-2 flex justify-center">
                     {(() => {
-                      const activeSlot = activeFieldTab === "A" ? slotA : slotB;
-                      const status = (activeSlot?.status || "available") as Status;
+                      const status = (slotB?.status || "available") as Status;
                       return (
                         <div className={`inline-flex items-center gap-1.5 font-bold ${statusTextStyle(status)}`}>
-                          <span className={`w-1.5 h-1.5 rounded-full ${dotStyle(status)}`} />
-                          {activeSlot?.label || status.toUpperCase()}
+                          <span className="text-[9px] md:text-xs">
+                            {status.toUpperCase()}
+                          </span>
                         </div>
                       );
                     })()}
