@@ -95,15 +95,22 @@ export default function HomePage() {
       className="w-full h-full object-cover opacity-50 hidden lg:block"
     />
 
-    {/* Overlay */}
-    <div
-      className="absolute inset-0 bg-linear-to-r 
-      from-(--primary)/95 
-      via-(--primary)/50 
-      to-black/40"
-    >
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-black/80 to-transparent"></div>
-    </div>
+{/* Overlay */}
+<div className="absolute inset-0">
+  
+  {/* DESKTOP OVERLAY */}
+  <div className="hidden lg:block absolute inset-0 bg-linear-to-r 
+    from-(--primary)/95 
+    via-(--primary)/50 
+    to-black/40"
+  />
+
+  {/* MOBILE OVERLAY (clean, no green tint) */}
+  <div className="lg:hidden absolute inset-0 bg-black/50" />
+
+  {/* Bottom fade */}
+  <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-black/80 to-transparent"></div>
+</div>
   </div>
 
   {/* Content */}
@@ -149,21 +156,21 @@ export default function HomePage() {
       </p>
 
       {/* CTA */}
-      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start">
-        <Link
-          to="/schedule"
-          className="px-8 py-4 border-2 border-white text-white font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#C8102E] transition-all duration-300 text-center"
-        >
-          View Schedule
-        </Link>
+<div className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center lg:justify-start">
+  <Link
+    to="/schedule"
+    className="px-6 py-3 border border-white text-white font-bold uppercase tracking-[0.12em] text-sm hover:bg-white hover:text-[#C8102E] transition-all duration-300 text-center"
+  >
+    View Schedule
+  </Link>
 
-        <Link
-          to="/booking"
-          className="px-8 py-4 bg-(--secondary) text-(--dark) font-black uppercase tracking-[0.2em] hover:bg-white transition-all duration-300 text-center"
-        >
-          Book Now
-        </Link>
-      </div>
+  <Link
+    to="/booking"
+    className="px-6 py-3 bg-(--secondary) text-(--dark) font-black uppercase tracking-[0.12em] text-sm hover:bg-white transition-all duration-300 text-center"
+  >
+    Book Now
+  </Link>
+</div>
     </div>
 
     {/* RIGHT SIDE LOGO — DESKTOP */}

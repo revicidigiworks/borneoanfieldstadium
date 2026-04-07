@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { ArrowUpRight, ShieldCheck, Sparkles } from "lucide-react";
-
 import sewaSepatu from "../../assets/images/services/sepatu.png";
 import heroDesktop from "../../assets/images/web-banner/web-banner-cs.png";
 import heroMobile from "../../assets/images/web-banner/web-banner-cs2.png";
@@ -10,27 +9,27 @@ const services = [
   {
     name: "Sewa Sepatu",
     image: {sewaSepatu},
-    wa: "https://wa.me/628xxxxxxxxxx",
+    wa: "https://wa.me/6282121211892",
   },
   {
     name: "Sewa Rompi & Jersey",
     image: "https://images.unsplash.com/photo-1517466788204-8302f37c37ba?q=80&w=1000&auto=format&fit=crop",
-    wa: "https://wa.me/628xxxxxxxxxx",
+    wa: "https://wa.me/6282121211892",
   },
   {
     name: "Wasit Profesional",
     image: "https://images.unsplash.com/photo-1519861531157-ea53805f5025?q=80&w=1000&auto=format&fit=crop",
-    wa: "https://wa.me/628xxxxxxxxxx",
+    wa: "https://wa.me/6282121211892",
   },
   {
     name: "Live YouTube Streaming",
     image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop",
-    wa: "https://wa.me/628xxxxxxxxxx",
+    wa: "https://wa.me/6282121211892",
   },
   {
     name: "Fotografer",
     image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop",
-    wa: "https://wa.me/628xxxxxxxxxx",
+    wa: "https://wa.me/6282121211892",
   }
 ];
 

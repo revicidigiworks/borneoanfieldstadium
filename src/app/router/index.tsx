@@ -7,7 +7,8 @@ const SchedulePage = lazy(() => import("@/features/schedule"))
 const FacilitiesPage = lazy(() => import("@/features/facilities"))
 const ServicesPage = lazy(() => import("@/features/services"))
 const EcosystemPage = lazy(() => import("@/features/ecosystem"))
-const CompetitionPage = lazy(() => import("@/features/competition"))
+// const CompetitionPage = lazy(() => import("@/features/competition"))
+const PriceListPage = lazy(() => import("@/features/pricelist"))
 const ProgramPage = lazy(() => import("@/features/program"))
 const AboutPage = lazy(() => import("@/features/about"))
 const ContactPage = lazy(() => import("@/features/contact"))
@@ -29,7 +30,8 @@ export const router = createBrowserRouter(
         { path: "facilities", element: withSuspense(FacilitiesPage) },
         { path: "services", element: withSuspense(ServicesPage) },
         { path: "ecosystem", element: withSuspense(EcosystemPage) },
-        { path: "competition", element: withSuspense(CompetitionPage) },
+        // { path: "competition", element: withSuspense(CompetitionPage) },
+        { path: "pricelist", element: withSuspense(PriceListPage) },
         { path: "program", element: withSuspense(ProgramPage) },
         { path: "about", element: withSuspense(AboutPage) },
         { path: "contact", element: withSuspense(ContactPage) },
