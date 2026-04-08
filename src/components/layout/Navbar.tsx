@@ -11,7 +11,7 @@ const navItems = [
   "Home",
   "Schedule",
   "Facilities",
-  "PriceList",
+  "Price List",
   "Services",
   // "Competition",
   "Ecosystem",
@@ -89,12 +89,14 @@ export function Navbar() {
             {lang}
           </button>
 
-          <a
-            href="#"
-            className="bg-black text-white px-6 py-2 text-sm font-semibold rounded-md hover:bg-(--secondary) hover:text-black transition"
-          >
-            BOOK NOW
-          </a>
+<a
+  href="https://wa.me/6282121211892"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="px-6 py-3 bg-(--secondary) rounded text-(--dark) font-black uppercase tracking-[0.12em] text-sm hover:bg-white transition-all duration-300 text-center"
+>
+  Book Now
+</a>
         </nav>
       </div>
 

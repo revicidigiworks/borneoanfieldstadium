@@ -13,13 +13,14 @@ import sponsor3 from "../../assets/images/sponsors/sponsor3.png";
 import sponsor4 from "../../assets/images/sponsors/sponsor4.png";
 import sponsor5 from "../../assets/images/sponsors/sponsor5.png";
 import sponsor6 from "../../assets/images/sponsors/sponsor6.png";
+import sponsor7 from "../../assets/images/sponsors/ph.png";
 
 const navItems = [
   "Home",
   "Schedule",
   "Facilities",
   "Services",
-  "Competition",
+  "Price List",
   "Ecosystem",
   "Program",
   "About",
@@ -27,43 +28,38 @@ const navItems = [
 ];
 
 export function Footer() {
-  const sponsors = [sponsor1, sponsor2, sponsor3, sponsor4, sponsor5, sponsor6];
+  const sponsors = [sponsor1, sponsor2, sponsor3, sponsor4, sponsor5, sponsor6, sponsor7];
 
   return (
     <footer className="bg-white  border-gray-200 ">
-      {/* SPONSORS */}
-      <div className="bg-(--primary) pt-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-center text-xs tracking-[0.35em] text-(--surface) uppercase mb-12">
-            Official Partners
-          </p>
+{/* SPONSORS - PREMIUM MARQUEE */}
+<section className="bg-(--primary) py-16 overflow-hidden">
+  <div className="max-w-7xl mx-auto px-6 mb-10">
+    <p className="text-center text-xs tracking-[0.35em] text-(--surface) uppercase">
+      Part Of
+    </p>
+  </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-12 gap-y-10 items-center justify-items-center">
-            {sponsors.map((logo, i) => (
-              <img
-                key={i}
-                src={logo}
-                alt={`Borneo Anfield Sponsor ${i + 1}`}
-                className="h-20 md:h-24 object-contain transition duration-300 hover:scale-110"
-              />
-            ))}
-          </div>
-        </div>
+  <div className="relative">
+    {/* GRADIENT FADE KIRI */}
+    <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-(--primary) to-transparent z-10" />
 
-        {/* WAVE DIVIDER */}
-        <div className="mt-16">
-          <svg
-            viewBox="0 0 1440 120"
-            className="w-full h-20"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M0,40 C240,120 480,0 720,40 C960,80 1200,20 1440,60 L1440,120 L0,120 Z"
-              fill="white"
-            />
-          </svg>
-        </div>
-      </div>
+    {/* GRADIENT FADE KANAN */}
+    <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-(--primary) to-transparent z-10" />
+
+    {/* MARQUEE TRACK */}
+    <div className="flex w-max animate-marquee gap-16 items-center">
+      {[...sponsors, ...sponsors].map((logo, i) => (
+        <img
+          key={i}
+          src={logo}
+          alt={`Sponsor ${i + 1}`}
+          className="h-16 md:h-20 w-[320px] object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition duration-300"
+        />
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* MAIN FOOTER */}
       <div className="max-w-7xl mx-auto px-6 py-16">
@@ -108,7 +104,7 @@ export function Footer() {
               {navItems.map((item) => (
                 <NavLink
                   key={item}
-                  to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                  to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/\s+/g, "")}`}
                   className="hover:text-(--primary) transition"
                 >
                   {item}

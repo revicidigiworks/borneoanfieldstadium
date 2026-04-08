@@ -1,10 +1,44 @@
 import { useEffect, useState } from "react";
 import { scheduleService } from "@/services/schedule.service";
 import { ScheduleSlot } from "@/types/schedule";
+import bannerPhMobile from "../../assets/images/web-banner/banner-iklan-mobile-ph.png";
+import bannerBasMobile from "../../assets/images/web-banner/banner-iklan-mobile-bas.png";
+import bannerSalonMobile from "../../assets/images/web-banner/banner-iklan-mobile-salon.png";
+import bannerBas from "../../assets/images/web-banner/bannerBas.png";
+import bannerPh from "../../assets/images/web-banner/bannerSalon.png";
+import bannerSalon from "../../assets/images/web-banner/banner-iklan.png";
+
 
 type Status = "available" | "booked" | "ended" | "ongoing";
 
 export default function SchedulePage() {
+  const [current, setCurrent] = useState(0);
+const [startX, setStartX] = useState(0);
+
+const totalSlides = 3;
+
+// AUTO SLIDE
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrent((prev) => (prev + 1) % totalSlides);
+  }, 15000); // 4 detik
+
+  return () => clearInterval(interval);
+}, []);
+
+// SWIPE FUNCTION
+const handleSwipe = (endX: number) => {
+  const diff = startX - endX;
+
+  if (diff > 50) {
+    // swipe kiri
+    setCurrent((prev) => (prev + 1) % totalSlides);
+  } else if (diff < -50) {
+    // swipe kanan
+    setCurrent((prev) => (prev - 1 + totalSlides) % totalSlides);
+  }
+};
+
   const [slots, setSlots] = useState<ScheduleSlot[]>([]);
   const [loading, setLoading] = useState(true);
   const [date, setDate] = useState("");
@@ -78,6 +112,45 @@ export default function SchedulePage() {
 
   return (
     <div className="bg-slate-50 min-h-screen">
+
+{/* BANNER SLIDER PREMIUM */}
+<section className="relative z-30 bg-white">
+  <div className="max-w-7xl mx-auto px-4 py-4">
+
+    <div className="overflow-hidden shadow-md">
+      <div
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${current * 100}%)` }}
+        onTouchStart={(e) => setStartX(e.touches[0].clientX)}
+        onTouchEnd={(e) => handleSwipe(e.changedTouches[0].clientX)}
+        onMouseDown={(e) => setStartX(e.clientX)}
+        onMouseUp={(e) => handleSwipe(e.clientX)}
+      >
+
+        {/* SLIDE 1 */}
+        <div className="w-full flex-shrink-0 flex items-center justify-center h-[100px] sm:h-[120px] md:h-[160px] bg-gradient-to-r from-slate-50 to-white">
+          <img src={bannerBas} className="hidden sm:block max-h-full object-contain" />
+          <img src={bannerBasMobile} className="block sm:hidden max-h-full object-contain" />
+        </div>
+
+        {/* SLIDE 2 */}
+        <div className="w-full flex-shrink-0 flex items-center justify-center h-[100px] sm:h-[120px] md:h-[160px] bg-gradient-to-r from-slate-50 to-white">
+          <img src={bannerPh} className="hidden sm:block max-h-full object-contain" />
+          <img src={bannerPhMobile} className="block sm:hidden max-h-full object-contain" />
+        </div>
+
+        {/* SLIDE 3 */}
+        <div className="w-full flex-shrink-0 flex items-center justify-center h-[100px] sm:h-[120px] md:h-[160px] bg-gradient-to-r from-slate-50 to-white">
+          <img src={bannerSalon} className="hidden sm:block max-h-full object-contain" />
+          <img src={bannerSalonMobile} className="block sm:hidden max-h-full object-contain" />
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
       {/* HERO MINI */}
       <section className="relative py-24 bg-(--primary) text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>

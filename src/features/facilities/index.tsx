@@ -14,7 +14,7 @@ import {
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 
-import facilitiesHero from "../../assets/images/gedung/lapMalam.webp";
+import facilitiesHero from "../../assets/images/web-banner/web-banner-mobile-fasilitas.png";
 import lockerImg from "../../assets/images/gallery/lokerRoom.jpeg";
 import showerImg from "../../assets/images/fasilitas/showerRoom.webp";
 import mushollaImg from "../../assets/images/fasilitas/Musholla.webp";
@@ -62,7 +62,7 @@ export default function FacilitiesPage() {
           />
         </motion.div>
 
-        <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/70"></div>
+        <div className="absolute"></div>
 
         <motion.div
           variants={stagger}

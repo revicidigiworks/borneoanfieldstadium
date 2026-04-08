@@ -87,9 +87,9 @@ export default function EcosystemPage() {
 
     <motion.h1
       variants={fadeUp}
-      className="text-3xl md:text-6xl font-black text-white tracking-tight leading-[1.1]"
+      className="text-5xl md:text-6xl font-black text-white tracking-tight leading-[1.1]"
     >
-      BORNEO ANFIELD STADIUM <span className="text-[#F6EB61]">ECOSYSTEM</span>
+      BORNEO ANFIELD <br /> STADIUM <span className="text-[#F6EB61]">ECOSYSTEM</span>
     </motion.h1>
   </motion.div>
 </section>

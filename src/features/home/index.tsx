@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { scheduleService } from "@/services/schedule.service";
 import { ScheduleSlot } from "@/types/schedule";
 import { getUpcomingSlot } from "@/utils/getUpcoming";
-import { SlotCard } from "@/components/schedule/SlotCard";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
@@ -18,6 +17,39 @@ import umumLogo from "../../assets/images/logo/ba-umum.png";
 import u35Logo from "../../assets/images/logo/ba-u35.webp";
 import juniorLogo from "../../assets/images/logo/ba-junior.webp";
 import sparingLogo from "../../assets/images/logo/infoSparing.jpeg";
+import sewaSepatu from "../../assets/images/services/sepatu.png";
+import sewaRompi from "../../assets/images/services/rompi.jpg";
+import sewaWasit from "../../assets/images/services/wasit.jpg";
+import sewaFotographer from "../../assets/images/services/fotographer.jpg";
+import sewaLive from "../../assets/images/services/youtube.jpg";
+
+const services = [
+  {
+    name: "Sewa Sepatu",
+    image: sewaSepatu,
+    wa: "https://wa.me/6282121211892",
+  },
+  {
+    name: "Sewa Rompi & Jersey",
+    image: sewaRompi,
+    wa: "https://wa.me/6282121211892",
+  },
+  {
+    name: "Wasit Profesional",
+    image: sewaWasit,
+    wa: "https://wa.me/6282121211892",
+  },
+  {
+    name: "Live YouTube Streaming",
+    image: sewaLive,
+    wa: "https://wa.me/6282121211892",
+  },
+  {
+    name: "Fotografer",
+    image: sewaFotographer,
+    wa: "https://wa.me/6282121211892",
+  }
+];
 
 // Import Asset Video
 import heroDrone from "../../assets/video/heroDrone.mp4";
@@ -51,159 +83,161 @@ export default function HomePage() {
   };
 
   const ecosystemPreview = [
-  {
-    title: "BA FC UMUM",
-    logo: umumLogo,
-  },
-  {
-    title: "BA FC U35+",
-    logo: u35Logo,
-  },
-  {
-    title: "BA FC JUNIOR",
-    logo: juniorLogo,
-  },
-  {
-    title: "INFO SPARING",
-    logo: sparingLogo,
-  },
-];
+    {
+      title: "BA FC UMUM",
+      logo: umumLogo,
+    },
+    {
+      title: "BA FC U35+",
+      logo: u35Logo,
+    },
+    {
+      title: "BA FC JUNIOR",
+      logo: juniorLogo,
+    },
+    {
+      title: "INFO SPARING",
+      logo: sparingLogo,
+    },
+  ];
 
 
   return (
     <div className="flex flex-col">
-{/* 1 HERO */}
-<section className="relative min-h-[calc(100svh-80px)] md:min-h-[calc(100dvh-80px)] flex items-center justify-center bg-[#1a1a1a] overflow-hidden hero-spotlight pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
-  
-  {/* Background */}
-  <div className="absolute inset-0">
-    
-    {/* MOBILE VIDEO */}
-<video
-  src={heroDrone}
-  autoPlay
-  muted
-  loop
-  playsInline
-  className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover opacity-60 scale-105 block lg:hidden"
-/>
+      {/* 1 HERO */}
+      <section className="relative min-h-[calc(100svh-80px)] md:min-h-[calc(100dvh-80px)] flex items-center justify-center bg-[#1a1a1a] overflow-hidden hero-spotlight pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
 
-    {/* DESKTOP IMAGE */}
-    <img
-      src={heroImage}
-      alt="Borneo Anfield Stadium"
-      className="w-full h-full object-cover opacity-50 hidden lg:block"
-    />
+        {/* Background */}
+        <div className="absolute inset-0">
 
-{/* Overlay */}
-<div className="absolute inset-0">
-  
-  {/* DESKTOP OVERLAY */}
-  <div className="hidden lg:block absolute inset-0 bg-linear-to-r 
+          {/* MOBILE VIDEO */}
+          <video
+            src={heroDrone}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover opacity-60 scale-105 block lg:hidden"
+          />
+
+          {/* DESKTOP IMAGE */}
+          <img
+            src={heroImage}
+            alt="Borneo Anfield Stadium"
+            className="w-full h-full object-cover opacity-50 hidden lg:block"
+          />
+
+          {/* Overlay */}
+          <div className="absolute inset-0">
+
+            {/* DESKTOP OVERLAY */}
+            <div className="hidden lg:block absolute inset-0 bg-linear-to-r 
     from-(--primary)/95 
     via-(--primary)/50 
     to-black/40"
-  />
+            />
 
-  {/* MOBILE OVERLAY (clean, no green tint) */}
-  <div className="lg:hidden absolute inset-0 bg-black/50" />
+            {/* MOBILE OVERLAY (clean, no green tint) */}
+            <div className="lg:hidden absolute" />
 
-  {/* Bottom fade */}
-  <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-black/80 to-transparent"></div>
-</div>
-  </div>
-
-  {/* Content */}
-  <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 items-center gap-12 text-center lg:text-left">
-    
-    {/* LOGO — MOBILE */}
-    <div className="flex justify-center lg:hidden mb-10">
-      <img
-        src={heroLogo}
-        alt="Borneo Anfield Logo"
-        className="w-50 sm:w-55 object-contain logo-entrance drop-shadow-[0_10px_40px_rgba(0,0,0,0.6)] logo-float"
-      />
-    </div>
-
-    {/* LEFT SIDE */}
-    <div className="order-2 lg:order-1">
-      
-      {/* Label */}
-      <div className="hidden lg:flex items-center justify-start gap-4 mb-8">
-        <div className="hidden lg:block h-0.5 w-12 bg-(--secondary)"></div>
-        <span className="text-(--secondary) font-bold text-[11px] uppercase tracking-[0.3em]">
-          Balikpapan’s #1 Minisoccer Stadium
-        </span>
-      </div>
-
-      {/* Title */}
-      <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white uppercase leading-[1] mb-10">
-        BORNEO <br />
-        ANFIELD <br />
-        <span className="text-(--secondary)">STADIUM</span>
-      </h1>
-
-      {/* Mobile Label */}
-      <p className="lg:hidden text-(--secondary) text-sm uppercase tracking-[0.3em] mb-8">
-        Balikpapan’s #1 <br /> Minisoccer Stadium
-      </p>
-
-      {/* Description */}
-      <p className="hidden lg:block text-lg text-white/90 font-light max-w-lg leading-relaxed mb-10 border-l border-white/30 pl-6">
-        The ultimate home for football enthusiasts. Experience
-        professional-grade facilities, world-class atmosphere, and the
-        spirit of the game.
-      </p>
-
-      {/* CTA */}
-<div className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center lg:justify-start">
-  <Link
-    to="/schedule"
-    className="px-6 py-3 border border-white text-white font-bold uppercase tracking-[0.12em] text-sm hover:bg-white hover:text-[#C8102E] transition-all duration-300 text-center"
-  >
-    View Schedule
-  </Link>
-
-  <Link
-    to="/booking"
-    className="px-6 py-3 bg-(--secondary) text-(--dark) font-black uppercase tracking-[0.12em] text-sm hover:bg-white transition-all duration-300 text-center"
-  >
-    Book Now
-  </Link>
-</div>
-    </div>
-
-    {/* RIGHT SIDE LOGO — DESKTOP */}
-    <div className="hidden lg:flex justify-end order-1 lg:order-2">
-      <img
-        src={heroLogo}
-        alt="Borneo Anfield Logo"
-        className="w-90 xl:w-[320px] object-contain logo-entrance drop-shadow-[0_0_60px_rgba(255,255,255,0.25)]"
-      />
-    </div>
-  </div>
-
-  {/* Upcoming Match */}
-  {upcoming && (
-    <div className="absolute bottom-10 right-6 md:right-12 z-20 text-right hidden md:block">
-      <p className="text-[10px] text-white/50 uppercase tracking-[0.3em] mb-2">
-        Next Kickoff
-      </p>
-
-      <div className="text-white">
-        <span className="font-bold uppercase text-sm tracking-widest">
-          {upcoming.eventType}
-        </span>
-
-        <div className="text-white/60 text-xs mt-1">
-          {upcoming.start}
+            {/* Bottom fade */}
+            <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-black/80 to-transparent"></div>
+          </div>
         </div>
-      </div>
-    </div>
-  )}
 
-  <div className="light-sweep"></div>
-</section>
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 items-center gap-12 text-center lg:text-left">
+
+          {/* LOGO — MOBILE */}
+          <div className="flex justify-center lg:hidden mb-10">
+            <img
+              src={heroLogo}
+              alt="Borneo Anfield Logo"
+              className="w-50 sm:w-55 object-contain logo-entrance drop-shadow-[0_10px_40px_rgba(0,0,0,0.6)] logo-float"
+            />
+          </div>
+
+          {/* LEFT SIDE */}
+          <div className="order-2 lg:order-1">
+
+            {/* Label */}
+            <div className="hidden lg:flex items-center justify-start gap-4 mb-8">
+              <div className="hidden lg:block h-0.5 w-12 bg-(--secondary)"></div>
+              <span className="text-(--secondary) font-bold text-[11px] uppercase tracking-[0.3em]">
+                Balikpapan’s #1 Minisoccer Stadium
+              </span>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white uppercase leading-none mb-10">
+              BORNEO <br />
+              ANFIELD <br />
+              <span className="text-(--secondary)">STADIUM</span>
+            </h1>
+
+            {/* Mobile Label */}
+            <p className="lg:hidden text-(--secondary) text-sm uppercase tracking-[0.3em] mb-8">
+              Balikpapan’s #1 <br /> Minisoccer Stadium
+            </p>
+
+            {/* Description */}
+            <p className="hidden lg:block text-lg text-white/90 font-light max-w-lg leading-relaxed mb-10 border-l border-white/30 pl-6">
+              The ultimate home for football enthusiasts. Experience
+              professional-grade facilities, world-class atmosphere, and the
+              spirit of the game.
+            </p>
+
+            {/* CTA */}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center lg:justify-start">
+              <Link
+                to="/schedule"
+                className="px-6 py-3 border border-white text-white font-bold uppercase tracking-[0.12em] text-sm hover:bg-white hover:text-[#C8102E] transition-all duration-300 text-center"
+              >
+                View Schedule
+              </Link>
+
+              <a
+                href="https://wa.me/6282121211892"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-(--secondary) text-(--dark) font-black uppercase tracking-[0.12em] text-sm hover:bg-white transition-all duration-300 text-center"
+              >
+                Book Now
+              </a>
+            </div>
+          </div>
+
+          {/* RIGHT SIDE LOGO — DESKTOP */}
+          <div className="hidden lg:flex justify-end order-1 lg:order-2">
+            <img
+              src={heroLogo}
+              alt="Borneo Anfield Logo"
+              className="w-90 xl:w-[320px] object-contain logo-entrance drop-shadow-[0_0_60px_rgba(255,255,255,0.25)]"
+            />
+          </div>
+        </div>
+
+        {/* Upcoming Match */}
+        {upcoming && (
+          <div className="absolute bottom-10 right-6 md:right-12 z-20 text-right hidden md:block">
+            <p className="text-[10px] text-white/50 uppercase tracking-[0.3em] mb-2">
+              Next Kickoff
+            </p>
+
+            <div className="text-white">
+              <span className="font-bold uppercase text-sm tracking-widest">
+                {upcoming.eventType}
+              </span>
+
+              <div className="text-white/60 text-xs mt-1">
+                {upcoming.start}
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="light-sweep"></div>
+      </section>
 
       {/* 2️⃣ ABOUT PREVIEW - MINIMALIST PROFESSIONAL */}
       <section className="py-10 lg:py-32 bg-(--surface) relative overflow-hidden">
@@ -402,108 +436,167 @@ export default function HomePage() {
         </div>
       </section>
 
-{/* 5️⃣ ECOSYSTEM PREVIEW */}
-<section className="py-10 md:py-20 bg-[#ffffff]">
-  <div className="max-w-325 mx-auto px-6">
+      {/* 5️⃣ ECOSYSTEM PREVIEW */}
+      <section className="py-10 md:py-20 bg-[#ffffff]">
+        <div className="max-w-325 mx-auto px-6">
 
-    {/* HEADER (MATCH PAGE STYLE) */}
-    <div className="flex items-end justify-between mb-10">
-      <div>
-        <h2 className="text-3xl md:text-3xl font-black uppercase text-(--primary)">
-          Ecosystem
-        </h2>
-        <div className="w-12 h-1 bg-[#F6EB61] mt-3"></div>
-      </div>
+          {/* HEADER (MATCH PAGE STYLE) */}
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <h2 className="text-3xl md:text-3xl font-black uppercase text-(--primary)">
+                Ecosystem
+              </h2>
+              <div className="w-12 h-1 bg-[#F6EB61] mt-3"></div>
+            </div>
 
-      <Link
-        to="/ecosystem"
-        className="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-(--primary) hover:text-black transition"
-      >
-        Explore
-        <ArrowUpRight size={16} />
-      </Link>
-    </div>
-
-    {/* LIST GRID */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-      {ecosystemPreview.map((item, i) => (
-        <Link
-          to="/ecosystem"
-          key={i}
-          className="group flex items-center justify-between bg-white p-5 md:p-6 rounded-xl border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
-        >
-          {/* TEXT */}
-          <span className="text-sm md:text-base font-black uppercase tracking-wide text-gray-800">
-            {item.title}
-          </span>
-
-          {/* LOGO */}
-          <div className="w-20 h-20 flex items-center justify-center bg-white border border-gray-100 overflow-hidden">
-            <img
-              src={item.logo}
-              alt={item.title}
-              className="w-full h-full object-contain"
-            />
+            <Link
+              to="/ecosystem"
+              className="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-(--primary) hover:text-black transition"
+            >
+              Explore
+              <ArrowUpRight size={16} />
+            </Link>
           </div>
-        </Link>
-      ))}
-    </div>
 
-    {/* MOBILE CTA */}
-    <Link
-      to="/ecosystem"
-      className="flex md:hidden items-center justify-center mt-8 text-sm font-bold uppercase tracking-widest text-(--primary)"
-    >
-      Explore Ecosystem →
-    </Link>
-
-  </div>
-</section>
-
-      {/* 6️⃣ SERVICES PREVIEW */}
-      <section className="py-10 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-12">Commercial Services</h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              "Sewa Sepatu",
-              "Rompi & Jersey",
-              "Wasit Profesional",
-              "Live YouTube",
-              "Fotografer",
-            ].map((service) => (
-              <div
-                key={service}
-                className="bg-[#F9F9F9] p-6 rounded-xl border font-semibold"
+          {/* LIST GRID */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+            {ecosystemPreview.map((item, i) => (
+              <Link
+                to="/ecosystem"
+                key={i}
+                className="group flex items-center justify-between bg-white p-5 md:p-6 rounded-xl border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
               >
-                {service}
-              </div>
+                {/* TEXT */}
+                <span className="text-sm md:text-base font-black uppercase tracking-wide text-gray-800">
+                  {item.title}
+                </span>
+
+                {/* LOGO */}
+                <div className="w-20 h-20 flex items-center justify-center bg-white border border-gray-100 overflow-hidden">
+                  <img
+                    src={item.logo}
+                    alt={item.title}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </Link>
             ))}
           </div>
 
+          {/* MOBILE CTA */}
           <Link
-            to="/services"
-            className="inline-block mt-10 text-[#00C5C8] font-semibold"
+            to="/ecosystem"
+            className="flex md:hidden items-center justify-center mt-8 text-sm font-bold uppercase tracking-widest text-(--primary)"
           >
-            View Services →
+            Explore Ecosystem →
           </Link>
+
         </div>
       </section>
 
-      {/* 7️⃣ FINAL CONVERSION SECTION */}
-      <section className="py-24 bg-[#00C5C8] text-black text-center">
-        <h2 className="text-4xl font-bold max-w-3xl mx-auto">
-          Jadwal Terbuka. Slot Transparan. Booking Tanpa Ribet.
-        </h2>
 
-        <a
-          href="#"
-          className="inline-block mt-10 bg-black text-white px-8 py-4 font-semibold"
-        >
-          BOOK YOUR SLOT NOW
-        </a>
+      {/* 6️⃣ SERVICES PREVIEW */}
+      <section className="py-10 md:py-20 bg-[#ffffff]">
+        <div className="max-w-325 mx-auto px-6">
+
+          {/* HEADER (MATCH ECOSYSTEM) */}
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <h2 className="text-3xl md:text-3xl font-black uppercase text-(--primary)">
+                Comercial <br />Services
+              </h2>
+              <div className="w-12 h-1 bg-[#F6EB61] mt-3"></div>
+            </div>
+
+            <Link
+              to="/services"
+              className="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-(--primary) hover:text-black transition"
+            >
+              Explore
+              <ArrowUpRight size={16} />
+            </Link>
+          </div>
+
+          {/* LIST GRID (SAMA PERSIS STRUCTURE NYA) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+            {services.slice(0, 4).map((service, i) => (
+              <a
+                href={service.wa}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={i}
+                className="group flex items-center justify-between bg-white p-5 md:p-6 rounded-xl border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* TEXT */}
+                <span className="text-sm md:text-base font-black uppercase tracking-wide text-gray-800">
+                  {service.name}
+                </span>
+
+                {/* IMAGE (ganti logo → service image) */}
+                <div className="w-20 h-20 flex items-center justify-center bg-white border border-gray-100 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {/* MOBILE CTA */}
+          <Link
+            to="/services"
+            className="flex md:hidden items-center justify-center mt-8 text-sm font-bold uppercase tracking-widest text-(--primary)"
+          >
+            Explore Services →
+          </Link>
+
+        </div>
       </section>
+
+{/* 7️⃣ FINAL CONVERSION SECTION */}
+<section className="py-16 md:py-24 bg-white border-t border-gray-100">
+  <div className="max-w-325 mx-auto px-6">
+
+    {/* HEADER (MATCH SECTION LAIN) */}
+    <div className="mb-10">
+      <h2 className="text-3xl md:text-3xl font-black uppercase text-(--primary)">
+        Booking
+      </h2>
+      <div className="w-12 h-1 bg-[#F6EB61] mt-3"></div>
+    </div>
+
+    {/* CONTENT */}
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+
+      {/* TEXT */}
+      <div className="max-w-xl">
+        <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-gray-900 leading-snug">
+          Jadwal Terbuka & Transparan.
+        </h3>
+
+        <p className="text-gray-500 text-sm md:text-base mt-3 leading-relaxed">
+          Cek slot pertandingan secara real-time dan lakukan booking tanpa proses ribet. 
+          Semua sudah terintegrasi untuk pengalaman bermain yang lebih profesional.
+        </p>
+      </div>
+
+      {/* CTA */}
+      <a
+        href="https://wa.me/6282121211892?text=Saya%20ingin%20booking%20lapangan"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold uppercase tracking-widest bg-(--secondary) text-black rounded-xl hover:bg-neutral-900 hover:text-white transition-all duration-300"
+      >
+        Book Now
+        <ArrowUpRight size={16} />
+      </a>
+
+    </div>
+
+  </div>
+</section>
     </div>
   );
 }

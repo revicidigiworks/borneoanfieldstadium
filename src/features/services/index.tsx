@@ -2,33 +2,37 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { ArrowUpRight, ShieldCheck, Sparkles } from "lucide-react";
 import sewaSepatu from "../../assets/images/services/sepatu.png";
+import sewaRompi from "../../assets/images/services/rompi.jpg";
+import sewaWasit from "../../assets/images/services/wasit.jpg"; 
+import sewaFotographer from "../../assets/images/services/fotographer.jpg"; 
+import sewaLive from "../../assets/images/services/youtube.jpg"; 
 import heroDesktop from "../../assets/images/web-banner/web-banner-cs.png";
 import heroMobile from "../../assets/images/web-banner/web-banner-cs2.png";
 
 const services = [
   {
     name: "Sewa Sepatu",
-    image: {sewaSepatu},
+    image: sewaSepatu,
     wa: "https://wa.me/6282121211892",
   },
   {
     name: "Sewa Rompi & Jersey",
-    image: "https://images.unsplash.com/photo-1517466788204-8302f37c37ba?q=80&w=1000&auto=format&fit=crop",
+    image: sewaRompi,
     wa: "https://wa.me/6282121211892",
   },
   {
     name: "Wasit Profesional",
-    image: "https://images.unsplash.com/photo-1519861531157-ea53805f5025?q=80&w=1000&auto=format&fit=crop",
+    image: sewaWasit,
     wa: "https://wa.me/6282121211892",
   },
   {
     name: "Live YouTube Streaming",
-    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop",
+    image: sewaLive,
     wa: "https://wa.me/6282121211892",
   },
   {
     name: "Fotografer",
-    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop",
+    image: sewaFotographer,
     wa: "https://wa.me/6282121211892",
   }
 ];
@@ -90,7 +94,7 @@ export default function ServicesPage() {
 
           <motion.h1
             variants={fadeUp}
-            className="text-5xl md:text-8xl font-extrabold text-white tracking-tighter leading-none"
+            className="text-5xl md:text-7xl font-extrabold text-white tracking-tighter leading-none"
           >
             COMMERCIAL <span className="text-[#F6EB61] italic">SERVICES</span>
           </motion.h1>
@@ -139,7 +143,7 @@ export default function ServicesPage() {
                 <div>
                   <div className="relative aspect-4/5 w-full overflow-hidden bg-gray-50">
                     <img
-                      src={sewaSepatu}
+                      src={service.image}
                       alt={service.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     />
