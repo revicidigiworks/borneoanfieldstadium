@@ -10,6 +10,11 @@ const services = [
     wa: "https://wa.me/6282121211892",
   },
   {
+  name: "Sewa Jersey",
+  image: sewaJersey,
+  wa: "https://wa.me/6282121211892",
+},
+  {
     name: "Wasit Profesional",
     image: sewaWasit,
     wa: "https://wa.me/6282121211892",

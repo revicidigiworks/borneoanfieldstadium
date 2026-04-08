@@ -3,8 +3,9 @@ import type { Variants } from "framer-motion";
 import { ArrowUpRight, ShieldCheck, Sparkles } from "lucide-react";
 import sewaSepatu from "../../assets/images/services/sepatu.png";
 import sewaRompi from "../../assets/images/services/rompi.jpg";
+import sewaJersey from "../../assets/images/services/jersey.jpg";
 import sewaWasit from "../../assets/images/services/wasit.jpg"; 
-import sewaFotographer from "../../assets/images/services/fotographer.jpg"; 
+import sewaFotographer from "../../assets/images/services/foto.jpg"; 
 import sewaLive from "../../assets/images/services/youtube.jpg"; 
 import heroDesktop from "../../assets/images/web-banner/web-banner-cs.png";
 import heroMobile from "../../assets/images/web-banner/web-banner-cs2.png";
@@ -16,8 +17,13 @@ const services = [
     wa: "https://wa.me/6282121211892",
   },
   {
-    name: "Sewa Rompi & Jersey",
+    name: "Sewa Rompi",
     image: sewaRompi,
+    wa: "https://wa.me/6282121211892",
+  },
+  {
+    name: "Sewa Jersey",
+    image: sewaJersey,
     wa: "https://wa.me/6282121211892",
   },
   {

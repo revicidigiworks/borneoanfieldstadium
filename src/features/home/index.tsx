@@ -20,7 +20,7 @@ import sparingLogo from "../../assets/images/logo/infoSparing.jpeg";
 import sewaSepatu from "../../assets/images/services/sepatu.png";
 import sewaRompi from "../../assets/images/services/rompi.jpg";
 import sewaWasit from "../../assets/images/services/wasit.jpg";
-import sewaFotographer from "../../assets/images/services/fotographer.jpg";
+import sewaFotographer from "../../assets/images/services/foto.jpg";
 import sewaLive from "../../assets/images/services/youtube.jpg";
 
 const services = [
