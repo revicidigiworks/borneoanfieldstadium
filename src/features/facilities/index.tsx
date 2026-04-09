@@ -79,9 +79,9 @@ export default function FacilitiesPage() {
 
           <motion.h1
             variants={fadeUp}
-            className="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-tight"
+            className="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-12"
           >
-            BORNEO ANFIELD <br /><span className="text-[#F6EB61]">STADIUM FACILITIES</span>
+            BORNEO ANFIELD <br /><span className="text-[#F6EB61]">FACILITIES</span>
           </motion.h1>
         </motion.div>
       </section>

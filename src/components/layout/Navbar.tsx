@@ -11,9 +11,8 @@ const navItems = [
   "Home",
   "Schedule",
   "Facilities",
-  "Price List",
   "Services",
-  // "Competition",
+  "Price List",
   "Ecosystem",
   "Program",
   "About",
@@ -64,7 +63,11 @@ export function Navbar() {
           {navItems.map((item) => (
             <NavLink
               key={item}
-              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+  to={
+  item === "Home"
+    ? "/"
+    : `/${item.toLowerCase().trim().replace(/\s+/g, "")}`
+}
               className={({ isActive }) =>
                 `relative text-sm tracking-wide transition duration-300
                 ${
@@ -134,7 +137,7 @@ export function Navbar() {
             {navItems.map((item) => (
               <NavLink
                 key={item}
-                to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/\s+/g, "")}`}
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
                   `flex justify-between items-center text-lg font-medium transition

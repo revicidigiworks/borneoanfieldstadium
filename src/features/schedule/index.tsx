@@ -1,47 +1,90 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { scheduleService } from "@/services/schedule.service";
 import { ScheduleSlot } from "@/types/schedule";
+
+// Banner Mobile
 import bannerPhMobile from "../../assets/images/web-banner/banner-iklan-mobile-ph.png";
 import bannerBasMobile from "../../assets/images/web-banner/banner-iklan-mobile-bas.png";
 import bannerSalonMobile from "../../assets/images/web-banner/banner-iklan-mobile-salon.png";
+import bannerTravelMobile from "../../assets/images/web-banner/banner-iklan-mobile-travel.png";
+import bannerCodaMobile from "../../assets/images/web-banner/banner-iklan-mobile-coda.png";
+import bannerSlotIklanMobile from "../../assets/images/web-banner/web-banner-mobile-slotiklan.png";
+
+// Banner Desktop
 import bannerBas from "../../assets/images/web-banner/bannerBas.png";
-import bannerPh from "../../assets/images/web-banner/bannerSalon.png";
-import bannerSalon from "../../assets/images/web-banner/banner-iklan.png";
+import bannerSalon from "../../assets/images/web-banner/bannerSalon.png";
+import bannerPh from "../../assets/images/web-banner/banner-iklan.png";
+import bannerCoda from "../../assets/images/web-banner/bannerCoda.png";
+import bannerSlotIklan from "../../assets/images/web-banner/bannerSlotIklan.png";
 
 
 type Status = "available" | "booked" | "ended" | "ongoing";
 
 export default function SchedulePage() {
   const [current, setCurrent] = useState(0);
-const [startX, setStartX] = useState(0);
+  const [startX, setStartX] = useState(0);
 
-const totalSlides = 3;
+  const banners = [
+    {
+      desktop: bannerBas,
+      mobile: bannerBasMobile,
+      link: "https://www.instagram.com/borneoanfieldstadium/",
+    },
+    {
+      desktop: bannerPh,
+      mobile: bannerPhMobile,
+      link: "https://www.instagram.com/pickleballhouse.bpn/",
+    },
+    {
+      desktop: bannerSalon,
+      mobile: bannerSalonMobile,
+      link: "https://www.instagram.com/salonaudrymuslimah.bpn/",
+    },
+    {
+      mobile: bannerTravelMobile,
+      link: "https://www.instagram.com/cintatravel.bpn/",
+    },
+    {
+      desktop: bannerCoda,
+      mobile: bannerCodaMobile,
+      link: "https://www.courtdancer.com",
+    },
+    {
+      desktop: bannerSlotIklan,
+      mobile: bannerSlotIklanMobile,
+      link: "https://wa.me/6282121211892",
+    },
+  ];
 
-// AUTO SLIDE
-useEffect(() => {
-  const interval = setInterval(() => {
-    setCurrent((prev) => (prev + 1) % totalSlides);
-  }, 15000); // 4 detik
+  const totalSlides = banners.length;
 
-  return () => clearInterval(interval);
-}, []);
+  // AUTO SLIDE
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % totalSlides);
+    }, 15000); // 4 detik
 
-// SWIPE FUNCTION
-const handleSwipe = (endX: number) => {
-  const diff = startX - endX;
+    return () => clearInterval(interval);
+  }, [totalSlides]);
 
-  if (diff > 50) {
-    // swipe kiri
-    setCurrent((prev) => (prev + 1) % totalSlides);
-  } else if (diff < -50) {
-    // swipe kanan
-    setCurrent((prev) => (prev - 1 + totalSlides) % totalSlides);
-  }
-};
+  // SWIPE FUNCTION
+  const handleSwipe = (endX: number) => {
+    const diff = startX - endX;
+
+    if (diff > 50) {
+      // swipe kiri
+      setCurrent((prev) => (prev + 1) % totalSlides);
+    } else if (diff < -50) {
+      // swipe kanan
+      setCurrent((prev) => (prev - 1 + totalSlides) % totalSlides);
+    }
+  };
 
   const [slots, setSlots] = useState<ScheduleSlot[]>([]);
   const [loading, setLoading] = useState(true);
-  const [date, setDate] = useState("");
+  const today = new Date().toISOString().split("T")[0];
+  const [date, setDate] = useState(today);
 
   useEffect(() => {
     async function fetchData() {
@@ -56,6 +99,8 @@ const handleSwipe = (endX: number) => {
     }
     fetchData();
   }, []);
+
+  const navigate = useNavigate();
 
   // Generate 06:00 -> 05:00
   const times = [
@@ -101,7 +146,7 @@ const handleSwipe = (endX: number) => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px] text-slate-500 font-medium">
+      <div className="flex items-center justify-center min-h-100 text-slate-500 font-medium">
         <div className="flex flex-col items-center gap-3">
           <div className="w-6 h-6 border-2 border-slate-300 border-t-(--primary) rounded-full animate-spin"></div>
           <span>Loading schedules...</span>
@@ -113,43 +158,61 @@ const handleSwipe = (endX: number) => {
   return (
     <div className="bg-slate-50 min-h-screen">
 
-{/* BANNER SLIDER PREMIUM */}
-<section className="relative z-30 bg-white">
-  <div className="max-w-7xl mx-auto px-4 py-4">
+      {/* BANNER SLIDER PREMIUM */}
+      <section className="relative z-30 bg-white">
+        <div className="max-w-7xl mx-auto px-4 py-4">
 
-    <div className="overflow-hidden shadow-md">
-      <div
-        className="flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(-${current * 100}%)` }}
-        onTouchStart={(e) => setStartX(e.touches[0].clientX)}
-        onTouchEnd={(e) => handleSwipe(e.changedTouches[0].clientX)}
-        onMouseDown={(e) => setStartX(e.clientX)}
-        onMouseUp={(e) => handleSwipe(e.clientX)}
-      >
+          <div className="overflow-hidden shadow-md">
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${current * 100}%)` }}
+              onTouchStart={(e) => setStartX(e.touches[0].clientX)}
+              onTouchEnd={(e) => handleSwipe(e.changedTouches[0].clientX)}
+              onMouseDown={(e) => setStartX(e.clientX)}
+              onMouseUp={(e) => handleSwipe(e.clientX)}
+            >
+              {banners.map((item, index) => (
+                <div
+                  key={index}
+                  className="w-full flex-shrink-0 flex items-center justify-center h-[100px] sm:h-[120px] md:h-[160px] bg-gradient-to-r from-slate-50 to-white"
+                >
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full h-full flex items-center justify-center"
+                  >
+                    {/* Desktop */}
+                    {item.desktop && (
+                      <img
+                        src={item.desktop}
+                        className="hidden sm:block max-h-full object-contain cursor-pointer"
+                      />
+                    )}
 
-        {/* SLIDE 1 */}
-        <div className="w-full flex-shrink-0 flex items-center justify-center h-[100px] sm:h-[120px] md:h-[160px] bg-gradient-to-r from-slate-50 to-white">
-          <img src={bannerBas} className="hidden sm:block max-h-full object-contain" />
-          <img src={bannerBasMobile} className="block sm:hidden max-h-full object-contain" />
+                    {/* Mobile */}
+                    {item.mobile && (
+                      <img
+                        src={item.mobile}
+                        className="block sm:hidden max-h-full object-contain cursor-pointer"
+                      />
+                    )}
+
+                    {/* fallback desktop */}
+                    {!item.desktop && item.mobile && (
+                      <img
+                        src={item.mobile}
+                        className="hidden sm:block max-h-full object-contain cursor-pointer"
+                      />
+                    )}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
-
-        {/* SLIDE 2 */}
-        <div className="w-full flex-shrink-0 flex items-center justify-center h-[100px] sm:h-[120px] md:h-[160px] bg-gradient-to-r from-slate-50 to-white">
-          <img src={bannerPh} className="hidden sm:block max-h-full object-contain" />
-          <img src={bannerPhMobile} className="block sm:hidden max-h-full object-contain" />
-        </div>
-
-        {/* SLIDE 3 */}
-        <div className="w-full flex-shrink-0 flex items-center justify-center h-[100px] sm:h-[120px] md:h-[160px] bg-gradient-to-r from-slate-50 to-white">
-          <img src={bannerSalon} className="hidden sm:block max-h-full object-contain" />
-          <img src={bannerSalonMobile} className="block sm:hidden max-h-full object-contain" />
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</section>
+      </section>
 
       {/* HERO MINI */}
       <section className="relative py-24 bg-(--primary) text-white overflow-hidden">
@@ -171,11 +234,13 @@ const handleSwipe = (endX: number) => {
       <section className="-mt-12 max-w-6xl mx-auto px-5 lg:px-10 relative z-20">
         <div className="bg-white shadow-xl shadow-slate-200/50 rounded-2xl p-5 md:p-6 border border-slate-100">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-            
+
             <div className="md:col-span-4">
               <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block">Select Date</label>
               <input
                 type="date"
+                value={date}
+                min={today}
                 className="w-full border border-slate-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-(--primary)/20 focus:border-(--primary) transition outline-none"
                 onChange={(e) => setDate(e.target.value)}
               />
@@ -184,10 +249,16 @@ const handleSwipe = (endX: number) => {
             <div className="md:col-span-5">
               <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block">Information</label>
               <div className="flex gap-3">
-                <button className="flex-1 border border-slate-200 rounded-xl py-3 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition">
+                <button
+                  onClick={() => navigate("/bookingrules")}
+                  className="flex-1 border border-slate-200 rounded-xl py-3 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition"
+                >
                   Booking Rules
                 </button>
-                <button className="flex-1 border border-slate-200 rounded-xl py-3 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition">
+                <button
+                  onClick={() => navigate("/pricelist")}
+                  className="flex-1 border border-slate-200 rounded-xl py-3 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition"
+                >
                   Price List
                 </button>
               </div>
@@ -204,9 +275,9 @@ const handleSwipe = (endX: number) => {
 
       {/* SCHEDULE GRID */}
       <section className="py-10 max-w-6xl mx-auto px-5 lg:px-10">
-        
+
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-4">
-          
+
           {/* LEGEND */}
           <div className="flex flex-wrap gap-4 items-center text-xs font-medium text-slate-500">
             {legends.map((item) => (
@@ -219,7 +290,7 @@ const handleSwipe = (endX: number) => {
         </div>
 
         <div className="bg-white shadow-xl shadow-slate-200/50 rounded-2xl overflow-hidden border border-slate-100">
-          
+
           {/* HEADER */}
           <div className="grid grid-cols-3 bg-slate-50 border-b border-slate-100 text-slate-600 text-[10px] md:text-xs font-bold uppercase tracking-wider">
             <div className="p-3.5 pl-5 md:pl-6">Time Slot</div>
@@ -248,11 +319,11 @@ const handleSwipe = (endX: number) => {
                     {(() => {
                       const status = (slotA?.status || "available") as Status;
                       return (
-<div className={`inline-flex items-center font-bold ${statusTextStyle(status)}`}>
-  <span className="text-[9px] md:text-xs">
-    { status.toUpperCase()}
-  </span>
-</div>
+                        <div className={`inline-flex items-center font-bold ${statusTextStyle(status)}`}>
+                          <span className="text-[9px] md:text-xs">
+                            {status.toUpperCase()}
+                          </span>
+                        </div>
                       );
                     })()}
                   </div>

@@ -12,6 +12,7 @@ const PriceListPage = lazy(() => import("@/features/pricelist"))
 const ProgramPage = lazy(() => import("@/features/program"))
 const AboutPage = lazy(() => import("@/features/about"))
 const ContactPage = lazy(() => import("@/features/contact"))
+const BookingRules= lazy(() => import("@/features/bookingrules"))
 
 const withSuspense = (Component: React.LazyExoticComponent<any>) => (
   <Suspense fallback={<div className="p-8 text-center">Loading...</div>}>
@@ -30,8 +31,8 @@ export const router = createBrowserRouter(
         { path: "facilities", element: withSuspense(FacilitiesPage) },
         { path: "services", element: withSuspense(ServicesPage) },
         { path: "ecosystem", element: withSuspense(EcosystemPage) },
-        // { path: "competition", element: withSuspense(CompetitionPage) },
         { path: "pricelist", element: withSuspense(PriceListPage) },
+        { path: "bookingrules", element: withSuspense(BookingRules) },
         { path: "program", element: withSuspense(ProgramPage) },
         { path: "about", element: withSuspense(AboutPage) },
         { path: "contact", element: withSuspense(ContactPage) },
