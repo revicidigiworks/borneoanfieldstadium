@@ -5,7 +5,7 @@ import { MainLayout } from "@/app/layout/MainLayout"
 const HomePage = lazy(() => import("@/features/home"))
 const SchedulePage = lazy(() => import("@/features/schedule"))
 const FacilitiesPage = lazy(() => import("@/features/facilities"))
-const ServicesPage = lazy(() => import("@/features/services"))
+const ServicesPage = lazy(() => import("@/features/servicesPage"))
 const EcosystemPage = lazy(() => import("@/features/ecosystem"))
 // const CompetitionPage = lazy(() => import("@/features/competition"))
 const PriceListPage = lazy(() => import("@/features/pricelist"))

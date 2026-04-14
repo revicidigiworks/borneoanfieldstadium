@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { scheduleService } from "@/services/schedule.service";
 import { ScheduleSlot } from "@/types/schedule";
@@ -63,7 +63,7 @@ export default function SchedulePage() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % totalSlides);
-    }, 15000); // 4 detik
+    }, 5000); // 5 detik
 
     return () => clearInterval(interval);
   }, [totalSlides]);
@@ -86,19 +86,20 @@ export default function SchedulePage() {
   const today = new Date().toISOString().split("T")[0];
   const [date, setDate] = useState(today);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await scheduleService.getAll();
-        setSlots(data);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
+ useEffect(() => {
+  async function fetchData() {
+    try {
+      setLoading(true); // biar ada loading tiap ganti tanggal
+      const data = await scheduleService.getByDate(date);
+      setSlots(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
     }
-    fetchData();
-  }, []);
+  }
+  fetchData();
+}, [date]); // 🔥 INI KUNCINYA
 
   const navigate = useNavigate();
 
@@ -114,26 +115,33 @@ export default function SchedulePage() {
       )}:00`
   );
 
-  const getSlot = (time: string, field: "A" | "B") =>
-    slots.find(
-      (s) => s.time === time && s.field === field && (!date || s.date === date)
-    );
+  const getSlot = (time: string, field: "A" | "B") => {
+  const start = time.split(" - ")[0];
+  const [hour] = start.split(":").map(Number);
+
+  let targetDate = new Date(date);
+
+  // 🔥 kalau jam 00:00 - 05:00 → masuk ke hari berikutnya
+  if (hour >= 0 && hour < 6) {
+    targetDate.setDate(targetDate.getDate() + 1);
+  }
+
+  const formattedDate = targetDate.toISOString().split("T")[0];
+
+  return slots.find(
+    (s) =>
+      s.start === start &&
+      s.field === field &&
+      s.date === formattedDate
+  );
+};
 
   const statusTextStyle = (status: Status) => {
     switch (status) {
       case "available": return "text-emerald-600";
       case "booked": return "text-rose-600";
       case "ended": return "text-slate-400";
-      case "ongoing": return "text-amber-600 font-bold";
-    }
-  };
-
-  const dotStyle = (status: Status) => {
-    switch (status) {
-      case "available": return "bg-emerald-500";
-      case "booked": return "bg-rose-500";
-      case "ended": return "bg-slate-300";
-      case "ongoing": return "bg-amber-500 animate-pulse";
+      case "ongoing": return "text-amber-600 ";
     }
   };
 
@@ -141,8 +149,88 @@ export default function SchedulePage() {
     { label: "Available", color: "bg-emerald-500" },
     { label: "Booked", color: "bg-rose-500" },
     { label: "Ended", color: "bg-slate-300" },
-    { label: "Ongoing", color: "bg-amber-500" },
+    { label: "Ongoing", color: "bg-(--secondary)" },
   ];
+
+
+const getStatusByTime = (time: string): Status => {
+  const [start, end] = time.split(" - ");
+
+  const [sh] = start.split(":").map(Number);
+  const [eh] = end.split(":").map(Number);
+
+  const selectedDate = new Date(date);
+  const now = new Date();
+
+  // 🔥 kalau jam 00:00 - 05:00 → geser ke hari berikutnya
+  if (sh >= 0 && sh < 6) {
+    selectedDate.setDate(selectedDate.getDate() + 1);
+  }
+
+  const startTime = new Date(selectedDate);
+  startTime.setHours(sh, 0, 0, 0);
+
+  const endTime = new Date(selectedDate);
+  endTime.setHours(eh, 0, 0, 0);
+
+  // handle lewat tengah malam (tetap dipertahankan)
+  if (eh < sh) {
+    endTime.setDate(endTime.getDate() + 1);
+  }
+
+  // 🔥 compare pakai waktu yang sudah di-adjust
+  if (selectedDate.toDateString() !== now.toDateString()) {
+    return selectedDate < now ? "ended" : "available";
+  }
+
+  if (now >= startTime && now < endTime) return "ongoing";
+  if (now > endTime) return "ended";
+
+  return "available";
+};
+
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const run = () => {
+      const now = new Date();
+
+      const index = times.findIndex((time) => {
+        const [start, end] = time.split(" - ");
+
+        const [sh] = start.split(":").map(Number);
+        const [eh] = end.split(":").map(Number);
+
+        const startTime = new Date(now);
+        startTime.setHours(sh, 0, 0, 0);
+
+        const endTime = new Date(now);
+        endTime.setHours(eh, 0, 0, 0);
+
+        if (eh < sh) endTime.setDate(endTime.getDate() + 1);
+
+        return now >= startTime && now < endTime;
+      });
+
+      if (index !== -1) {
+        setActiveIndex(index);
+
+        setTimeout(() => {
+          rowRefs.current[index]?.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+        }, 200);
+      }
+    };
+
+    run(); // pertama kali
+
+    const interval = setInterval(run, 60000); // update tiap 1 menit
+
+    return () => clearInterval(interval);
+  }, [times]);
 
   if (loading) {
     return (
@@ -265,9 +353,14 @@ export default function SchedulePage() {
             </div>
 
             <div className="md:col-span-3 md:self-end">
-              <button className="w-full bg-(--primary) text-white py-3 rounded-xl text-sm font-bold hover:opacity-95 transform active:scale-[0.98] transition shadow-lg shadow-(--primary)/20">
-                Book Now
-              </button>
+              <a
+                href="https://wa.me/6282121211892"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center bg-(--secondary) text-black py-3 rounded-xl text-sm font-bold hover:opacity-95 transform active:scale-[0.98] transition shadow-lg shadow-(--primary)/20"
+              >
+                Book via WhatsApp
+              </a>
             </div>
           </div>
         </div>
@@ -289,10 +382,10 @@ export default function SchedulePage() {
           </div>
         </div>
 
-        <div className="bg-white shadow-xl shadow-slate-200/50 rounded-2xl overflow-hidden border border-slate-100">
+        <div className="bg-white shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
 
           {/* HEADER */}
-          <div className="grid grid-cols-3 bg-slate-50 border-b border-slate-100 text-slate-600 text-[10px] md:text-xs font-bold uppercase tracking-wider">
+          <div className="grid grid-cols-3 bg-(--primary) border-b border-slate-100 text-white text-[10px] md:text-xs font-bold uppercase tracking-wider">
             <div className="p-3.5 pl-5 md:pl-6">Time Slot</div>
             <div className="p-3.5 text-center">Field A</div>
             <div className="p-3.5 text-center">Field B</div>
@@ -300,15 +393,24 @@ export default function SchedulePage() {
 
           {/* ROWS */}
           <div className="divide-y divide-slate-100">
-            {times.map((time) => {
+            {times.map((time, index) => {
               const slotA = getSlot(time, "A");
               const slotB = getSlot(time, "B");
+              const timeStatus = getStatusByTime(time);
 
               return (
                 <div
                   key={time}
-                  className="grid grid-cols-3 text-[10px] md:text-xs hover:bg-slate-50/50 transition items-center"
+                  ref={(el) => {
+                    rowRefs.current[index] = el;
+                  }}
+                  className={`relative grid grid-cols-3 text-[10px] md:text-xs items-center transition-all duration-300 ${index === activeIndex ? "bg-amber-50" : ""
+                    } ${timeStatus === "ended" ? "opacity-60" : ""} hover:bg-slate-50/50`}
                 >
+                  {index === activeIndex && (
+                    <div className="absolute left-0 top-0 h-full w-[5px] bg-(--secondary) "></div>
+                  )}
+
                   {/* Time */}
                   <div className="p-3.5 pl-5 md:pl-6 text-slate-700 font-semibold md:text-sm">
                     {time}
@@ -317,12 +419,25 @@ export default function SchedulePage() {
                   {/* Field A */}
                   <div className="p-2 flex justify-center">
                     {(() => {
-                      const status = (slotA?.status || "available") as Status;
+                      const statusBase = slotA?.status || timeStatus;
+
+                      let status: Status = statusBase;
+                      if (timeStatus === "ended") status = "ended";
+                      const isOngoing = status === "ongoing";
                       return (
-                        <div className={`inline-flex items-center font-bold ${statusTextStyle(status)}`}>
-                          <span className="text-[9px] md:text-xs">
-                            {status.toUpperCase()}
-                          </span>
+                        <div className={`inline-flex items-center font-bold ${statusTextStyle(status)} ${isOngoing ? "animate-pulse" : ""
+                          }`}>
+                          <div className="flex items-center justify-center text-center">
+                            {slotA ? (
+                              <span className="text-[9px] md:text-xs font-bold leading-tight">
+                                {slotA.bookedBy}
+                              </span>
+                            ) : (
+                              <span className="text-[9px] md:text-xs font-bold">
+                                AVAILABLE
+                              </span>
+                            )}
+                          </div>
                         </div>
                       );
                     })()}
@@ -331,12 +446,23 @@ export default function SchedulePage() {
                   {/* Field B */}
                   <div className="p-2 flex justify-center">
                     {(() => {
-                      const status = (slotB?.status || "available") as Status;
+                      const statusBase = slotB?.status || timeStatus;
+
+                      let status: Status = statusBase;
+                      if (timeStatus === "ended") status = "ended";
                       return (
-                        <div className={`inline-flex items-center gap-1.5 font-bold ${statusTextStyle(status)}`}>
-                          <span className="text-[9px] md:text-xs">
-                            {status.toUpperCase()}
-                          </span>
+                        <div className={`inline-flex items-center font-bold ${statusTextStyle(status)}`}>
+                          <div className="flex items-center justify-center text-center">
+                            {slotB ? (
+                              <span className="text-[9px] md:text-xs font-bold leading-tight">
+                                {slotB.bookedBy}
+                              </span>
+                            ) : (
+                              <span className="text-[9px] md:text-xs font-bold">
+                                AVAILABLE
+                              </span>
+                            )}
+                          </div>
                         </div>
                       );
                     })()}
