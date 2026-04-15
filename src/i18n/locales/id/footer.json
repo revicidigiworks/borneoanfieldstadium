@@ -1,0 +1,20 @@
+{
+  "home": "Beranda",
+  "schedule": "Jadwal",
+  "facilities": "Fasilitas",
+  "services": "Layanan",
+  "pricelist": "Daftar Harga",
+  "ecosystem": "Ekosistem",
+  "program": "Program",
+  "about": "Tentang Kami",
+  "contact": "Kontak",
+
+  "brand_title": "Borneo Anfield Stadium",
+  "brand_desc": "Mini soccer venue dengan fasilitas modern, sistem keselamatan lengkap, dan komunitas pemain aktif yang berkembang setiap minggu.",
+
+  "navigation": "Navigasi",
+  "location": "Lokasi Stadion",
+  "open_maps": "Buka di Google Maps →",
+
+  "copyright": "© {{year}} Borneo Anfield Stadium — Demi Hobi, Bukan Gengsi"
+}

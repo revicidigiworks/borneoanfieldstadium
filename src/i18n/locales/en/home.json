@@ -1,0 +1,53 @@
+{
+    "hero": {
+        "label": "Balikpapan’s #1 Minisoccer Stadium",
+        "cta_schedule": "View Schedule",
+        "cta_book": "Book Now",
+        "hero_desc": "The ultimate home for football enthusiasts. Experience professional-grade facilities, world-class atmosphere, and the spirit of the game."
+    },
+    "about": {
+        "tag": "The Stadium",
+        "title_1": "Elevating",
+        "title_2": "Football",
+        "title_3": "Experience",
+        "desc": "Borneo Anfield Stadium (BAS) redefines the standard of mini soccer fields in East Kalimantan. Strategically located on AMD LIII Street, we deliver world-class facilities for the local community.",
+        "point1_title": "Premium Facility",
+        "point1_desc": "Two 60x40m fields with selected synthetic grass, designed for maximum performance in 9 vs 9 format.",
+        "point2_title": "More Than a Pitch",
+        "point2_desc": "Complete with café, exclusive watching area, and professional equipment rental services.",
+        "cta": "Discover More"
+    },
+    "facilities": {
+        "title": "Facilities",
+        "desc": "Premium facilities for a comfortable and professional playing experience",
+        "locker_title": "Locker Room",
+        "locker_desc": "Comfortable & secure changing room for players",
+        "shower_title": "Shower Room",
+        "shower_desc": "Clean water & modern shower facilities",
+        "cafe_title": "Warkops Café",
+        "cafe_desc": "Relax and hang out while watching matches",
+        "cta": "View All Facilities"
+    },
+    "ecosystem": {
+        "title": "Ecosystem",
+        "cta": "Explore",
+        "cta_mobile": "Explore Ecosystem →"
+    },
+    "services": {
+        "title1": "Commercial",
+        "title2": "Services",
+        "cta": "Explore",
+        "cta_mobile": "Explore Services",
+        "shoes": "Shoe Rental",
+        "jersey": "Jersey & Vest Rental",
+        "referee": "Professional Referee",
+        "streaming": "Live YouTube Streaming",
+        "photo": "Photographer"
+    },
+    "booking": {
+        "title": "Booking",
+        "headline": "Open & Transparent Schedule",
+        "desc": "Check match slots in real-time and book instantly without hassle. Everything is integrated for a more professional playing experience.",
+        "cta": "Book Now"
+    }
+}

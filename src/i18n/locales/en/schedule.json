@@ -1,0 +1,26 @@
+{
+  "live_booking": "Live Booking",
+  "title1": "Match",
+  "title2": "Schedule",
+  "desc": "Real-time schedule for both premium fields. Find your perfect time and secure your slot.",
+
+  "select_date": "Select Date",
+  "information": "Information",
+  "booking_rules": "Booking Rules",
+  "price_list": "Price List",
+  "book_whatsapp": "Book via WhatsApp",
+
+  "legend_available": "Available",
+  "legend_booked": "Booked",
+  "legend_ended": "Ended",
+  "legend_ongoing": "Ongoing",
+      "available": "AVAILABLE",
+      "ended": "ENDED",
+      "time_slot": "TIME SLOT",
+  "field_a": "FIELD A",
+  "field_b": "FIELD B",
+
+  "loading": "Loading schedules...",
+
+  "note": "00:00 – 05:00 considered next day session"
+}

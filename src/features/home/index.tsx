@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { scheduleService } from "@/services/schedule.service";
-import { ScheduleSlot } from "@/types/schedule";
-import { getUpcomingSlot } from "@/utils/getUpcoming";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 // Import Asset Image
 import heroImage from "../../assets/images/gedung/hero3.webp";
@@ -25,27 +22,27 @@ import sewaLive from "../../assets/images/services/youtube.jpg";
 
 const services = [
   {
-    name: "Sewa Sepatu",
+    key: "shoes",
     image: sewaSepatu,
     wa: "https://wa.me/6282121211892",
   },
   {
-    name: "Sewa Rompi & Jersey",
+    key: "jersey",
     image: sewaRompi,
     wa: "https://wa.me/6282121211892",
   },
   {
-    name: "Wasit Profesional",
+    key: "referee",
     image: sewaWasit,
     wa: "https://wa.me/6282121211892",
   },
   {
-    name: "Live YouTube Streaming",
+    key: "streaming",
     image: sewaLive,
     wa: "https://wa.me/6282121211892",
   },
   {
-    name: "Fotografer",
+    key: "photo",
     image: sewaFotographer,
     wa: "https://wa.me/6282121211892",
   }
@@ -55,20 +52,8 @@ const services = [
 import heroDrone from "../../assets/video/heroDrone.mp4";
 
 export default function HomePage() {
-  const [slots, setSlots] = useState<ScheduleSlot[]>([]);
-  const [upcoming, setUpcoming] = useState<ScheduleSlot | undefined>();
 
-  useEffect(() => {
-    async function load() {
-      const data = await scheduleService.getAll();
-      setSlots(data);
-      setUpcoming(getUpcomingSlot(data));
-    }
-    load();
-  }, []);
-
-  const today = new Date().toISOString().split("T")[0];
-  const previewSlots = slots.filter((s) => s.date === today);
+  const { t } = useTranslation("home");
 
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
@@ -164,7 +149,7 @@ export default function HomePage() {
             <div className="hidden lg:flex items-center justify-start gap-4 mb-8">
               <div className="hidden lg:block h-0.5 w-12 bg-(--secondary)"></div>
               <span className="text-(--secondary) font-bold text-[11px] uppercase tracking-[0.3em]">
-                Balikpapan’s #1 Minisoccer Stadium
+                {t("hero.label")}
               </span>
             </div>
 
@@ -177,14 +162,12 @@ export default function HomePage() {
 
             {/* Mobile Label */}
             <p className="lg:hidden text-(--secondary) text-sm uppercase tracking-[0.3em] mb-8">
-              Balikpapan’s #1 <br /> Minisoccer Stadium
+              {t("hero.label")}
             </p>
 
             {/* Description */}
             <p className="hidden lg:block text-lg text-white/90 font-light max-w-lg leading-relaxed mb-10 border-l border-white/30 pl-6">
-              The ultimate home for football enthusiasts. Experience
-              professional-grade facilities, world-class atmosphere, and the
-              spirit of the game.
+              {t("hero.hero_desc")}
             </p>
 
             {/* CTA */}
@@ -193,7 +176,7 @@ export default function HomePage() {
                 to="/schedule"
                 className="px-6 py-3 border border-white text-white font-bold uppercase tracking-[0.12em] text-sm hover:bg-white hover:text-[#C8102E] transition-all duration-300 text-center"
               >
-                View Schedule
+                {t("hero.cta_schedule")}
               </Link>
 
               <a
@@ -202,7 +185,7 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="px-6 py-3 bg-(--secondary) text-(--dark) font-black uppercase tracking-[0.12em] text-sm hover:bg-white transition-all duration-300 text-center"
               >
-                Book Now
+                {t("hero.cta_book")}
               </a>
             </div>
           </div>
@@ -216,25 +199,6 @@ export default function HomePage() {
             />
           </div>
         </div>
-
-        {/* Upcoming Match */}
-        {upcoming && (
-          <div className="absolute bottom-10 right-6 md:right-12 z-20 text-right hidden md:block">
-            <p className="text-[10px] text-white/50 uppercase tracking-[0.3em] mb-2">
-              Next Kickoff
-            </p>
-
-            <div className="text-white">
-              <span className="font-bold uppercase text-sm tracking-widest">
-                {upcoming.eventType}
-              </span>
-
-              <div className="text-white/60 text-xs mt-1">
-                {upcoming.start}
-              </div>
-            </div>
-          </div>
-        )}
 
         <div className="light-sweep"></div>
       </section>
@@ -263,44 +227,36 @@ export default function HomePage() {
             {/* CONTENT AREA - Elegant Typography */}
             <div className="w-full lg:w-1/2 order-2 lg:order-2">
               <div className="flex items-center gap-3 mb-6">
-                <span className="w-10 h-px bg-(--primary)"></span>
-                <span className="text-(--primary) font-bold tracking-[0.4em] uppercase text-[10px]">
-                  The Stadium
-                </span>
+                <span className="w-10 h-1 bg-(--secondary)"></span>
               </div>
 
               {/* Judul dengan spacing yang sangat lega */}
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-(--dark) leading-[1.15]">
-                Elevating the <br />
-                <span className="text-(--primary)">Football</span> <br />
-                <span className="mt-2 block">Experience.</span>
+                {t("about.title_1")} <br />
+                <span className="text-(--primary)">{t("about.title_2")}</span> <br />
+                <span className=" block">{t("about.title_3")}</span>
               </h2>
 
               <div className="mt-10 space-y-8">
                 <p className="text-gray-600 text-lg leading-relaxed font-medium">
-                  Borneo Anfield Stadium (BAS) mendefinisikan ulang standar
-                  lapangan mini soccer di Kalimantan Timur. Terletak strategis
-                  di Jl. AMD LIII, kami menghadirkan fasilitas kelas dunia untuk
-                  komunitas lokal.
+                  {t("about.desc")}.
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-10 border-y border-gray-100">
                   <div className="space-y-2">
                     <h4 className="text-(--dark) font-black uppercase text-sm tracking-widest">
-                      Premium Facility
+                      {t("about.point1_title")}
                     </h4>
                     <p className="text-gray-500 text-sm leading-relaxed">
-                      Dua lapangan 60x40m dengan rumput sintetis pilihan,
-                      dirancang untuk performa maksimal format 9 vs 9.
+                      {t("about.point1_desc")}
                     </p>
                   </div>
                   <div className="space-y-2">
                     <h4 className="text-(--dark) font-black uppercase text-sm tracking-widest">
-                      More Than a Pitch
+                      {t("about.point2_title")}
                     </h4>
                     <p className="text-gray-500 text-sm leading-relaxed">
-                      Lengkap dengan Kafe, area nobar eksklusif, dan layanan
-                      penyewaan perlengkapan profesional.
+                      {t("about.point2_desc")}
                     </p>
                   </div>
                 </div>
@@ -312,9 +268,8 @@ export default function HomePage() {
                   to="/about"
                   className="w-full sm:w-auto px-12 py-5 bg-(--secondary) text-black font-bold uppercase text-[14px] tracking-[0.3em] rounded-full hover:bg-(--primary) transition-all duration-500 text-center"
                 >
-                  Discover More
+                  {t("about.cta")}
                 </Link>
-
               </div>
             </div>
           </div>
@@ -334,14 +289,13 @@ export default function HomePage() {
           >
             <div>
               <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-(--primary)">
-                Facilities
+                {t("facilities.title")}
               </h2>
               <div className="w-12 h-1 bg-[#F6EB61] mt-4"></div>
             </div>
 
             <p className="text-(--dark) text-sm max-w-md italic">
-              Fasilitas premium untuk pengalaman bermain yang nyaman dan
-              profesional.
+              {t("facilities.desc")}
             </p>
           </motion.div>
 
@@ -360,14 +314,14 @@ export default function HomePage() {
                 src={lockerImg}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
               <div className="relative h-full flex flex-col justify-end p-6">
                 <h3 className="text-white font-black text-xl uppercase">
-                  Locker Room
+                  {t("facilities.locker_title")}
                 </h3>
                 <p className="text-white/70 text-sm mt-2">
-                  Ruang ganti nyaman & aman untuk pemain.
+                  {t("facilities.locker_desc")}
                 </p>
               </div>
             </motion.div>
@@ -385,14 +339,14 @@ export default function HomePage() {
                 src={showerImg}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
               <div className="relative h-full flex flex-col justify-end p-6">
                 <h3 className="text-white font-black text-xl uppercase">
-                  Shower Room
+                  {t("facilities.shower_title")}
                 </h3>
                 <p className="text-white/70 text-sm mt-2">
-                  Air bersih & fasilitas bilas modern.
+                  {t("facilities.shower_desc")}
                 </p>
               </div>
             </motion.div>
@@ -410,14 +364,14 @@ export default function HomePage() {
                 src={cafeImg}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
               <div className="relative h-full flex flex-col justify-end p-6">
                 <h3 className="text-white font-black text-xl uppercase">
                   Warkops Café
                 </h3>
                 <p className="text-white/70 text-sm mt-2">
-                  Nongkrong santai sambil nonton match.
+                  {t("facilities.cafe_desc")}
                 </p>
               </div>
             </motion.div>
@@ -429,7 +383,7 @@ export default function HomePage() {
               to="/facilities"
               className="group inline-flex items-center gap-2 text-(--primary) font-bold uppercase tracking-wider text-sm"
             >
-              View All Facilities
+              {t("facilities.cta")}
               <span className="group-hover:translate-x-1 transition">→</span>
             </Link>
           </div>
@@ -444,7 +398,7 @@ export default function HomePage() {
           <div className="flex items-end justify-between mb-10">
             <div>
               <h2 className="text-3xl md:text-3xl font-black uppercase text-(--primary)">
-                Ecosystem
+                {t("ecosystem.title")}
               </h2>
               <div className="w-12 h-1 bg-[#F6EB61] mt-3"></div>
             </div>
@@ -453,7 +407,7 @@ export default function HomePage() {
               to="/ecosystem"
               className="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-(--primary) hover:text-black transition"
             >
-              Explore
+              {t("ecosystem.cta")}
               <ArrowUpRight size={16} />
             </Link>
           </div>
@@ -488,7 +442,7 @@ export default function HomePage() {
             to="/ecosystem"
             className="flex md:hidden items-center justify-center mt-8 text-sm font-bold uppercase tracking-widest text-(--primary)"
           >
-            Explore Ecosystem →
+            {t("ecosystem.cta_mobile")}
           </Link>
 
         </div>
@@ -503,7 +457,7 @@ export default function HomePage() {
           <div className="flex items-end justify-between mb-10">
             <div>
               <h2 className="text-3xl md:text-3xl font-black uppercase text-(--primary)">
-                Comercial <br />Services
+                {t("services.title1")} <br /> {t("services.title2")}
               </h2>
               <div className="w-12 h-1 bg-[#F6EB61] mt-3"></div>
             </div>
@@ -529,14 +483,14 @@ export default function HomePage() {
               >
                 {/* TEXT */}
                 <span className="text-sm md:text-base font-black uppercase tracking-wide text-gray-800">
-                  {service.name}
+                  {t(`services.${service.key}`)}
                 </span>
 
                 {/* IMAGE (ganti logo → service image) */}
                 <div className="w-20 h-20 flex items-center justify-center bg-white border border-gray-100 overflow-hidden">
                   <img
                     src={service.image}
-                    alt={service.name}
+                    alt={service.key}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -555,48 +509,47 @@ export default function HomePage() {
         </div>
       </section>
 
-{/* 7️⃣ FINAL CONVERSION SECTION */}
-<section className="py-16 md:py-24 bg-white border-t border-gray-100">
-  <div className="max-w-325 mx-auto px-6">
+      {/* 7️⃣ FINAL CONVERSION SECTION */}
+      <section className="py-16 md:py-24 bg-white border-t border-gray-100">
+        <div className="max-w-325 mx-auto px-6">
 
-    {/* HEADER (MATCH SECTION LAIN) */}
-    <div className="mb-10">
-      <h2 className="text-3xl md:text-3xl font-black uppercase text-(--primary)">
-        Booking
-      </h2>
-      <div className="w-12 h-1 bg-[#F6EB61] mt-3"></div>
-    </div>
+          {/* HEADER (MATCH SECTION LAIN) */}
+          <div className="mb-10">
+            <h2 className="text-3xl md:text-3xl font-black uppercase text-(--primary)">
+              {t("booking.title")}
+            </h2>
+            <div className="w-12 h-1 bg-[#F6EB61] mt-3"></div>
+          </div>
 
-    {/* CONTENT */}
-    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+          {/* CONTENT */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
 
-      {/* TEXT */}
-      <div className="max-w-xl">
-        <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-gray-900 leading-snug">
-          Jadwal Terbuka & Transparan.
-        </h3>
+            {/* TEXT */}
+            <div className="max-w-xl">
+              <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-gray-900 leading-snug">
+                {t("booking.headline")}
+              </h3>
 
-        <p className="text-gray-500 text-sm md:text-base mt-3 leading-relaxed">
-          Cek slot pertandingan secara real-time dan lakukan booking tanpa proses ribet. 
-          Semua sudah terintegrasi untuk pengalaman bermain yang lebih profesional.
-        </p>
-      </div>
+              <p className="text-gray-500 text-sm md:text-base mt-3 leading-relaxed">
+                {t("booking.desc")}
+              </p>
+            </div>
 
-      {/* CTA */}
-      <a
-        href="https://wa.me/6282121211892?text=Saya%20ingin%20booking%20lapangan"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold uppercase tracking-widest bg-(--secondary) text-black rounded-xl hover:bg-neutral-900 hover:text-white transition-all duration-300"
-      >
-        Book Now
-        <ArrowUpRight size={16} />
-      </a>
+            {/* CTA */}
+            <a
+              href="https://wa.me/6282121211892?text=Saya%20ingin%20booking%20lapangan"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold uppercase tracking-widest bg-(--secondary) text-black rounded-xl hover:bg-neutral-900 hover:text-white transition-all duration-300"
+            >
+              {t("booking.cta")}
+              <ArrowUpRight size={16} />
+            </a>
 
-    </div>
+          </div>
 
-  </div>
-</section>
+        </div>
+      </section>
     </div>
   );
 }

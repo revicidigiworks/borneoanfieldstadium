@@ -17,6 +17,10 @@
   font-display: swap;
 }
 
+.font-secondary {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
 body {
   background: var(--surface);
   color: var(--dark);
@@ -154,4 +158,26 @@ body {
 
 .logo-float {
   animation: logoFloat 4s ease-in-out infinite;
+}
+
+@keyframes glowSoft {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.04);
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes shimmerSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }

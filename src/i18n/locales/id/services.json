@@ -1,0 +1,27 @@
+{
+  "services": {
+    "hero": {
+      "subtitle": "Layanan Tambahan",
+      "title1": "LAYANAN",
+      "title2": "KOMERSIAL"
+    },
+    "match": {
+      "subtitle": "Experience the Game",
+      "title": "LAYANAN PERTANDINGAN",
+      "desc": "Kami menyediakan berbagai layanan pendukung untuk meningkatkan kualitas pertandingan Anda. Mulai dari perlengkapan bermain hingga dokumentasi profesional."
+    },
+    "cta": "Booking Layanan Ini",
+    "items": {
+      "shoe": { "name": "Sewa Sepatu" },
+      "vest": { "name": "Sewa Rompi" },
+      "jersey": { "name": "Sewa Jersey" },
+      "referee": { "name": "Wasit Profesional" },
+      "live": { "name": "Live Streaming YouTube" },
+      "photo": { "name": "Fotografer" }
+    },
+    "info": {
+      "title": "INFORMASI LAYANAN",
+      "desc": "Daftar harga di atas merupakan acuan standar untuk setiap pertandingan di Borneo Anfield Stadium. Pastikan Anda telah memeriksa ketersediaan slot bersama admin kami secara berkala. Untuk menjamin kelancaran jalannya ekosistem tanding, harap lakukan pemesanan layanan minimal H-2 sebelum jadwal pertandingan Anda dimulai."
+    }
+  }
+}

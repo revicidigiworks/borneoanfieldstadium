@@ -1,0 +1,27 @@
+{
+  "services": {
+    "hero": {
+      "subtitle": "Additional Services",
+      "title1": "COMMERCIAL",
+      "title2": "SERVICES"
+    },
+    "match": {
+      "subtitle": "Experience the Game",
+      "title": "MATCH SERVICES",
+      "desc": "We provide supporting services to improve your match experience. From equipment rental to professional documentation."
+    },
+    "cta": "Book This Service",
+    "items": {
+      "shoe": { "name": "Boot Rental" },
+      "vest": { "name": "Vest Rental" },
+      "jersey": { "name": "Jersey Rental" },
+      "referee": { "name": "Professional Referee" },
+      "live": { "name": "YouTube Live Streaming" },
+      "photo": { "name": "Photographer" }
+    },
+    "info": {
+      "title": "SERVICE INFORMATION",
+      "desc": "The price list above is a standard reference for every match at Borneo Anfield Stadium. Please regularly check slot availability with our admin. To ensure smooth match operations, please book services at least H-2 before your match schedule starts."
+    }
+  }
+}

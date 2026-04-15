@@ -1,0 +1,50 @@
+{
+  "facilities": {
+    "hero": {
+      "subtitle": "High Quality Standards",
+      "title1": "BORNEO",
+      "title2": "ANFIELD STADIUM FACILITIES"
+    },
+    "spec": {
+      "title1": "TECHNICAL ",
+      "title2": "SPECIFICATIONS",
+      "desc": "Technical details of our field standards designed to ensure maximum performance and comfort.",
+      "field": "Field Dimensions",
+      "fieldValue": "60m x 40m (International Standard)",
+      "turf": "Turf Type",
+      "turfValue": "Premium Synthetic Grass 50mm",
+      "safety": "Safety Zone",
+      "safetyValue": "2 meters perimeter padding",
+      "drainage": "Drainage System",
+      "drainageValue": "Vertical drainage technology"
+    },
+    "interior": {
+      "title": "INTERIOR FACILITIES",
+      "quote": "Comfort before and after matches is our priority for peak performance."
+    },
+    "locker": {
+      "title": "Locker Room",
+      "desc": "Secure lockers with clean and comfortable changing rooms."
+    },
+    "shower": {
+      "title": "Shower Room",
+      "desc": "Clean shower area for post-match refreshment."
+    },
+    "musholla": {
+      "title": "Prayer Room",
+      "desc": "Clean and comfortable prayer facility."
+    },
+    "charging": {
+      "title": "Charging Area",
+      "desc": "Charging ports available for all devices."
+    },
+    "parking": {
+      "title": "Parking Area",
+      "desc": "Spacious parking with 24/7 CCTV security."
+    },
+    "cafe": {
+      "title": "Warkops Football Café",
+      "desc": "Community hangout with coffee & food."
+    }
+  }
+}

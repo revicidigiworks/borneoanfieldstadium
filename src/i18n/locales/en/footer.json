@@ -1,0 +1,20 @@
+{
+  "home": "Home",
+  "schedule": "Schedule",
+  "facilities": "Facilities",
+  "services": "Services",
+  "pricelist": "Price List",
+  "ecosystem": "Ecosystem",
+  "program": "Program",
+  "about": "About",
+  "contact": "Contact",
+
+  "brand_title": "Borneo Anfield Stadium",
+  "brand_desc": "A modern mini soccer venue with complete safety systems and an active player community growing every week.",
+
+  "navigation": "Navigation",
+  "location": "Stadium Location",
+  "open_maps": "Open in Google Maps →",
+
+  "copyright": "© {{year}} Borneo Anfield Stadium — For passion, not status"
+}

@@ -1,0 +1,28 @@
+{
+  "program": {
+    "hero": {
+      "subtitle": "Program Resmi",
+      "title1": "PROGRAM BORNEO",
+      "title2": "ANFIELD STADIUM"
+    },
+    "section": {
+      "title": "PROGRAM & KEUNTUNGAN",
+      "desc": "Program ini dirancang untuk memberikan kepastian jadwal, kemudahan booking, serta keuntungan tambahan bagi pemain aktif bermain di Borneo Anfield Stadium."
+    },
+    "items": {
+      "kjb": {
+        "name": "KJB",
+        "desc": "Kartu Jaminan Booking"
+      },
+      "balp": {
+        "name": "BALP",
+        "desc": "Program Loyalitas"
+      }
+    },
+    "actions": {
+      "rules": "Aturan",
+      "contact": "Kontak",
+      "rewards": "Hadiah"
+    }
+  }
+}

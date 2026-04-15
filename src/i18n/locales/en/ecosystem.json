@@ -1,0 +1,37 @@
+{
+  "ecosystem": {
+    "hero": {
+      "subtitle": "Join the movement",
+      "title1": "BORNEO ANFIELD",
+      "title2": "ECOSYSTEM"
+    },
+    "points": {
+  "community": "Community",
+  "structured": "Structured",
+  "active": "Active",
+  "growth": "Growth"
+},
+    "section": {
+      "title": "One Ecosystem",
+      "desc": "Borneo Anfield Stadium connects all football community activities into one system. From general players, senior groups, youth development, to friendly match partners — everything is structured in one active growing network."
+    },
+    "groups": {
+      "umum": {
+        "title": "BA FC GENERAL",
+        "desc": "Main community of active players of all levels."
+      },
+      "u35": {
+        "title": "BA FC U35+",
+        "desc": "Senior players community 35+ with regular schedules."
+      },
+      "junior": {
+        "title": "BA FC JUNIOR",
+        "desc": "Youth development & mini soccer academy."
+      },
+      "sparing": {
+        "title": "SPARRING INFO",
+        "desc": "Connect teams for friendly matches & sparring."
+      }
+    }
+  }
+}

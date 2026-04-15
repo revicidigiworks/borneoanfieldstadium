@@ -1,0 +1,26 @@
+{
+  "live_booking": "Jadwal Real-Time",
+  "title1": "Jadwal",
+  "title2": "Lapangan",
+  "desc": "Jadwal real-time untuk kedua lapangan premium. Temukan waktu terbaik dan amankan slot kamu.",
+
+  "select_date": "Pilih Tanggal",
+  "information": "Informasi",
+  "booking_rules": "Aturan Booking",
+  "price_list": "Daftar Harga",
+  "book_whatsapp": "Booking via WhatsApp",
+
+  "legend_available": "Tersedia",
+  "legend_booked": "Dibooking",
+  "legend_ended": "Selesai",
+  "legend_ongoing": "Berlangsung",
+    "available": "TERSEDIA",
+      "ended": "SELESAI",
+      "time_slot": "JAM",
+  "field_a": "LAP A",
+  "field_b": "LAP B",
+
+  "loading": "Memuat jadwal...",
+
+  "note": "00:00 – 05:00 termasuk jam dini hari (hari beirkutnya)"
+}

@@ -1,0 +1,28 @@
+{
+  "program": {
+    "hero": {
+      "subtitle": "Official Program",
+      "title1": "BORNEO PROGRAM",
+      "title2": "ANFIELD STADIUM"
+    },
+    "section": {
+      "title": "PROGRAM & BENEFITS",
+      "desc": "This program is designed to provide schedule certainty, easier booking, and additional benefits for active players."
+    },
+    "items": {
+      "kjb": {
+        "name": "KJB",
+        "desc": "Booking Guarantee Card"
+      },
+      "balp": {
+        "name": "BALP",
+        "desc": "Loyalty Program"
+      }
+    },
+    "actions": {
+      "rules": "Rules",
+      "contact": "Contact",
+      "rewards": "Rewards"
+    }
+  }
+}

@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { scheduleService } from "@/services/schedule.service";
 import { ScheduleSlot } from "@/types/schedule";
+import { useTranslation } from "react-i18next";
+
 
 // Banner Mobile
 import bannerPhMobile from "../../assets/images/web-banner/banner-iklan-mobile-ph.png";
@@ -18,10 +20,11 @@ import bannerPh from "../../assets/images/web-banner/banner-iklan.png";
 import bannerCoda from "../../assets/images/web-banner/bannerCoda.png";
 import bannerSlotIklan from "../../assets/images/web-banner/bannerSlotIklan.png";
 
-
-type Status = "available" | "booked" | "ended" | "ongoing";
-
 export default function SchedulePage() {
+
+  type Status = "available" | "booked" | "ended" | "ongoing";
+  const { t } = useTranslation("schedule");
+
   const [current, setCurrent] = useState(0);
   const [startX, setStartX] = useState(0);
 
@@ -82,24 +85,20 @@ export default function SchedulePage() {
   };
 
   const [slots, setSlots] = useState<ScheduleSlot[]>([]);
-  const [loading, setLoading] = useState(true);
   const today = new Date().toISOString().split("T")[0];
   const [date, setDate] = useState(today);
 
- useEffect(() => {
-  async function fetchData() {
-    try {
-      setLoading(true); // biar ada loading tiap ganti tanggal
-      const data = await scheduleService.getByDate(date);
-      setSlots(data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await scheduleService.getByDate(date);
+        setSlots(data);
+      } catch (err) {
+        console.error(err);
+      }
     }
-  }
-  fetchData();
-}, [date]); // 🔥 INI KUNCINYA
+    fetchData();
+  }, [date]);
 
   const navigate = useNavigate();
 
@@ -116,25 +115,25 @@ export default function SchedulePage() {
   );
 
   const getSlot = (time: string, field: "A" | "B") => {
-  const start = time.split(" - ")[0];
-  const [hour] = start.split(":").map(Number);
+    const start = time.split(" - ")[0];
+    const [hour] = start.split(":").map(Number);
 
-  let targetDate = new Date(date);
+    let targetDate = new Date(date);
 
-  // 🔥 kalau jam 00:00 - 05:00 → masuk ke hari berikutnya
-  if (hour >= 0 && hour < 6) {
-    targetDate.setDate(targetDate.getDate() + 1);
-  }
+    // 🔥 kalau jam 00:00 - 05:00 → masuk ke hari berikutnya
+    if (hour >= 0 && hour < 6) {
+      targetDate.setDate(targetDate.getDate() + 1);
+    }
 
-  const formattedDate = targetDate.toISOString().split("T")[0];
+    const formattedDate = targetDate.toISOString().split("T")[0];
 
-  return slots.find(
-    (s) =>
-      s.start === start &&
-      s.field === field &&
-      s.date === formattedDate
-  );
-};
+    return slots.find(
+      (s) =>
+        s.start === start &&
+        s.field === field &&
+        s.date === formattedDate
+    );
+  };
 
   const statusTextStyle = (status: Status) => {
     switch (status) {
@@ -146,48 +145,49 @@ export default function SchedulePage() {
   };
 
   const legends = [
-    { label: "Available", color: "bg-emerald-500" },
-    { label: "Booked", color: "bg-rose-500" },
-    { label: "Ended", color: "bg-slate-300" },
-    { label: "Ongoing", color: "bg-(--secondary)" },
+    { label: t("legend_available"), color: "bg-emerald-500" },
+    { label: t("legend_booked"), color: "bg-rose-500" },
+    { label: t("legend_ended"), color: "bg-slate-300" },
+    { label: t("legend_ongoing"), color: "bg-(--secondary)" },
   ];
+  const liveEffect =
+    "relative overflow-hidden animate-[glowSoft_2s_ease-in-out_infinite]";
 
+  const getStatusByTime = (time: string): Status => {
+    const [start, end] = time.split(" - ");
 
-const getStatusByTime = (time: string): Status => {
-  const [start, end] = time.split(" - ");
+    const [sh] = start.split(":").map(Number);
+    const [eh] = end.split(":").map(Number);
 
-  const [sh] = start.split(":").map(Number);
-  const [eh] = end.split(":").map(Number);
+    const selectedDate = new Date(date);
+    const now = new Date();
 
-  const selectedDate = new Date(date);
-  const now = new Date();
+    // 🔥 kalau jam 00:00 - 05:00 → geser ke hari berikutnya
+    if (sh >= 0 && sh < 6) {
+      selectedDate.setDate(selectedDate.getDate() + 1);
+    }
 
-  // 🔥 kalau jam 00:00 - 05:00 → geser ke hari berikutnya
-  if (sh >= 0 && sh < 6) {
-    selectedDate.setDate(selectedDate.getDate() + 1);
-  }
+    const startTime = new Date(selectedDate);
+    startTime.setHours(sh, 0, 0, 0);
 
-  const startTime = new Date(selectedDate);
-  startTime.setHours(sh, 0, 0, 0);
+    const endTime = new Date(selectedDate);
+    endTime.setHours(eh, 0, 0, 0);
 
-  const endTime = new Date(selectedDate);
-  endTime.setHours(eh, 0, 0, 0);
+    // handle lewat tengah malam (tetap dipertahankan)
+    if (eh < sh) {
+      endTime.setDate(endTime.getDate() + 1);
+    }
 
-  // handle lewat tengah malam (tetap dipertahankan)
-  if (eh < sh) {
-    endTime.setDate(endTime.getDate() + 1);
-  }
+    // 🔥 compare pakai waktu yang sudah di-adjust
+    if (selectedDate.toDateString() !== now.toDateString()) {
+      return selectedDate < now ? "ended" : "available";
+    }
 
-  // 🔥 compare pakai waktu yang sudah di-adjust
-  if (selectedDate.toDateString() !== now.toDateString()) {
-    return selectedDate < now ? "ended" : "available";
-  }
+    if (now >= startTime && now < endTime) return "ongoing";
+    if (now > endTime) return "ended";
 
-  if (now >= startTime && now < endTime) return "ongoing";
-  if (now > endTime) return "ended";
-
-  return "available";
-};
+    return "available";
+  };
 
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -232,17 +232,6 @@ const getStatusByTime = (time: string): Status => {
     return () => clearInterval(interval);
   }, [times]);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-100 text-slate-500 font-medium">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-6 h-6 border-2 border-slate-300 border-t-(--primary) rounded-full animate-spin"></div>
-          <span>Loading schedules...</span>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="bg-slate-50 min-h-screen">
 
@@ -262,7 +251,7 @@ const getStatusByTime = (time: string): Status => {
               {banners.map((item, index) => (
                 <div
                   key={index}
-                  className="w-full flex-shrink-0 flex items-center justify-center h-[100px] sm:h-[120px] md:h-[160px] bg-gradient-to-r from-slate-50 to-white"
+                  className="w-full shrink-0 flex items-center justify-center h-25 sm:h-30 md:h-40 bg-linear-to-r from-slate-50 to-white"
                 >
                   <a
                     href={item.link}
@@ -308,12 +297,12 @@ const getStatusByTime = (time: string): Status => {
         <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
 
         <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
-          <span className="text-xs uppercase tracking-widest text-white/60 font-bold">Live Booking</span>
-          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight mt-2">
-            Match <span className="text-[#F6EB61]">Schedule</span>
+          <span className="text-xs uppercase tracking-widest text-white/60 font-bold">{t("live_booking")}</span>
+          <h1 className="text-5xl md:text-6xl font-black uppercase tracking-tight mt-2">
+            {t("title1")} <span className="text-[#F6EB61]">{t("title2")}</span>
           </h1>
           <p className="mt-4 text-white/75 font-light text-sm md:text-base max-w-xl mx-auto">
-            Real-time schedule for both premium fields. Find your perfect time and secure your slot.
+            {t("desc")}
           </p>
         </div>
       </section>
@@ -324,7 +313,7 @@ const getStatusByTime = (time: string): Status => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
 
             <div className="md:col-span-4">
-              <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block">Select Date</label>
+              <label className="text-xs font-bold text-slate-500 mb-1.5 block">{t("select_date")}</label>
               <input
                 type="date"
                 value={date}
@@ -335,19 +324,19 @@ const getStatusByTime = (time: string): Status => {
             </div>
 
             <div className="md:col-span-5">
-              <label className="text-xs font-bold text-slate-500 uppercase mb-1.5 block">Information</label>
+              <label className="text-xs font-bold text-slate-500 mb-1.5 block">{t("information")}</label>
               <div className="flex gap-3">
                 <button
                   onClick={() => navigate("/bookingrules")}
                   className="flex-1 border border-slate-200 rounded-xl py-3 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition"
                 >
-                  Booking Rules
+                  {t("booking_rules")}
                 </button>
                 <button
                   onClick={() => navigate("/pricelist")}
                   className="flex-1 border border-slate-200 rounded-xl py-3 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition"
                 >
-                  Price List
+                  {t("price_list")}
                 </button>
               </div>
             </div>
@@ -359,7 +348,7 @@ const getStatusByTime = (time: string): Status => {
                 rel="noopener noreferrer"
                 className="block w-full text-center bg-(--secondary) text-black py-3 rounded-xl text-sm font-bold hover:opacity-95 transform active:scale-[0.98] transition shadow-lg shadow-(--primary)/20"
               >
-                Book via WhatsApp
+                {t("book_whatsapp")}
               </a>
             </div>
           </div>
@@ -367,12 +356,12 @@ const getStatusByTime = (time: string): Status => {
       </section>
 
       {/* SCHEDULE GRID */}
-      <section className="py-10 max-w-6xl mx-auto px-5 lg:px-10">
+      <section className="py-10 max-w-6xl mx-auto px-5 lg:px-10 font-secondary">
 
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-4">
 
           {/* LEGEND */}
-          <div className="flex flex-wrap gap-4 items-center text-xs font-medium text-slate-500">
+          <div className="flex flex-wrap gap-4 items-center justify-center md:justify-start text-xs font-medium text-slate-500 w-full md:w-auto">
             {legends.map((item) => (
               <div key={item.label} className="flex items-center gap-1.5">
                 <span className={`w-2 h-2 rounded-full ${item.color}`} />
@@ -380,15 +369,21 @@ const getStatusByTime = (time: string): Status => {
               </div>
             ))}
           </div>
+
+          {/* NOTE */}
+          <p className="text-center md:text-right text-xs text-slate-400 font-light w-full md:w-auto">
+            ⚠️ {t("note")}
+          </p>
+
         </div>
 
         <div className="bg-white shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
 
           {/* HEADER */}
-          <div className="grid grid-cols-3 bg-(--primary) border-b border-slate-100 text-white text-[10px] md:text-xs font-bold uppercase tracking-wider">
-            <div className="p-3.5 pl-5 md:pl-6">Time Slot</div>
-            <div className="p-3.5 text-center">Field A</div>
-            <div className="p-3.5 text-center">Field B</div>
+          <div className="grid grid-cols-3 bg-(--primary) border-b border-slate-100 text-white text-[10px] md:text-xs font-bold uppercase ">
+            <div className="p-3.5 pl-5 md:pl-6">{t("time_slot")}</div>
+            <div className="p-3.5 text-center">{t("field_a")}</div>
+            <div className="p-3.5 text-center">{t("field_b")}</div>
           </div>
 
           {/* ROWS */}
@@ -408,7 +403,7 @@ const getStatusByTime = (time: string): Status => {
                     } ${timeStatus === "ended" ? "opacity-60" : ""} hover:bg-slate-50/50`}
                 >
                   {index === activeIndex && (
-                    <div className="absolute left-0 top-0 h-full w-[5px] bg-(--secondary) "></div>
+                    <div className="absolute left-0 top-0 h-full w-1.25 bg-(--secondary) "></div>
                   )}
 
                   {/* Time */}
@@ -424,9 +419,13 @@ const getStatusByTime = (time: string): Status => {
                       let status: Status = statusBase;
                       if (timeStatus === "ended") status = "ended";
                       const isOngoing = status === "ongoing";
+                      const activeClass = isOngoing ? liveEffect : "";
                       return (
-                        <div className={`inline-flex items-center font-bold ${statusTextStyle(status)} ${isOngoing ? "animate-pulse" : ""
-                          }`}>
+                        <div
+                          className={`inline-flex items-center px-2 py-1 rounded-md font-bold
+  ${statusTextStyle(status)}
+  ${isOngoing ? liveEffect : ""}`}
+                        >
                           <div className="flex items-center justify-center text-center">
                             {slotA ? (
                               <span className="text-[9px] md:text-xs font-bold leading-tight">
@@ -434,7 +433,7 @@ const getStatusByTime = (time: string): Status => {
                               </span>
                             ) : (
                               <span className="text-[9px] md:text-xs font-bold">
-                                AVAILABLE
+                                {timeStatus === "ended" ? t("ended") : t("available")}
                               </span>
                             )}
                           </div>
@@ -459,7 +458,7 @@ const getStatusByTime = (time: string): Status => {
                               </span>
                             ) : (
                               <span className="text-[9px] md:text-xs font-bold">
-                                AVAILABLE
+                                {timeStatus === "ended" ? t("ended") : t("available")}
                               </span>
                             )}
                           </div>
@@ -474,9 +473,9 @@ const getStatusByTime = (time: string): Status => {
         </div>
 
         <p className="text-center text-xs text-slate-400 mt-5 font-light">
-          ⚠️ 00:00 – 05:00 considered next day session
+          ⚠️ {t("note")}
         </p>
       </section>
     </div>
   );
-}
+} 

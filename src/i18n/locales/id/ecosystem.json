@@ -1,0 +1,37 @@
+{
+  "ecosystem": {
+    "hero": {
+      "subtitle": "Join the movement",
+      "title1": "BORNEO ANFIELD",
+      "title2": "STADIUM ECOSYSTEM"
+    },
+    "points": {
+  "community": "Komunitas",
+  "structured": "Terstruktur",
+  "active": "Aktif",
+  "growth": "Berkembang"
+},
+    "section": {
+      "title": "Satu Ekosistem",
+      "desc": "Borneo Anfield Stadium menghubungkan seluruh aktivitas komunitas sepak bola dalam satu sistem. Dari pemain umum, senior, hingga pengembangan junior dan sparing partner — semua terstruktur dalam satu jaringan yang aktif dan berkembang."
+    },
+    "groups": {
+      "umum": {
+        "title": "BA FC UMUM",
+        "desc": "Komunitas utama pemain aktif berbagai level."
+      },
+      "u35": {
+        "title": "BA FC U35+",
+        "desc": "Komunitas pemain senior 35+ dengan jadwal rutin."
+      },
+      "junior": {
+        "title": "BA FC JUNIOR",
+        "desc": "Pengembangan usia muda & akademi mini soccer."
+      },
+      "sparing": {
+        "title": "INFO SPARING",
+        "desc": "Hubungkan tim untuk sparing & match friendly."
+      }
+    }
+  }
+}

@@ -6,6 +6,8 @@ import {
   FaTiktok,
   FaWhatsapp,
 } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
+
 
 import sponsor1 from "../../assets/images/sponsors/sponsor1.png";
 import sponsor2 from "../../assets/images/sponsors/sponsor2.png";
@@ -15,20 +17,21 @@ import sponsor5 from "../../assets/images/sponsors/sponsor5.png";
 import sponsor6 from "../../assets/images/sponsors/sponsor6.png";
 import sponsor7 from "../../assets/images/sponsors/ph.png";
 
-const navItems = [
-  "Home",
-  "Schedule",
-  "Facilities",
-  "Services",
-  "Price List",
-  "Ecosystem",
-  "Program",
-  "About",
-  "Contact",
-];
-
 export function Footer() {
   const sponsors = [sponsor1, sponsor2, sponsor3, sponsor4, sponsor5, sponsor6, sponsor7];
+
+  const { t } = useTranslation("footer");
+  const navItems = [
+  { label: t("home"), path: "/" },
+  { label: t("schedule"), path: "/schedule" },
+  { label: t("facilities"), path: "/facilities" },
+  { label: t("services"), path: "/services" },
+  { label: t("pricelist"), path: "/pricelist" },
+  { label: t("ecosystem"), path: "/ecosystem" },
+  { label: t("program"), path: "/program" },
+  { label: t("about"), path: "/about" },
+  { label: t("contact"), path: "/contact" },
+];
 
   return (
     <footer className="bg-white  border-gray-200 ">
@@ -71,8 +74,7 @@ export function Footer() {
             </h3>
 
             <p className="text-(--dark) text-sm leading-relaxed mb-6">
-              Mini soccer venue dengan fasilitas modern, sistem keselamatan
-              lengkap, dan komunitas pemain aktif yang berkembang setiap minggu.
+              {t("brand_desc")}
             </p>
 
             <div className="flex gap-5 text-xl">
@@ -97,26 +99,26 @@ export function Footer() {
           {/* NAVIGATION */}
           <div>
             <h4 className="text-sm font-semibold tracking-wide mb-5 uppercase text-(--primary)">
-              Navigation
+              {t("navigation")}
             </h4>
 
             <div className="grid grid-cols-2 gap-y-3 text-sm text-gray-600">
-              {navItems.map((item) => (
-                <NavLink
-                  key={item}
-                  to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/\s+/g, "")}`}
-                  className="hover:text-(--primary) transition"
-                >
-                  {item}
-                </NavLink>
-              ))}
+{navItems.map((item) => (
+  <NavLink
+    key={item.path}
+    to={item.path}
+    className="hover:text-(--primary) transition"
+  >
+    {item.label}
+  </NavLink>
+))}
             </div>
           </div>
 
           {/* GOOGLE MAPS */}
           <div>
             <h4 className="text-sm font-semibold tracking-wide mb-5 uppercase text-(--primary)">
-              Stadium Location
+              {t("location")}
             </h4>
 
             <div className="rounded-xl overflow-hidden border border-gray-200 shadow-sm">
@@ -135,7 +137,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="text-sm text-(--primary) mt-3 inline-block hover:underline"
             >
-              Open in Google Maps →
+              {t("open_maps")}
             </a>
           </div>
         </div>

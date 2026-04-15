@@ -1,27 +1,36 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
+import i18n from "@/i18n";
 import { Menu, X, Globe, ChevronRight } from "lucide-react";
 import { FaFacebook, FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa";
 import logo2 from "@/assets/images/logo/logo-2.webp";
 import logo from "@/assets/images/logo/logo.webp";
 import heroDesktop from "../../assets/images/web-banner/web-banner-sidebar.png";
+import { useTranslation } from "react-i18next";
 
-
-const navItems = [
-  "Home",
-  "Schedule",
-  "Facilities",
-  "Services",
-  "Price List",
-  "Ecosystem",
-  "Program",
-  "About",
-  "Contact",
-];
 
 export function Navbar() {
+  const { t } = useTranslation("navbar");
   const [isOpen, setIsOpen] = useState(false);
-  const [lang, setLang] = useState("EN");
+  const [lang, setLang] = useState(i18n.language.toUpperCase());
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "id" ? "en" : "id";
+    i18n.changeLanguage(newLang);
+    setLang(newLang.toUpperCase());
+  };
+
+  const navItems = [
+    { label: t("home"), path: "/" },
+    { label: t("schedule"), path: "/schedule" },
+    { label: t("facilities"), path: "/facilities" },
+    { label: t("services"), path: "/services" },
+    { label: t("pricelist"), path: "/pricelist" },
+    { label: t("ecosystem"), path: "/ecosystem" },
+    { label: t("program"), path: "/program" },
+    { label: t("about"), path: "/about" },
+    { label: t("contact"), path: "/contact" },
+  ];
 
   // 🔒 Lock body scroll
   useEffect(() => {
@@ -62,67 +71,59 @@ export function Navbar() {
         <nav className="hidden md:flex gap-8 items-center ml-auto">
           {navItems.map((item) => (
             <NavLink
-              key={item}
-  to={
-  item === "Home"
-    ? "/"
-    : `/${item.toLowerCase().trim().replace(/\s+/g, "")}`
-}
+              key={item.path}
+              to={item.path}
               className={({ isActive }) =>
                 `relative text-sm tracking-wide transition duration-300
-                ${
-                  isActive
-                    ? "text-[#F6EB61] font-semibold"
-                    : "text-white hover:text-[#F6EB61]"
+      ${isActive
+                  ? "text-[#F6EB61] font-semibold"
+                  : "text-white hover:text-[#F6EB61]"
                 }
-                after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-[#F6EB61]
-                after:transition-all after:duration-300
-                ${isActive ? "after:w-full" : "after:w-0 hover:after:w-full"}`
+      after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-[#F6EB61]
+      after:transition-all after:duration-300
+      ${isActive ? "after:w-full" : "after:w-0 hover:after:w-full"}`
               }
             >
-              {item}
+              {item.label}
             </NavLink>
           ))}
 
           <button
-            onClick={() => setLang(lang === "EN" ? "ID" : "EN")}
+            onClick={toggleLanguage}
             className="flex items-center gap-2 text-white text-sm border border-white/40 px-3 py-1 rounded-md hover:bg-(--secondary) hover:text-black transition"
           >
             <Globe size={16} />
             {lang}
           </button>
 
-<a
-  href="https://wa.me/6282121211892"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="px-6 py-3 bg-(--secondary) rounded text-(--dark) font-black uppercase tracking-[0.12em] text-sm hover:bg-white transition-all duration-300 text-center"
->
-  Book Now
-</a>
+          <a
+            href="https://wa.me/6282121211892"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 bg-(--secondary) rounded text-(--dark) font-black uppercase tracking-[0.12em] text-sm hover:bg-white transition-all duration-300 text-center"
+          >
+            {t("book_now")}
+          </a>
         </nav>
       </div>
 
       {/* MOBILE PANEL */}
       <div
-        className={`md:hidden fixed inset-0 z-40 ${
-          isOpen ? "pointer-events-auto" : "pointer-events-none"
-        }`}
+        className={`md:hidden fixed inset-0 z-40 ${isOpen ? "pointer-events-auto" : "pointer-events-none"
+          }`}
       >
         {/* OVERLAY */}
         <div
-          className={`absolute inset-0 bg-black/30 transition-opacity duration-500 ${
-            isOpen ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 bg-black/30 transition-opacity duration-500 ${isOpen ? "opacity-100" : "opacity-0"
+            }`}
           onClick={() => setIsOpen(false)}
         />
 
         {/* SIDE PANEL */}
         <div
           className={`absolute left-0 top-0 h-full w-[94%] bg-white shadow-xl flex flex-col
-          transform transition-transform duration-500 ${
-            isOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          transform transition-transform duration-500 ${isOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
         >
           {/* PANEL HEADER (FIXED) */}
           <div className="flex justify-between items-center px-6 h-20 border-b border-gray-200 shrink-0">
@@ -136,25 +137,24 @@ export function Navbar() {
           <div className="flex-1 overflow-y-auto px-6 py-8 space-y-6">
             {navItems.map((item) => (
               <NavLink
-                key={item}
-                to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/\s+/g, "")}`}
+                key={item.path}
+                to={item.path}
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
                   `flex justify-between items-center text-lg font-medium transition
-                  ${
-                    isActive
-                      ? "text-(--primary)"
-                      : "text-black hover:text-(--secondary)"
+      ${isActive
+                    ? "text-(--primary)"
+                    : "text-black hover:text-(--secondary)"
                   }`
                 }
               >
-                {item}
+                {item.label}
                 <ChevronRight size={18} />
               </NavLink>
             ))}
 
             <button
-              onClick={() => setLang(lang === "EN" ? "ID" : "EN")}
+              onClick={toggleLanguage}
               className="flex items-center gap-2 text-black border border-gray-300 px-3 py-2 rounded-md w-fit hover:bg-gray-100 transition"
             >
               <Globe size={16} />
@@ -164,34 +164,32 @@ export function Navbar() {
             <hr className="border-t border-gray-300" />
 
             {/* JOIN SECTION */}
-<div className="mt-6 relative overflow-hidden p-6 text-white">
+            <div className="mt-6 relative overflow-hidden p-6 text-white">
 
-  {/* BACKGROUND */}
-  <img
-    src={heroDesktop}
-    alt=""
-    className="absolute inset-0 w-full h-full object-cover"
-  />
+              {/* BACKGROUND */}
+              <img
+                src={heroDesktop}
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover"
+              />
 
-  {/* OVERLAY */}
-  <div className="absolute inset-0" />
+              {/* OVERLAY */}
+              <div className="absolute inset-0" />
 
-  {/* CONTENT */}
-  <div className="relative z-10">
-    <h3 className="text-lg font-semibold mb-3">BAFC</h3>
+              {/* CONTENT */}
+              <div className="relative z-10">
+                <h3 className="text-lg font-semibold mb-3">BORNEO ANFIELD FC</h3>
 
-    <p className="text-sm leading-relaxed mb-6">
-      Dapatkan akses eksklusif ke jadwal pertandingan, event
-      komunitas, promo spesial, dan update terbaru dari Borneo Anfield
-      Football Club.
-    </p>
+                <p className="text-sm leading-relaxed mb-6">
+                  {t("join_desc")}
+                </p>
 
-    <button className="w-full bg-(--secondary) text-black py-3 font-semibold hover:bg-white transition">
-      GABUNG SEKARANG
-    </button>
-  </div>
+                <button className="w-full bg-(--secondary) text-black py-3 font-semibold hover:bg-white transition">
+                  {t("join_cta")}
+                </button>
+              </div>
 
-</div>
+            </div>
 
             {/* SOCIAL MEDIA */}
             <div className="pt-10 border-t border-gray-300">
@@ -202,8 +200,8 @@ export function Navbar() {
                 <FaTiktok className="text-(--primary) hover:opacity-70 transition duration-300 cursor-pointer" />
               </div>
 
-              <p className="text-center text-xs text-gray-500 tracking-wide">
-                Demi Hobi, Bukan Gengsi
+              <p className="text-center text-s text-gray-500 ">
+                #DemiHobiBukanGengsi
               </p>
             </div>
           </div>

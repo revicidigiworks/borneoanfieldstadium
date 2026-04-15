@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "label": "Lapangan Minisoccer #1 di Balikpapan",
+    "cta_schedule": "Lihat Jadwal",
+    "cta_book": "Booking Sekarang",
+    "hero_desc": "Rumah terbaik bagi pecinta sepak bola. Rasakan fasilitas berstandar profesional, atmosfer kelas dunia, dan semangat permainan."
+  },
+
+  "about": {
+    "tag": "The Stadium",
+    "title_1": "Meningkatkan",
+    "title_2": "Pengalaman",
+    "title_3": "Sepak Bola",
+    "desc": "Borneo Anfield Stadium (BAS) mendefinisikan ulang standar lapangan mini soccer di Kalimantan Timur. Terletak strategis di Jl. AMD LIII, kami menghadirkan fasilitas kelas dunia untuk komunitas lokal.",
+    "point1_title": "Fasilitas Premium",
+    "point1_desc": "Dua lapangan 60x40m dengan rumput sintetis pilihan, dirancang untuk performa maksimal format 9 vs 9.",
+    "point2_title": "Lebih dari Sekadar Lapangan",
+    "point2_desc": "Lengkap dengan kafe, area nobar eksklusif, dan layanan penyewaan perlengkapan profesional.",
+    "cta": "Lihat Selengkapnya"
+  },
+
+  "facilities": {
+    "title": "Fasilitas",
+    "desc": "Fasilitas premium untuk pengalaman bermain yang nyaman dan profesional",
+    "locker_title": "Ruang Ganti",
+    "locker_desc": "Ruang ganti nyaman & aman untuk pemain",
+    "shower_title": "Ruang Shower",
+    "shower_desc": "Air bersih & fasilitas bilas modern",
+    "cafe_title": "Warkops Café",
+    "cafe_desc": "Nongkrong santai sambil nonton pertandingan",
+    "cta": "Lihat Semua Fasilitas"
+  },
+
+  "ecosystem": {
+    "title": "Ekosistem",
+    "cta": "Jelajahi",
+    "cta_mobile": "Jelajahi Ekosistem →"
+  },
+
+  "services": {
+    "title1": "Layanan",
+    "title2": "Komersial",
+    "cta": "Jelajahi",
+    "cta_mobile": "Jelajahi Layanan",
+    "shoes": "Sewa Sepatu",
+    "jersey": "Sewa Rompi & Jersey",
+    "referee": "Wasit Profesional",
+    "streaming": "Live Streaming YouTube",
+    "photo": "Fotografer"
+  },
+
+  "booking": {
+    "title": "Booking",
+    "headline": "Jadwal Terbuka & Transparan",
+    "desc": "Cek slot pertandingan secara real-time dan lakukan booking tanpa proses ribet. Semua sudah terintegrasi untuk pengalaman bermain yang lebih profesional.",
+    "cta": "Booking Sekarang"
+  }
+}

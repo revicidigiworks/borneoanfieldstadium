@@ -1,0 +1,50 @@
+{
+  "facilities": {
+    "hero": {
+      "subtitle": "Standar Kualitas Tinggi",
+      "title1": "FASILITAS BORNEO",
+      "title2": "ANFIELD STADIUM"
+    },
+    "spec": {
+      "title1": "SPESIFIKASI",
+      "title2": "TEKNIS",
+      "desc": "Detail teknis standar arena yang kami gunakan untuk menjamin performa dan kenyamanan maksimal.",
+      "field": "Dimensi Lapangan",
+      "fieldValue": "60m x 40m (Standar Internasional)",
+      "turf": "Jenis Rumput",
+      "turfValue": "Synthetic Grass Premium 50mm",
+      "safety": "Zona Keamanan",
+      "safetyValue": "2 meter padding perimeter",
+      "drainage": "Sistem Drainase",
+      "drainageValue": "Teknologi drainase vertikal"
+    },
+    "interior": {
+      "title": "FASILITAS INTERIOR",
+      "quote": "Kenyamanan sebelum dan sesudah pertandingan adalah prioritas kami untuk performa terbaik."
+    },
+    "locker": {
+      "title": "Ruang Ganti & Loker",
+      "desc": "Loker aman dengan ruang ganti bersih dan nyaman."
+    },
+    "shower": {
+      "title": "Kamar Mandi",
+      "desc": "Area bilas dengan air bersih setelah bermain."
+    },
+    "musholla": {
+      "title": "Musholla",
+      "desc": "Ruang ibadah yang bersih dan nyaman."
+    },
+    "charging": {
+      "title": "Area Isi Daya",
+      "desc": "Tersedia port charging untuk semua perangkat."
+    },
+    "parking": {
+      "title": "Area Parkir",
+      "desc": "Area parkir luas dengan CCTV 24 jam."
+    },
+    "cafe": {
+      "title": "Warkops Football Café",
+      "desc": "Tempat santai komunitas dengan kopi & makanan."
+    }
+  }
+}

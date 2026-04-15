@@ -1,0 +1,43 @@
+{
+  "disclaimer": "Important: All transaction and confirmation processes are only conducted through the Official Admin WhatsApp. Please read the following points carefully for mutual convenience.",
+  "groups": [
+    {
+      "title": "Booking Process",
+      "items": [
+        "Check the current field schedule on the Borneo Anfield Stadium Online Schedule: http://borneoanfieldstadium.com/jadwalonline",
+        "Confirm and book available field schedules with the Admin via WhatsApp (Operational hours: 09:00 - 23:00 WITA).",
+        "Complete the booking form (Booker identity and schedule) provided by the Admin.",
+        "After the down payment is received, the Admin will input your team name into the online schedule.",
+        "The team only needs to come to BAS and play directly on the scheduled day after full payment is completed."
+      ]
+    },
+    {
+      "title": "Payment Terms",
+      "items": [
+        "Wait for the Admin to calculate the total cost before making payment. You have 30 minutes to pay a 50% down payment.",
+        "Payments made beyond the 30-minute limit without confirmation risk the schedule being taken by another party.",
+        "Payments must be made during operational hours (09:00 - 23:00 WITA).",
+        "On D-4 the Admin will remind you for settlement. On D-3 the booking MUST be fully paid.",
+        "If not fully paid by D-3, the booking is considered CANCELLED. Any payment made will be converted into a deposit for the next booking (not forfeited, but must be used for full payment on the next booking).",
+        "Ensure the transfer amount is correct. Any transfer discrepancy (overpayment) will automatically be recorded as a deposit and cannot be refunded."
+      ]
+    },
+    {
+      "title": "Policy & Cancellation",
+      "items": [
+        "There are no refunds and bookings that have been paid cannot be cancelled.",
+        "Rescheduling must be informed no later than D-7 and is only allowed once.",
+        "Field selection (A or B) is determined by management. Both have identical size and quality.",
+        "For late-night hours (23:00 - 02:00 WITA), please maintain quietness. Management reserves the right to stop the game in case of excessive disturbance."
+      ]
+    },
+    {
+      "title": "Weather Conditions (Force Majeure)",
+      "items": [
+        "If heavy rain causes flooding or makes access impossible, the schedule may be rescheduled.",
+        "If there is lightning, the schedule will be delayed by 15–30 minutes. If play has already started, the time will be extended according to the delay duration after the rain stops.",
+        "The field is always ready for use. Bookings cannot be cancelled unilaterally due to normal rain."
+      ]
+    }
+  ]
+}
