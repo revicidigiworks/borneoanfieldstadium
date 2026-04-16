@@ -85,8 +85,10 @@ export default function SchedulePage() {
   };
 
   const [slots, setSlots] = useState<ScheduleSlot[]>([]);
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date().toLocaleDateString("en-CA");
   const [date, setDate] = useState(today);
+  const isToday = date === today;
+  const hasScrolled = useRef(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -193,6 +195,11 @@ export default function SchedulePage() {
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
+    if (!isToday) {
+      setActiveIndex(null);
+      return;
+    }
+
     const run = () => {
       const now = new Date();
 
@@ -216,22 +223,29 @@ export default function SchedulePage() {
       if (index !== -1) {
         setActiveIndex(index);
 
-        setTimeout(() => {
-          rowRefs.current[index]?.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          });
-        }, 200);
+        if (!hasScrolled.current) {
+          setTimeout(() => {
+            rowRefs.current[index]?.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          }, 800);
+
+          hasScrolled.current = true;
+        }
       }
     };
 
-    run(); // pertama kali
+    run(); // initial
 
-    const interval = setInterval(run, 60000); // update tiap 1 menit
+    const interval = setInterval(run, 60000); // update tiap menit
 
     return () => clearInterval(interval);
-  }, [times]);
+  }, [date, isToday, times]);
 
+  useEffect(() => {
+    hasScrolled.current = false;
+  }, [date]);
   return (
     <div className="bg-slate-50 min-h-screen">
 
@@ -380,11 +394,11 @@ export default function SchedulePage() {
         <div className="bg-white shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
 
           {/* HEADER */}
-          <div className="grid grid-cols-3 bg-(--primary) border-b border-slate-100 text-white text-[10px] md:text-xs font-bold uppercase ">
-            <div className="p-3.5 pl-5 md:pl-6">{t("time_slot")}</div>
-            <div className="p-3.5 text-center">{t("field_a")}</div>
-            <div className="p-3.5 text-center">{t("field_b")}</div>
-          </div>
+<div className="grid grid-cols-3 bg-(--primary) border-b border-slate-100 text-white text-[10px] md:text-xs font-bold uppercase divide-x divide-white/20">
+  <div className="p-3.5 text-center">{t("time_slot")}</div>
+  <div className="p-3.5 text-center">{t("field_a")}</div>
+  <div className="p-3.5 text-center">{t("field_b")}</div>
+</div>
 
           {/* ROWS */}
           <div className="divide-y divide-slate-100">
@@ -422,17 +436,17 @@ export default function SchedulePage() {
                       const activeClass = isOngoing ? liveEffect : "";
                       return (
                         <div
-                          className={`inline-flex items-center px-2 py-1 rounded-md font-bold
+                          className={`inline-flex items-center px-2 py-1 rounded-md font-medium
   ${statusTextStyle(status)}
   ${isOngoing ? liveEffect : ""}`}
                         >
                           <div className="flex items-center justify-center text-center">
                             {slotA ? (
-                              <span className="text-[9px] md:text-xs font-bold leading-tight">
+                              <span className="text-[9px] md:text-xs font-medium leading-tight">
                                 {slotA.bookedBy}
                               </span>
                             ) : (
-                              <span className="text-[9px] md:text-xs font-bold">
+                              <span className="text-[9px] md:text-xs font-medium">
                                 {timeStatus === "ended" ? t("ended") : t("available")}
                               </span>
                             )}
@@ -449,15 +463,22 @@ export default function SchedulePage() {
 
                       let status: Status = statusBase;
                       if (timeStatus === "ended") status = "ended";
+
+                      const isOngoing = status === "ongoing";
+
                       return (
-                        <div className={`inline-flex items-center font-bold ${statusTextStyle(status)}`}>
+                        <div
+                          className={`inline-flex items-center font-medium 
+    ${statusTextStyle(status)} 
+    ${isOngoing ? liveEffect : ""}`}
+                        >
                           <div className="flex items-center justify-center text-center">
                             {slotB ? (
-                              <span className="text-[9px] md:text-xs font-bold leading-tight">
+                              <span className="text-[9px] md:text-xs font-medium leading-tight">
                                 {slotB.bookedBy}
                               </span>
                             ) : (
-                              <span className="text-[9px] md:text-xs font-bold">
+                              <span className="text-[9px] md:text-xs font-medium">
                                 {timeStatus === "ended" ? t("ended") : t("available")}
                               </span>
                             )}
@@ -472,9 +493,6 @@ export default function SchedulePage() {
           </div>
         </div>
 
-        <p className="text-center text-xs text-slate-400 mt-5 font-light">
-          ⚠️ {t("note")}
-        </p>
       </section>
     </div>
   );

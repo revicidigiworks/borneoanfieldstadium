@@ -183,10 +183,14 @@ export function Navbar() {
                 <p className="text-sm leading-relaxed mb-6">
                   {t("join_desc")}
                 </p>
-
-                <button className="w-full bg-(--secondary) text-black py-3 font-semibold hover:bg-white transition">
-                  {t("join_cta")}
-                </button>
+                <a
+  href="https://chat.whatsapp.com/Gp2gerSzRyqEo9qG0ayooy?mode=gi_t"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="block w-full bg-(--secondary) text-black py-3 font-semibold hover:bg-white transition text-center"
+>
+  {t("join_cta")}
+</a>
               </div>
 
             </div>
