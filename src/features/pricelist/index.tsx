@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import priceList from "../../assets/images/services/pricing2.png";
+import priceList from "../../assets/images/services/pricing2.webp";
 
 
 export default function PriceListPage() {

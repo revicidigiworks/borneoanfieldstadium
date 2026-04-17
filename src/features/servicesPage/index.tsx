@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { ArrowUpRight, ShieldCheck, Sparkles } from "lucide-react";
-import sewaSepatu from "../../assets/images/services/sepatu.png";
-import sewaRompi from "../../assets/images/services/rompi.jpg";
-import sewaJersey from "../../assets/images/services/jersey.jpg";
-import sewaWasit from "../../assets/images/services/wasit.jpg";
-import sewaFotographer from "../../assets/images/services/foto.jpg";
-import sewaLive from "../../assets/images/services/youtube.jpg";
-import heroDesktop from "../../assets/images/web-banner/web-banner-cs.png";
-import heroMobile from "../../assets/images/web-banner/web-banner-cs2.png";
+import sewaSepatu from "../../assets/images/services/sepatu.webp";
+import sewaRompi from "../../assets/images/services/rompi.webp";
+import sewaJersey from "../../assets/images/services/jersey.webp";
+import sewaWasit from "../../assets/images/services/wasit.webp";
+import sewaFotographer from "../../assets/images/services/foto.webp";
+import sewaLive from "../../assets/images/services/youtube.webp";
+import heroDesktop from "../../assets/images/web-banner/web-banner-cs.webp";
+import heroMobile from "../../assets/images/web-banner/web-banner-cs2.webp";
 import { useTranslation } from "react-i18next";
 
 const services = [

@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { MessageCircle, ArrowUpRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import umumBg from "../../assets/images/logo/ba-umum.png";
+import umumBg from "../../assets/images/logo/ba-umum.webp";
 import u35Bg from "../../assets/images/logo/ba-u35.webp";
 import juniorBg from "../../assets/images/logo/ba-junior.webp";
-import sparingBg from "../../assets/images/logo/infoSparing.jpeg";
+import sparingBg from "../../assets/images/logo/infoSparing.webp";
 import heroDesktop from "../../assets/images/web-banner/web-banner-ecosystem.png";
 import heroMobile from "../../assets/images/web-banner/web-banner-ecosystem-mobile.png";
 

@@ -4,13 +4,13 @@ import { ShieldCheck, Star, X } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import kjbImg from "../../assets/images/kjb/kjb.jpeg";
-import balpImg from "../../assets/images/balp/balp.jpeg";
-import kjbRulesImg from "../../assets/images/kjb/aturanKjb.png";
-import balpRulesImg from "../../assets/images/balp/aturanBalp.png";
-import balpRewardsImg from "../../assets/images/balp/hadiahBalp.png";
-import balpRewardsImg2 from "../../assets/images/balp/hadiah1.png";
-import contactImg from "../../assets/images/kontakKjb.png";
+import kjbImg from "../../assets/images/kjb/kjb.webp";
+import balpImg from "../../assets/images/balp/balp.webp";
+import kjbRulesImg from "../../assets/images/kjb/aturanKjb.webp";
+import balpRulesImg from "../../assets/images/balp/aturanBalp.webp";
+import balpRewardsImg from "../../assets/images/balp/hadiahBalp.webp";
+import balpRewardsImg2 from "../../assets/images/balp/hadiah1.webp";
+import contactImg from "../../assets/images/kontakKjb.webp";
 
 import heroDesktop from "../../assets/images/web-banner/web-banner-desktop-program.png";
 import heroMobile from "../../assets/images/web-banner/web-banner-mobile-program.png";

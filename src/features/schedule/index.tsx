@@ -6,19 +6,19 @@ import { useTranslation } from "react-i18next";
 
 
 // Banner Mobile
-import bannerPhMobile from "../../assets/images/web-banner/banner-iklan-mobile-ph.png";
-import bannerBasMobile from "../../assets/images/web-banner/banner-iklan-mobile-bas.png";
-import bannerSalonMobile from "../../assets/images/web-banner/banner-iklan-mobile-salon.png";
-import bannerTravelMobile from "../../assets/images/web-banner/banner-iklan-mobile-travel.png";
-import bannerCodaMobile from "../../assets/images/web-banner/banner-iklan-mobile-coda.png";
-import bannerSlotIklanMobile from "../../assets/images/web-banner/web-banner-mobile-slotiklan.png";
+import bannerPhMobile from "../../assets/images/web-banner/banner-iklan-mobile-ph.webp";
+import bannerBasMobile from "../../assets/images/web-banner/banner-iklan-mobile-bas.webp";
+import bannerSalonMobile from "../../assets/images/web-banner/banner-iklan-mobile-salon.webp";
+import bannerTravelMobile from "../../assets/images/web-banner/banner-iklan-mobile-travel.webp";
+import bannerCodaMobile from "../../assets/images/web-banner/banner-iklan-mobile-coda.webp";
+import bannerSlotIklanMobile from "../../assets/images/web-banner/web-banner-mobile-slotiklan.webp";
 
 // Banner Desktop
-import bannerBas from "../../assets/images/web-banner/bannerBas.png";
-import bannerSalon from "../../assets/images/web-banner/bannerSalon.png";
-import bannerPh from "../../assets/images/web-banner/banner-iklan.png";
-import bannerCoda from "../../assets/images/web-banner/bannerCoda.png";
-import bannerSlotIklan from "../../assets/images/web-banner/bannerSlotIklan.png";
+import bannerBas from "../../assets/images/web-banner/bannerBas.webp";
+import bannerSalon from "../../assets/images/web-banner/bannerSalon.webp";
+import bannerPh from "../../assets/images/web-banner/banner-iklan.webp";
+import bannerCoda from "../../assets/images/web-banner/bannerCoda.webp";
+import bannerSlotIklan from "../../assets/images/web-banner/bannerSlotIklan.webp";
 
 export default function SchedulePage() {
 

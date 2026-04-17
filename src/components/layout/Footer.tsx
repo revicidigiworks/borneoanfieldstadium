@@ -151,16 +151,28 @@ export function Footer() {
         </p>
       </div>
 
-      {/* WHATSAPP FLOATING BUTTON */}
-      <a
-        href="https://wa.me/6282121211892"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#25D366] text-white px-5 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition"
-      >
-        <FaWhatsapp className="text-xl" />
-        <span className="text-sm font-medium hidden sm:inline">Chat Admin</span>
-      </a>
+{/* WHATSAPP FLOATING BUTTON */}
+<div className="fixed bottom-6 right-6 z-50 group">
+
+  {/* TOOLTIP */}
+  <div className="absolute right-16 top-1/2 -translate-y-1/2 flex items-center opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none">
+    <div className="bg-black text-white text-xs px-3 py-2 rounded-md shadow-lg whitespace-nowrap">
+      Chat Admin
+    </div>
+    <div className="w-2 h-2 bg-black rotate-45 -ml-1"></div>
+  </div>
+
+  {/* BUTTON */}
+  <a
+    href="https://wa.me/6282121211892"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-14 h-14 flex items-center justify-center bg-[#25D366] text-white rounded-full shadow-lg hover:scale-110 hover:shadow-2xl transition-all duration-300"
+  >
+    <FaWhatsapp className="text-2xl" />
+  </a>
+
+</div>
     </footer>
   );
 }
