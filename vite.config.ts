@@ -14,11 +14,11 @@ export default defineConfig({
 
       manifest: {
         name: 'Borneo Anfield Stadium',
-        short_name: 'Borneo',
+        short_name: 'Borneo Anfield Stadium',
         description: 'Football Stadium Platform',
 
-        theme_color: '#0a0a0a',
-        background_color: '#0a0a0a',
+        theme_color: '#fff',
+        background_color: '#fff',
 
         display: 'standalone',
         orientation: 'portrait',
