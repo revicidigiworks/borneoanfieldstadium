@@ -89,123 +89,123 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col">
-{/* 1 HERO */}
-<section className="relative min-h-[calc(100svh-80px)] md:min-h-[calc(100dvh-80px)] flex items-center justify-center bg-[#1a1a1a] overflow-hidden hero-spotlight pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
+      {/* 1 HERO */}
+      <section className="relative min-h-[calc(100svh-80px)] md:min-h-[calc(100dvh-80px)] flex items-center justify-center bg-[#1a1a1a] overflow-hidden hero-spotlight pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
 
-  {/* Background */}
-  <div className="absolute inset-0">
+        {/* Background */}
+        <div className="absolute inset-0">
 
-    {/* MOBILE VIDEO */}
-    <video
-      src={heroDrone}
-      autoPlay
-      muted
-      loop
-      playsInline
-      className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover  scale-105 block lg:hidden"
-    />
+          {/* MOBILE VIDEO */}
+          <video
+            src={heroDrone}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover  scale-105 block lg:hidden"
+          />
 
-    {/* DESKTOP IMAGE */}
-    <img
-      src={heroImage}
-      alt="Borneo Anfield Stadium"
-      className="w-full h-full object-cover opacity-50 hidden lg:block"
-    />
+          {/* DESKTOP IMAGE */}
+          <img
+            src={heroImage}
+            alt="Borneo Anfield Stadium"
+            className="w-full h-full object-cover opacity-50 hidden lg:block"
+          />
 
-    {/* Overlay */}
-    <div className="absolute inset-0">
+          {/* Overlay */}
+          <div className="absolute inset-0">
 
-      {/* DESKTOP OVERLAY */}
-      <div className="hidden lg:block absolute inset-0 bg-linear-to-r 
+            {/* DESKTOP OVERLAY */}
+            <div className="hidden lg:block absolute inset-0 bg-linear-to-r 
         from-(--primary)/95 
         via-(--primary)/50 
         to-black/40"
-      />
+            />
 
-      {/* MOBILE GRADIENT (HALUS, NO DARK OVERLAY) */}
-<div className="lg:hidden absolute inset-0 bg-linear-to-t 
+            {/* MOBILE GRADIENT (HALUS, NO DARK OVERLAY) */}
+            <div className="lg:hidden absolute inset-0 bg-linear-to-t 
   from-(--primary) 
   via-transparent 
   to-transparent"
-/>
+            />
 
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-black/20 to-transparent"></div>
-    </div>
-  </div>
+            {/* Bottom fade */}
+            <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-black/20 to-transparent"></div>
+          </div>
+        </div>
 
-  {/* Content */}
-  <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 items-center gap-12 text-center lg:text-left">
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 items-center gap-12 text-center lg:text-left">
 
-    {/* LOGO — MOBILE */}
-    <div className="flex justify-center lg:hidden mb-2 mt-2">
-      <img
-        src={heroLogo}
-        alt="Borneo Anfield Logo"
-        className="w-50 sm:w-55 object-contain logo-entrance drop-shadow-[0_10px_40px_rgba(0,0,0,0.6)] logo-float"
-      />
-    </div>
+          {/* LOGO — MOBILE */}
+          <div className="flex justify-center lg:hidden mb-2 mt-2">
+            <img
+              src={heroLogo}
+              alt="Borneo Anfield Logo"
+              className="w-50 sm:w-55 object-contain logo-entrance drop-shadow-[0_10px_40px_rgba(0,0,0,0.6)] logo-float"
+            />
+          </div>
 
-    {/* LEFT SIDE */}
-    <div className="order-2 lg:order-1 mt-4 lg:mt-0">
+          {/* LEFT SIDE */}
+          <div className="order-2 lg:order-1 mt-4 lg:mt-0">
 
-      {/* Label */}
-      <div className="hidden lg:flex items-center justify-start gap-4 mb-8">
-        <div className="hidden lg:block h-0.5 w-12 bg-(--secondary)"></div>
-        <span className="text-(--secondary) font-bold text-[11px] uppercase tracking-[0.3em]">
-          {t("hero.label")}
-        </span>
-      </div>
+            {/* Label */}
+            <div className="hidden lg:flex items-center justify-start gap-4 mb-8">
+              <div className="hidden lg:block h-0.5 w-12 bg-(--secondary)"></div>
+              <span className="text-(--secondary) font-bold text-[11px] uppercase tracking-[0.3em]">
+                {t("hero.label")}
+              </span>
+            </div>
 
-      {/* TITLE (HIDDEN ON MOBILE) */}
-      <h1 className="hidden lg:block text-4xl sm:text-5xl lg:text-7xl font-black text-white uppercase leading-none mb-10">
-        BORNEO <br />
-        ANFIELD <br />
-        <span className="text-(--secondary)">STADIUM</span>
-      </h1>
+            {/* TITLE (HIDDEN ON MOBILE) */}
+            <h1 className="hidden lg:block text-4xl sm:text-5xl lg:text-7xl font-black text-white uppercase leading-none mb-10">
+              BORNEO <br />
+              ANFIELD <br />
+              <span className="text-(--secondary)">STADIUM</span>
+            </h1>
 
-      {/* Mobile Label */}
-      <p className="lg:hidden text-(--secondary) text-xs uppercase tracking-[0.4em] mb-10">
-        {t("hero.label")}
-      </p>
+            {/* Mobile Label */}
+            <p className="lg:hidden text-(--secondary) text-xs uppercase tracking-[0.4em] mb-10">
+              {t("hero.label")}
+            </p>
 
-      {/* Description */}
-      <p className="hidden lg:block text-lg text-white/90 font-light max-w-lg leading-relaxed mb-10 border-l border-white/30 pl-6">
-        {t("hero.hero_desc")}
-      </p>
+            {/* Description */}
+            <p className="hidden lg:block text-lg text-white/90 font-light max-w-lg leading-relaxed mb-10 border-l border-white/30 pl-6">
+              {t("hero.hero_desc")}
+            </p>
 
-      {/* CTA */}
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center lg:justify-start mb-6">
-        <Link
-          to="/schedule"
-          className="px-6 py-3 border border-white text-white font-bold uppercase tracking-[0.12em] text-sm hover:bg-white hover:text-[#C8102E] transition-all duration-300 text-center"
-        >
-          {t("hero.cta_schedule")}
-        </Link>
+            {/* CTA */}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center lg:justify-start mb-6">
+              <Link
+                to="/schedule"
+                className="px-6 py-3 border border-white text-white font-bold uppercase tracking-[0.12em] text-sm hover:bg-white hover:text-[#C8102E] transition-all duration-300 text-center"
+              >
+                {t("hero.cta_schedule")}
+              </Link>
 
-        <a
-          href="https://wa.me/6282121211892"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-6 py-3 bg-(--secondary) text-(--dark) font-black uppercase tracking-[0.12em] text-sm hover:bg-white transition-all duration-300 text-center"
-        >
-          {t("hero.cta_book")}
-        </a>
-      </div>
-    </div>
+              <a
+                href="https://wa.me/6282121211892"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-(--secondary) text-(--dark) font-black uppercase tracking-[0.12em] text-sm hover:bg-white transition-all duration-300 text-center"
+              >
+                {t("hero.cta_book")}
+              </a>
+            </div>
+          </div>
 
-    {/* RIGHT SIDE LOGO — DESKTOP */}
-    <div className="hidden lg:flex justify-end order-1 lg:order-2">
-      <img
-        src={heroLogo}
-        alt="Borneo Anfield Logo"
-        className="w-90 xl:w-[320px] object-contain logo-entrance drop-shadow-[0_0_60px_rgba(255,255,255,0.25)]"
-      />
-    </div>
-  </div>
+          {/* RIGHT SIDE LOGO — DESKTOP */}
+          <div className="hidden lg:flex justify-end order-1 lg:order-2">
+            <img
+              src={heroLogo}
+              alt="Borneo Anfield Logo"
+              className="w-90 xl:w-[320px] object-contain logo-entrance drop-shadow-[0_0_60px_rgba(255,255,255,0.25)]"
+            />
+          </div>
+        </div>
 
-  <div className="light-sweep"></div>
-</section>
+        <div className="light-sweep"></div>
+      </section>
 
       {/* 2️⃣ ABOUT PREVIEW - MINIMALIST PROFESSIONAL */}
       <section className="py-10 lg:py-32 bg-(--surface) relative overflow-hidden">
